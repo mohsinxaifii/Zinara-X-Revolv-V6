@@ -175,7 +175,7 @@
   height: 100%;
   padding: 19px 13px 13px;
   background: linear-gradient(180deg, #ffffff, #efe6ea);
-  border: 1px solid var(--color-brand, #712242);
+  border: 1px solid #e0e0e0;
   border-radius: 16px;
   transition: border-color 0.3s ease;
 }
@@ -354,13 +354,13 @@
     border-color 0.3s ease;
 }
 
-/* Only the front card carries a border: it fades out as a card drops back
-   and fades in on whichever card comes forward. The [data-depth] guard keeps
-   borders intact before the JS has assigned depths. */
-.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth]:not([data-depth='0']),
-.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth]:not([data-depth='0'])
+/* Cards in the deck carry a neutral border; the brand border marks whichever
+   card is at the front, so it fades out as a card drops back and fades in on
+   the one coming forward. */
+.know-your-jewellery_wrapper_grid_diamonds_stack_item.is-active,
+.know-your-jewellery_wrapper_grid_diamonds_stack_item.is-active
   .know-your-jewellery_wrapper_grid_diamonds_compare {
-  border-color: transparent;
+  border-color: var(--color-brand, #712242);
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth='0'] {
