@@ -64,52 +64,96 @@
   color: #000;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_image {
-  display: block;
-  max-width: 240px;
+/* Vermeil diagram: image with leader-line callouts anchored to specific
+   points on the product photo (positions come from the Figma composition
+   and are tied to this photo's framing). */
+.know-your-jewellery_wrapper_grid_vermeil_diagram {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 536.5 / 238;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_image img {
+.know-your-jewellery_wrapper_grid_vermeil_diagram_image {
+  position: absolute;
+  left: 25.72%;
+  top: 7.98%;
+  width: 44.58%;
+  height: 92.14%;
+  display: block;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_diagram_image img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
   filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_facts {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.know-your-jewellery_wrapper_grid_vermeil_diagram_lines {
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_facts_item {
+.know-your-jewellery_wrapper_grid_vermeil_diagram_lines line {
+  stroke: var(--color-brand, #712242);
+  stroke-width: 0.75;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout {
+  position: absolute;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_facts_item_icon {
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout--1 {
+  left: 2.98%;
+  top: 13.66%;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout--2 {
+  left: 49.3%;
+  top: 15.61%;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout--3 {
+  left: 37.95%;
+  top: 89.37%;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout_icon {
   display: flex;
   flex: 0 0 auto;
   width: 20px;
   height: 20px;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_facts_item_icon img {
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout_icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_facts_item_text {
+.know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text {
+  white-space: nowrap;
   font-family: var(--font-secondary--family);
   font-weight: 400;
   font-size: 14px;
   color: var(--color-brand, #712242);
+}
+
+@media screen and (max-width: 480px) {
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text {
+    white-space: normal;
+    font-size: 12px;
+  }
 }
 
 /* Diamond comparison stat */
