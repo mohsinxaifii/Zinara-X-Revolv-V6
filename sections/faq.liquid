@@ -9,7 +9,14 @@
 
       <div class="faq_wrapper_list" data-animate>
         {%- for block in section.blocks -%}
-          <details class="faq_wrapper_list_item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+          <details
+            class="faq_wrapper_list_item"
+            name="faq-group-{{ section.id }}"
+            {% if forloop.first %}
+              open
+            {% endif %}
+            {{ block.shopify_attributes }}
+          >
             <summary class="faq_wrapper_list_item_summary">
               <span class="faq_wrapper_list_item_summary_question">{{ block.settings.question }}</span>
               <span class="faq_wrapper_list_item_summary_icon">
