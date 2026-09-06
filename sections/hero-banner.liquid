@@ -33,11 +33,15 @@
                   widths: '750,1100,1500,2000',
                   sizes: '100vw',
                   class: 'hero-banner_wrapper_track_slide_image',
-                  alt: block.settings.image.alt | default: block.settings.heading
+                  alt: block.settings.image.alt
+                | default: block.settings.heading
               }}
             {%- endif -%}
 
-            {%- if block.settings.heading != blank or block.settings.subheading != blank or block.settings.button_label != blank -%}
+            {%- if block.settings.heading != blank
+              or block.settings.subheading != blank
+              or block.settings.button_label != blank
+            -%}
               <div class="hero-banner_wrapper_track_slide_content">
                 {%- if block.settings.heading != blank -%}
                   <h2 class="hero-banner_wrapper_track_slide_content_heading">{{ block.settings.heading }}</h2>
@@ -46,7 +50,10 @@
                   <p class="hero-banner_wrapper_track_slide_content_subheading">{{ block.settings.subheading }}</p>
                 {%- endif -%}
                 {%- if block.settings.button_label != blank -%}
-                  <a href="{{ block.settings.button_url | default: '#' }}" class="hero-banner_wrapper_track_slide_content_button">
+                  <a
+                    href="{{ block.settings.button_url | default: '#' }}"
+                    class="hero-banner_wrapper_track_slide_content_button"
+                  >
                     {{ block.settings.button_label }}
                   </a>
                 {%- endif -%}
