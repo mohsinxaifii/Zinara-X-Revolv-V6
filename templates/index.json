@@ -141,7 +141,11 @@
         },
         "tab-4": {
           "type": "tab",
-          "settings": { "label": "Engagement rings", "collection": "engagement-rings", "product_limit": 10 }
+          "settings": {
+            "label": "Engagement rings",
+            "collection": "engagement-rings",
+            "product_limit": 10
+          }
         },
         "tab-5": {
           "type": "tab",
