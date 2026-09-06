@@ -1,49 +1,32 @@
 {{ 'category-nav.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign primary_blocks = section.blocks | where: 'settings.align_end', false
-  assign secondary_blocks = section.blocks | where: 'settings.align_end', true
+  assign has_secondary = false
+  for block in section.blocks
+    if block.settings.align_end
+      assign has_secondary = true
+      break
+    endif
+  endfor
 -%}
 
 {%- if section.blocks.size > 0 -%}
   <nav class="category-nav" aria-label="Category navigation">
     <div class="category-nav_wrapper">
       <ul class="category-nav_wrapper_primary">
-        {%- for block in primary_blocks -%}
-          <li
-            class="category-nav_wrapper_item{% if block.settings.url == request.path %} is-active{% endif %}"
-            {{ block.shopify_attributes }}
-          >
-            <span class="category-nav_wrapper_item_content">
-              <a href="{{ block.settings.url | default: '#' }}" class="category-nav_wrapper_item_content_link">
-                {{ block.settings.label }}
-              </a>
-              {%- if block.settings.show_new_badge -%}
-                <span class="category-nav_wrapper_item_content_badge">{{ 'labels.new' | t }}</span>
-              {%- endif -%}
-            </span>
-            <span class="category-nav_wrapper_item_underline"></span>
-          </li>
+        {%- for block in section.blocks -%}
+          {%- unless block.settings.align_end -%}
+            {%- render 'category-nav-item', block: block -%}
+          {%- endunless -%}
         {%- endfor -%}
       </ul>
 
-      {%- if secondary_blocks.size > 0 -%}
+      {%- if has_secondary -%}
         <ul class="category-nav_wrapper_secondary">
-          {%- for block in secondary_blocks -%}
-            <li
-              class="category-nav_wrapper_item{% if block.settings.url == request.path %} is-active{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              <span class="category-nav_wrapper_item_content">
-                <a href="{{ block.settings.url | default: '#' }}" class="category-nav_wrapper_item_content_link">
-                  {{ block.settings.label }}
-                </a>
-                {%- if block.settings.show_new_badge -%}
-                  <span class="category-nav_wrapper_item_content_badge">{{ 'labels.new' | t }}</span>
-                {%- endif -%}
-              </span>
-              <span class="category-nav_wrapper_item_underline"></span>
-            </li>
+          {%- for block in section.blocks -%}
+            {%- if block.settings.align_end -%}
+              {%- render 'category-nav-item', block: block -%}
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       {%- endif -%}
