@@ -123,7 +123,36 @@
         "gradient_start": "#FEF4E2",
         "gradient_middle": "#FCE7C5"
       }
+    },
+    "bestsellers": {
+      "type": "product-carousel",
+      "blocks": {
+        "tab-1": {
+          "type": "tab",
+          "settings": { "label": "Rings", "collection": "all-rings", "product_limit": 10 }
+        },
+        "tab-2": {
+          "type": "tab",
+          "settings": { "label": "Bracelets", "collection": "", "product_limit": 10 }
+        },
+        "tab-3": {
+          "type": "tab",
+          "settings": { "label": "Everyday rings", "collection": "", "product_limit": 10 }
+        },
+        "tab-4": {
+          "type": "tab",
+          "settings": { "label": "Engagement rings", "collection": "engagement-rings", "product_limit": 10 }
+        },
+        "tab-5": {
+          "type": "tab",
+          "settings": { "label": "Office wear", "collection": "", "product_limit": 10 }
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3", "tab-4", "tab-5"],
+      "settings": {
+        "heading": "Zinara's bestsellers"
+      }
     }
   },
-  "order": ["hero-banner", "shop-by-category", "usp-strip"]
+  "order": ["hero-banner", "shop-by-category", "usp-strip", "bestsellers"]
 }
