@@ -35,6 +35,18 @@
   scrollbar-width: none;
 }
 
+.press-carousel_wrapper_track.is-align-left {
+  justify-content: flex-start;
+}
+
+.press-carousel_wrapper_track.is-align-center {
+  justify-content: center;
+}
+
+.press-carousel_wrapper_track.is-align-right {
+  justify-content: flex-end;
+}
+
 .press-carousel_wrapper_track::-webkit-scrollbar {
   display: none;
 }
