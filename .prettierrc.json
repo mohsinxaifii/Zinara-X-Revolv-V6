@@ -6,7 +6,9 @@
     {
       "files": ["*.liquid"],
       "options": {
-        "printWidth": 120
+        "printWidth": 120,
+        "singleQuote": false,
+        "liquidSingleQuote": true
       }
     }
   ]

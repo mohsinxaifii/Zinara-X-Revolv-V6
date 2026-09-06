@@ -10,3 +10,7 @@ ehthumbs.db
 Thumbs.db
 release
 *.zip
+
+# Figma API secret — never commit
+.figma_token
+.shopify_env

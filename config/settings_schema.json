@@ -8,6 +8,26 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "t:general.header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:labels.logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 60,
+        "max": 260,
+        "step": 2,
+        "unit": "px",
+        "label": "t:labels.logo_width",
+        "default": 82
+      }
+    ]
+  },
+  {
     "name": "t:general.typography",
     "settings": [
       {
@@ -17,8 +37,20 @@
       {
         "type": "font_picker",
         "id": "type_primary_font",
-        "default": "work_sans_n4",
+        "default": "inter_n4",
         "label": "t:general.primary"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_secondary_font",
+        "default": "montserrat_n5",
+        "label": "t:general.secondary"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_tertiary_font",
+        "default": "libre_baskerville_n4",
+        "label": "t:general.tertiary"
       }
     ]
   },
@@ -31,15 +63,15 @@
         "label": "t:labels.page_width",
         "options": [
           {
-            "value": "90rem",
+            "value": "80rem",
             "label": "t:options.page_width.narrow"
           },
           {
-            "value": "110rem",
+            "value": "90rem",
             "label": "t:options.page_width.wide"
           }
         ],
-        "default": "90rem"
+        "default": "80rem"
       },
       {
         "type": "range",
@@ -49,7 +81,7 @@
         "step": 1,
         "unit": "px",
         "label": "t:labels.page_margin",
-        "default": 20
+        "default": 72
       }
     ]
   },
@@ -65,8 +97,38 @@
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#333333",
+        "default": "#000000",
         "label": "t:labels.foreground"
+      },
+      {
+        "type": "color",
+        "id": "text_secondary_color",
+        "default": "#494949",
+        "label": "t:labels.text_secondary"
+      },
+      {
+        "type": "color",
+        "id": "icon_color",
+        "default": "#666666",
+        "label": "t:labels.icon"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "default": "#F2F2F2",
+        "label": "t:labels.border"
+      },
+      {
+        "type": "color",
+        "id": "brand_color",
+        "default": "#712242",
+        "label": "t:labels.brand"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#F0166E",
+        "label": "t:labels.accent"
       },
       {
         "type": "range",

@@ -1,0 +1,48 @@
+{{ 'usp-grid.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <section class="usp-grid">
+    <div class="usp-grid_wrapper" data-animate>
+      {%- for block in section.blocks -%}
+        <div class="usp-grid_wrapper_cell" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon -%}
+            <span class="usp-grid_wrapper_cell_icon">
+              {{ block.settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', alt: '' }}
+            </span>
+          {%- endif -%}
+          <span class="usp-grid_wrapper_cell_text">{{ block.settings.text }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "USP grid",
+  "tag": "section",
+  "class": "shopify-section--usp-grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "cell",
+      "name": "Cell",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Benefit" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP grid",
+      "blocks": [
+        { "type": "cell", "settings": { "text": "Lifetime buyback & exchange" } },
+        { "type": "cell", "settings": { "text": "Handcrafted" } },
+        { "type": "cell", "settings": { "text": "Lifetime buyback & exchange" } },
+        { "type": "cell", "settings": { "text": "Insured & free shipping" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

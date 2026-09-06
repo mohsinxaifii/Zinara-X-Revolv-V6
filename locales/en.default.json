@@ -1,4 +1,25 @@
 {
+  "accessibility": {
+    "previous_announcement": "Previous announcement",
+    "next_announcement": "Next announcement",
+    "menu": "Menu",
+    "close_menu": "Close menu",
+    "search": "Search",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "cart_count": "{{ count }} items in cart",
+    "previous_slide": "Previous slide",
+    "next_slide": "Next slide",
+    "slides": "Slides",
+    "go_to_slide": "Go to slide {{ number }}",
+    "wishlist_add": "Add to wishlist",
+    "wishlist_remove": "Remove from wishlist",
+    "view_all": "View all",
+    "previous_page": "Previous",
+    "next_page": "Next",
+    "follow_us": "Follow us on"
+  },
   "404": {
     "title": "404",
     "not_found": "Page not found.",
@@ -30,6 +51,9 @@
   "collections": {
     "title": "Collections"
   },
+  "labels": {
+    "new": "NEW"
+  },
   "gift_card": {
     "add_to_apple_wallet": "Add to Apple Wallet",
     "card": "Gift card",
@@ -45,6 +69,7 @@
   "search": {
     "title": "Search",
     "placeholder": "Search articles, pages, or products",
+    "placeholder_short": "Search",
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"

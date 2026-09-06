@@ -22,6 +22,7 @@
     "page": "Page",
     "password": "Password",
     "primary": "Primary",
+    "tertiary": "Tertiary",
     "product": "Product",
     "row": "Row",
     "search": "Search",
@@ -41,6 +42,8 @@
     "grid_item_width": "Grid item width",
     "input_corner_radius": "Input corner radius",
     "layout_direction": "Layout direction",
+    "logo": "Logo",
+    "logo_width": "Logo width",
     "menu": "Menu",
     "customer_account_menu": "Customer account menu",
     "padding": "Padding",
@@ -48,7 +51,12 @@
     "page_width": "Page width",
     "show_payment_icons": "Show payment icons",
     "text_style": "Text style",
-    "text": "Text"
+    "text": "Text",
+    "text_secondary": "Secondary text",
+    "icon": "Icon",
+    "border": "Border",
+    "brand": "Brand",
+    "accent": "Accent"
   },
   "options": {
     "alignment": {
@@ -72,6 +80,6 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "normal": "Normal text"
-    },
+    }
   }
 }

@@ -1,0 +1,135 @@
+.zinara-collections {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.zinara-collections_wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.zinara-collections_wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.zinara-collections_wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.zinara-collections_wrapper_heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.219;
+  color: var(--color-text-secondary, #494949);
+}
+
+.zinara-collections_wrapper_track {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.zinara-collections_wrapper_track::-webkit-scrollbar {
+  display: none;
+}
+
+.zinara-collections_wrapper_track_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+  text-decoration: none;
+}
+
+.zinara-collections_wrapper_track_item_image {
+  display: block;
+  width: 240px;
+  aspect-ratio: 240 / 309;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.zinara-collections_wrapper_track_item_image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zinara-collections_wrapper_track_item:hover .zinara-collections_wrapper_track_item_image {
+  transform: translateY(-4px);
+}
+
+.zinara-collections_wrapper_track_item_label {
+  font-family: var(--font-tertiary--family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.24;
+  color: var(--color-brand, #712242);
+  text-align: center;
+}
+
+.zinara-collections_wrapper_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.zinara-collections_wrapper_footer_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.219;
+  color: var(--color-brand, #712242);
+  text-decoration: underline;
+}
+
+.zinara-collections_wrapper_footer_link svg {
+  width: 24px;
+  height: 24px;
+}
+
+.zinara-collections_arrow {
+  position: absolute;
+  bottom: 32px;
+  right: var(--page-margin);
+  z-index: 2;
+}
+
+@media screen and (max-width: 749px) {
+  .zinara-collections_arrow {
+    display: none;
+  }
+}

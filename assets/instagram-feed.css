@@ -1,0 +1,107 @@
+.instagram-feed {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.instagram-feed_wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.instagram-feed_wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.instagram-feed_wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.instagram-feed_wrapper_heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-tertiary--family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.24;
+  color: var(--color-brand, #712242);
+}
+
+.instagram-feed_wrapper_grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.instagram-feed_wrapper_grid_item {
+  display: block;
+  flex: 0 1 253px;
+  width: 253px;
+  aspect-ratio: 253 / 339;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.instagram-feed_wrapper_grid_item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.instagram-feed_wrapper_grid_item:hover {
+  transform: translateY(-4px);
+}
+
+.instagram-feed_wrapper_follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  background-color: inherit;
+  text-decoration: none;
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-text-secondary, #494949);
+}
+
+.instagram-feed_wrapper_follow svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-brand, #712242);
+}
+
+.instagram-feed_wrapper_follow_handle {
+  font-weight: 600;
+  color: var(--color-brand, #712242);
+}
+
+@media screen and (max-width: 749px) {
+  .instagram-feed_wrapper_grid_item {
+    flex-basis: 45%;
+  }
+}

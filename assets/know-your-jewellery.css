@@ -1,0 +1,288 @@
+.know-your-jewellery {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #999;
+}
+
+.know-your-jewellery_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.know-your-jewellery_wrapper_heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.219;
+  color: var(--color-text-secondary, #494949);
+}
+
+.know-your-jewellery_wrapper_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil,
+.know-your-jewellery_wrapper_grid_diamonds {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil {
+  background-color: #fef4e2;
+  border: 1px solid #f9d79f;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds {
+  background-color: #f7f3f5;
+  justify-content: center;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_title,
+.know-your-jewellery_wrapper_grid_diamonds_title {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-tertiary--family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.24;
+  color: #000;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_image {
+  display: block;
+  max-width: 240px;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_facts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_facts_item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_facts_item_icon {
+  display: flex;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_facts_item_icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.know-your-jewellery_wrapper_grid_vermeil_facts_item_text {
+  font-family: var(--font-secondary--family);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-brand, #712242);
+}
+
+/* Diamond comparison stat */
+.know-your-jewellery_wrapper_grid_diamonds_compare {
+  position: relative;
+  width: 100%;
+  max-width: 361px;
+  padding: 20px 12px 12px;
+  background: linear-gradient(180deg, #ffffff, #efe6ea);
+  border: 1px solid var(--color-brand, #712242);
+  border-radius: 16px;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-brand, #712242);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat strong {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-secondary, #494949);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat strong.is-accent {
+  font-family: var(--font-tertiary--family);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-brand, #712242);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat strong svg {
+  width: 14px;
+  height: 14px;
+  color: #2a7d21;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat span {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 10px;
+  color: var(--color-text-secondary, #494949);
+}
+
+/* Myth / fact flip stack */
+.know-your-jewellery_wrapper_grid_diamonds_flip {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 334px;
+  height: 140px;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #efe6ea, #fff);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.96);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  perspective: 1000px;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card_face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  backface-visibility: hidden;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotateY(0deg);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact {
+  transform: rotateY(-180deg);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card.is-flipped
+  .know-your-jewellery_wrapper_grid_diamonds_flip_card_face--myth {
+  transform: rotateY(180deg);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card.is-flipped
+  .know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact {
+  transform: rotateY(0deg);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card_label {
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-brand, #712242);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card_quote {
+  text-align: left;
+  font-family: var(--font-tertiary--family);
+  font-size: 13px;
+  line-height: 1.43;
+  color: #000;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact
+  .know-your-jewellery_wrapper_grid_diamonds_flip_card_quote {
+  font-family: var(--font-secondary--family);
+  color: var(--color-text-secondary, #494949);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_flip_card_hint {
+  font-family: var(--font-secondary--family);
+  font-size: 10px;
+  color: var(--color-icon, #666);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+@media screen and (max-width: 749px) {
+  .know-your-jewellery_wrapper_grid {
+    grid-template-columns: 1fr;
+  }
+}

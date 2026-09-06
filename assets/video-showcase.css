@@ -1,0 +1,123 @@
+.video-showcase {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #fff;
+}
+
+.video-showcase_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.video-showcase_wrapper_heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.219;
+  color: var(--color-text-secondary, #494949);
+}
+
+.video-showcase_wrapper_track {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.video-showcase_wrapper_track::-webkit-scrollbar {
+  display: none;
+}
+
+.video-showcase_wrapper_track_item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 282px;
+  width: 282px;
+  height: 400px;
+  scroll-snap-align: start;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.video-showcase_wrapper_track_item_poster {
+  position: absolute;
+  inset: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video-showcase_wrapper_track_item_poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-showcase_wrapper_track_item_play {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.video-showcase_wrapper_track_item_play svg {
+  width: 20px;
+  height: 20px;
+}
+
+.video-showcase_wrapper_track_item_play:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: scale(1.1);
+}
+
+.video-showcase_wrapper_track_item_video {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.video-showcase_wrapper_track_item_video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-showcase_arrow {
+  position: absolute;
+  top: 50%;
+  right: var(--page-margin);
+  transform: translateY(-50%);
+}
+
+@media screen and (max-width: 989px) {
+  .video-showcase_arrow {
+    display: none;
+  }
+}

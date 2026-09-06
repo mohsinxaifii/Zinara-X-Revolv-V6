@@ -9,12 +9,570 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "custom-section",
+    "hero-banner": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "slide_mkRNm4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "slide_BEYVhA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "slide_4KCA4Q": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": ["slide-1", "slide_mkRNm4", "slide_BEYVhA", "slide_4KCA4Q"],
+      "settings": { "autoplay": true, "autoplay_speed": 6 }
+    },
+    "shop-by-category": {
+      "type": "shop-by-category",
+      "blocks": {
+        "category-1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-rings.png",
+            "label": "Rings",
+            "url": "/collections/all-rings"
+          }
+        },
+        "category-2": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-earrings.png",
+            "label": "Earrings",
+            "url": "/collections/all-earrings"
+          }
+        },
+        "category-3": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-pendants.png",
+            "label": "Pendants",
+            "url": "/collections/all-pendants"
+          }
+        },
+        "category-4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-bracelets.png",
+            "label": "Bracelets",
+            "url": ""
+          }
+        }
+      },
+      "block_order": ["category-1", "category-2", "category-3", "category-4"],
+      "settings": { "heading": "Shop by category" }
+    },
+    "usp-strip": {
+      "type": "usp-strip",
+      "blocks": {
+        "badge-1": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/zinara-icon-gold-plating.svg",
+            "text": "5x thicker 18 KT gold plating"
+          }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/zinara-sgl-certified-logo.png",
+            "text": "SGL certified diamonds"
+          }
+        }
+      },
+      "block_order": ["badge-1", "badge-2"],
+      "settings": { "gradient_start": "#FEF4E2", "gradient_middle": "#FCE7C5" }
+    },
+    "bestsellers": {
+      "type": "product-carousel",
+      "blocks": {
+        "tab-1": {
+          "type": "tab",
+          "settings": { "label": "Rings", "collection": "all-rings", "product_limit": 10 }
+        },
+        "tab-2": {
+          "type": "tab",
+          "settings": { "label": "Bracelets", "collection": "", "product_limit": 10 }
+        },
+        "tab-3": {
+          "type": "tab",
+          "settings": { "label": "Everyday rings", "collection": "", "product_limit": 10 }
+        },
+        "tab-4": {
+          "type": "tab",
+          "settings": {
+            "label": "Engagement rings",
+            "collection": "engagement-rings",
+            "product_limit": 10
+          }
+        },
+        "tab-5": {
+          "type": "tab",
+          "settings": { "label": "Office wear", "collection": "", "product_limit": 10 }
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3", "tab-4", "tab-5"],
+      "settings": { "heading": "Zinara's bestsellers" }
+    },
+    "know-your-jewellery": {
+      "type": "know-your-jewellery",
+      "blocks": {
+        "fact-1": {
+          "type": "vermeil_fact",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-sparkles-small.svg",
+            "text": "Looks and feels like solid gold"
+          }
+        },
+        "fact-2": {
+          "type": "vermeil_fact",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-droplet.svg",
+            "text": "Sweat and waterproof"
+          }
+        },
+        "fact-3": {
+          "type": "vermeil_fact",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-layers.svg",
+            "text": "5x thicker gold plating"
+          }
+        },
+        "myth-1": {
+          "type": "myth_fact",
+          "settings": { "myth": "Lab grown diamonds are fake diamonds." }
+        },
+        "myth-2": {
+          "type": "myth_fact",
+          "settings": { "myth": "Lab grown diamonds are fake diamonds." }
+        }
+      },
+      "block_order": ["fact-1", "fact-2", "fact-3", "myth-1", "myth-2"],
+      "settings": {
+        "heading": "Know Your Jewellery",
+        "vermeil_title": "Gold Vermeil",
+        "vermeil_image": "shopify://shop_images/zinara-kyj-gold-vermeil.png",
+        "diamonds_title": "Lab Grown Diamonds",
+        "mined_image": "shopify://shop_images/zinara-kyj-diamond-icon.png",
+        "mined_value": "160kg / carat",
+        "mined_label": "Mined diamond",
+        "co2_reduction": "96%",
+        "co2_label": "CO2 emission",
+        "lab_grown_value": "6kg / carat",
+        "lab_grown_label": "Lab grown diamond"
+      }
+    },
+    "curated-trends": {
+      "type": "video-showcase",
+      "blocks": {
+        "video-1": {
+          "type": "video_card",
+          "settings": { "cover_image": "shopify://shop_images/zinara-video-thumb-generic.jpg" }
+        },
+        "video-2": {
+          "type": "video_card",
+          "settings": { "cover_image": "shopify://shop_images/zinara-video-thumb-generic.jpg" }
+        },
+        "video-3": {
+          "type": "video_card",
+          "settings": { "cover_image": "shopify://shop_images/zinara-video-thumb-2.png" }
+        },
+        "video-4": {
+          "type": "video_card",
+          "settings": { "cover_image": "shopify://shop_images/zinara-video-thumb-generic.jpg" }
+        },
+        "video-5": {
+          "type": "video_card",
+          "settings": { "cover_image": "shopify://shop_images/zinara-video-thumb-generic.jpg" }
+        }
+      },
+      "block_order": ["video-1", "video-2", "video-3", "video-4", "video-5"],
+      "settings": { "heading": "Curated trends for you" }
+    },
+    "usp-grid": {
+      "type": "usp-grid",
+      "blocks": {
+        "cell-1": {
+          "type": "cell",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-return-arrow.svg",
+            "text": "Lifetime buyback & exchange"
+          }
+        },
+        "cell-2": {
+          "type": "cell",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-hand-heart.svg",
+            "text": "Handcrafted"
+          }
+        },
+        "cell-3": {
+          "type": "cell",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-return-arrow.svg",
+            "text": "Lifetime buyback & exchange"
+          }
+        },
+        "cell-4": {
+          "type": "cell",
+          "settings": {
+            "icon": "shopify://shop_images/zinara-icon-truck.svg",
+            "text": "Insured & free shipping"
+          }
+        }
+      },
+      "block_order": ["cell-1", "cell-2", "cell-3", "cell-4"],
       "settings": {}
+    },
+    "zinara-collections": {
+      "type": "zinara-collections",
+      "blocks": {
+        "card-1": {
+          "type": "collection_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-new-job.png",
+            "label": "New job, new era"
+          }
+        },
+        "card-2": {
+          "type": "collection_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-siesta.png",
+            "label": "Siesta"
+          }
+        },
+        "card-3": {
+          "type": "collection_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-festive.png",
+            "label": "Festive edit"
+          }
+        },
+        "card-4": {
+          "type": "collection_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-siesta.png",
+            "label": "Siesta"
+          }
+        },
+        "card-5": {
+          "type": "collection_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-festive.png",
+            "label": "Festive edit"
+          }
+        }
+      },
+      "block_order": ["card-1", "card-2", "card-3", "card-4", "card-5"],
+      "settings": { "heading": "Zinara Collections", "background_color": "#FEF4E2" }
+    },
+    "testimonials": {
+      "type": "testimonial-carousel",
+      "blocks": {
+        "review-1": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/zinara-testimonial-person.png",
+            "rating": 5,
+            "name": "Priya S.",
+            "quote": "\"I was a little unsure about gold vermeil at first, but the finish looks incredibly premium. I've been wearing my necklace almost every day, and it still looks as beautiful as when it arrived.\""
+          }
+        },
+        "review-2": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/zinara-testimonial-person.png",
+            "rating": 5,
+            "name": "Priya S.",
+            "quote": "\"I was a little unsure about gold vermeil at first, but the finish looks incredibly premium. I've been wearing my necklace almost every day, and it still looks as beautiful as when it arrived.\""
+          }
+        },
+        "review-3": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/zinara-testimonial-person.png",
+            "rating": 5,
+            "name": "Priya S.",
+            "quote": "\"I was a little unsure about gold vermeil at first, but the finish looks incredibly premium. I've been wearing my necklace almost every day, and it still looks as beautiful as when it arrived.\""
+          }
+        },
+        "review-4": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/zinara-testimonial-person.png",
+            "rating": 5,
+            "name": "Priya S.",
+            "quote": "\"I was a little unsure about gold vermeil at first, but the finish looks incredibly premium. I've been wearing my necklace almost every day, and it still looks as beautiful as when it arrived.\""
+          }
+        }
+      },
+      "block_order": ["review-1", "review-2", "review-3", "review-4"],
+      "settings": { "heading": "They tried it. They loved it!" }
+    },
+    "occasion-showcase": {
+      "type": "occasion-showcase",
+      "blocks": {
+        "occ-1": {
+          "type": "occasion_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-new-job.png",
+            "label": "New job, new era"
+          }
+        },
+        "occ-2": {
+          "type": "occasion_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-festive.png",
+            "label": "Festive edit"
+          }
+        },
+        "occ-3": {
+          "type": "occasion_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-siesta.png",
+            "label": "Monsoon edit"
+          }
+        },
+        "occ-4": {
+          "type": "occasion_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-festive.png",
+            "label": "Festive edit"
+          }
+        },
+        "occ-5": {
+          "type": "occasion_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-collection-festive.png",
+            "label": "Festive edit"
+          }
+        }
+      },
+      "block_order": ["occ-1", "occ-2", "occ-3", "occ-4", "occ-5"],
+      "settings": { "heading": "For every occasion" }
+    },
+    "gifting": {
+      "type": "product-carousel",
+      "blocks": {
+        "gtab-1": {
+          "type": "tab",
+          "settings": { "label": "Bestsellers", "collection": "bestsellers", "product_limit": 10 }
+        },
+        "gtab-2": {
+          "type": "tab",
+          "settings": { "label": "Under 5k", "collection": "under-5000", "product_limit": 10 }
+        },
+        "gtab-3": {
+          "type": "tab",
+          "settings": { "label": "Under 10k", "collection": "under-10000", "product_limit": 10 }
+        },
+        "gtab-4": {
+          "type": "tab",
+          "settings": { "label": "Everyday rings", "collection": "", "product_limit": 10 }
+        },
+        "gtab-5": {
+          "type": "tab",
+          "settings": { "label": "Pendants", "collection": "all-pendants", "product_limit": 10 }
+        }
+      },
+      "block_order": ["gtab-1", "gtab-2", "gtab-3", "gtab-4", "gtab-5"],
+      "settings": { "heading": "Gifting by Zinara" }
+    },
+    "split-promo": {
+      "type": "split-promo",
+      "settings": {
+        "left_image": "shopify://shop_images/zinara-custom-design-bg.png",
+        "left_heading": "Get your dream jewellery",
+        "left_subheading": "Share your idea and we’ll shape it into the piece you imagined",
+        "left_button_label": "Start designing",
+        "right_image_1": "shopify://shop_images/zinara-collection-siesta.png",
+        "right_image_2": "shopify://shop_images/zinara-video-thumb-generic.jpg",
+        "right_heading": "Made to be worn.\nMade to be yours.",
+        "right_button_label": "Get to know us"
+      }
+    },
+    "as-seen-on": {
+      "type": "press-carousel",
+      "blocks": {
+        "press-1": {
+          "type": "press_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-as-seen-on-1.jpg",
+            "by_text": "Kirti Vij in",
+            "caption": "Majestic Solitaire Ring"
+          }
+        },
+        "press-2": {
+          "type": "press_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-video-thumb-generic.jpg",
+            "by_text": "Kirti Vij in",
+            "caption": "Majestic Solitaire Ring"
+          }
+        },
+        "press-3": {
+          "type": "press_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-as-seen-on-1.jpg",
+            "by_text": "Kirti Vij in",
+            "caption": "Majestic Solitaire Ring"
+          }
+        },
+        "press-4": {
+          "type": "press_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-video-thumb-generic.jpg",
+            "by_text": "Kirti Vij in",
+            "caption": "Majestic Solitaire Ring"
+          }
+        },
+        "press-5": {
+          "type": "press_card",
+          "settings": {
+            "image": "shopify://shop_images/zinara-as-seen-on-1.jpg",
+            "by_text": "Kirti Vij in",
+            "caption": "Majestic Solitaire Ring"
+          }
+        }
+      },
+      "block_order": ["press-1", "press-2", "press-3", "press-4", "press-5"],
+      "settings": { "heading": "As seen on" }
+    },
+    "instagram-community": {
+      "type": "instagram-feed",
+      "blocks": {
+        "post-1": {
+          "type": "post",
+          "settings": { "image": "shopify://shop_images/zinara-instagram-1.png" }
+        },
+        "post-2": {
+          "type": "post",
+          "settings": { "image": "shopify://shop_images/zinara-instagram-1.png" }
+        },
+        "post-3": {
+          "type": "post",
+          "settings": { "image": "shopify://shop_images/zinara-instagram-1.png" }
+        },
+        "post-4": {
+          "type": "post",
+          "settings": { "image": "shopify://shop_images/zinara-instagram-2.png" }
+        }
+      },
+      "block_order": ["post-1", "post-2", "post-3", "post-4"],
+      "settings": {
+        "heading": "Join our Instagram community",
+        "background_color": "#FEF4E2",
+        "handle": "@zinara",
+        "instagram_url": "https://instagram.com/zinara"
+      }
+    },
+    "journal": {
+      "type": "journal",
+      "settings": { "heading": "The jewellery journal", "blog": "news", "articles_to_show": 3 }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are lab grown diamonds real?",
+            "answer": "Lab grown diamonds appear identical to natural diamonds and can't be distinguished by the naked eye and with standard microscopic tools. Trained jewellers and experts can't also tell the difference between them. They can only be distinguished from natural diamonds using specialized equipment that can detect the specific growth patterns and inclusions characteristic of their origin."
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can you tell the difference between lab grown diamonds and natural diamonds?"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": { "question": "Are ZINARA lab grown diamonds graded and certified?" }
+        },
+        "q4": { "type": "question", "settings": { "question": "Do you deliver pan India?" } },
+        "q5": {
+          "type": "question",
+          "settings": { "question": "Is ID proof required for delivery?" }
+        },
+        "q6": {
+          "type": "question",
+          "settings": { "question": "What payment options are available?" }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": { "heading": "Frequently Asked Questions" }
+    },
+    "featured-in": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo-1": {
+          "type": "logo",
+          "settings": { "image": "shopify://shop_images/zinara-press-logo-1.png" }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": { "image": "shopify://shop_images/zinara-press-logo-2.png" }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": { "image": "shopify://shop_images/zinara-press-logo-3.png" }
+        }
+      },
+      "block_order": ["logo-1", "logo-2", "logo-3"],
+      "settings": { "heading": "Featured in", "background_color": "#FEF4E2", "speed": 25 }
     }
   },
   "order": [
-    "main"
+    "hero-banner",
+    "shop-by-category",
+    "usp-strip",
+    "bestsellers",
+    "know-your-jewellery",
+    "curated-trends",
+    "usp-grid",
+    "zinara-collections",
+    "testimonials",
+    "occasion-showcase",
+    "gifting",
+    "split-promo",
+    "as-seen-on",
+    "instagram-community",
+    "journal",
+    "faq",
+    "featured-in"
   ]
 }

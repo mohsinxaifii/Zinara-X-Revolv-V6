@@ -1,0 +1,109 @@
+.press-carousel {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #fff;
+}
+
+.press-carousel_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.press-carousel_wrapper_heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.219;
+  color: var(--color-text-secondary, #494949);
+}
+
+.press-carousel_wrapper_track {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.press-carousel_wrapper_track::-webkit-scrollbar {
+  display: none;
+}
+
+.press-carousel_wrapper_track_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+}
+
+.press-carousel_wrapper_track_item_image {
+  display: block;
+  width: 240px;
+  aspect-ratio: 240 / 339;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+
+.press-carousel_wrapper_track_item_image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.press-carousel_wrapper_track_item_caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.press-carousel_wrapper_track_item_caption_by {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-text-secondary, #494949);
+}
+
+.press-carousel_wrapper_track_item_caption_title {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-brand, #712242);
+  text-decoration: underline;
+}
+
+.press-carousel_arrow--next {
+  position: absolute;
+  top: 50%;
+  right: var(--page-margin);
+  transform: translateY(-50%);
+}
+
+.press-carousel_arrow--prev {
+  position: absolute;
+  top: 50%;
+  left: var(--page-margin);
+  transform: translateY(-50%);
+}
+
+@media screen and (max-width: 989px) {
+  .press-carousel_arrow--next,
+  .press-carousel_arrow--prev {
+    display: none;
+  }
+}
