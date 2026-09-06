@@ -185,37 +185,55 @@
   color: var(--color-text-secondary, #494949);
 }
 
-/* Myth / fact flip stack */
-.know-your-jewellery_wrapper_grid_diamonds_flip {
+/* Diamonds column carousel (compare-stat slide + myth/fact slides) */
+.know-your-jewellery_wrapper_grid_diamonds_carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_carousel_row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_carousel_track {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_carousel_track::-webkit-scrollbar {
+  display: none;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_carousel_slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+}
+
+/* Myth / fact flip card */
+.know-your-jewellery_wrapper_grid_diamonds_flip_card {
   position: relative;
   display: block;
   width: 100%;
   max-width: 334px;
   height: 140px;
-}
-
-.know-your-jewellery_wrapper_grid_diamonds_flip_card {
-  position: absolute;
-  inset: 0;
-  display: block;
   padding: 0;
   border: 1px solid #e0e0e0;
   border-radius: 15px;
   background: linear-gradient(180deg, #efe6ea, #fff);
   cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.96);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
   perspective: 1000px;
-}
-
-.know-your-jewellery_wrapper_grid_diamonds_flip_card.is-active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_flip_card_face {
