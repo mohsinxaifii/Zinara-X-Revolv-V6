@@ -35,6 +35,18 @@
   scrollbar-width: none;
 }
 
+.testimonial-carousel_wrapper_track.is-align-left {
+  justify-content: flex-start;
+}
+
+.testimonial-carousel_wrapper_track.is-align-center {
+  justify-content: center;
+}
+
+.testimonial-carousel_wrapper_track.is-align-right {
+  justify-content: flex-end;
+}
+
 .testimonial-carousel_wrapper_track::-webkit-scrollbar {
   display: none;
 }
