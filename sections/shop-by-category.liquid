@@ -21,7 +21,11 @@
                 {{
                   block.settings.image
                   | image_url: width: 600
-                  | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(min-width: 750px) 266px, 45vw', alt: block.settings.label
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '300,450,600',
+                    sizes: '(min-width: 750px) 266px, 45vw',
+                    alt: block.settings.label
                 }}
               {%- endif -%}
             </span>
