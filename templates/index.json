@@ -99,7 +99,31 @@
       "settings": {
         "heading": "Shop by category"
       }
+    },
+    "usp-strip": {
+      "type": "usp-strip",
+      "blocks": {
+        "badge-1": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/icon-gold-plating.svg",
+            "text": "5x thicker 18 KT gold plating"
+          }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/zinara-sgl-certified-logo.png",
+            "text": "SGL certified diamonds"
+          }
+        }
+      },
+      "block_order": ["badge-1", "badge-2"],
+      "settings": {
+        "gradient_start": "#FEF4E2",
+        "gradient_middle": "#FCE7C5"
+      }
     }
   },
-  "order": ["hero-banner", "shop-by-category"]
+  "order": ["hero-banner", "shop-by-category", "usp-strip"]
 }
