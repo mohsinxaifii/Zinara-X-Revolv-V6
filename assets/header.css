@@ -219,7 +219,10 @@
   z-index: 102;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, left 0.35s ease, visibility 0.2s;
+  transition:
+    opacity 0.2s ease,
+    left 0.35s ease,
+    visibility 0.2s;
 }
 
 .header[data-drawer-open='true'] .header_drawer_close {
