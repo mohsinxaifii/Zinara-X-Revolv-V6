@@ -17,7 +17,11 @@
     "account": "Account",
     "wishlist": "Wishlist",
     "cart": "Cart",
-    "cart_count": "{{ count }} items in cart"
+    "cart_count": "{{ count }} items in cart",
+    "previous_slide": "Previous slide",
+    "next_slide": "Next slide",
+    "slides": "Slides",
+    "go_to_slide": "Go to slide {{ number }}"
   },
   "404": {
     "title": "404",
