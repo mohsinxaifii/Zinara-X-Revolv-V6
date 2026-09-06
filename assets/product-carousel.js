@@ -15,6 +15,29 @@ class ProductCarousel extends HTMLElement {
     this.buildDots();
     this.activePanel?.addEventListener('scroll', () => this.updateActiveDot(), { passive: true });
     window.addEventListener('resize', () => this.buildDots());
+    this.setupScrollAlignment();
+  }
+
+  setupScrollAlignment() {
+    if (!window.gsap || !window.ScrollTrigger || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    gsap.registerPlugin(ScrollTrigger);
+    const tracks = Array.from(this.querySelectorAll('.product-carousel_wrapper_stage_panel_track'));
+    ScrollTrigger.create({
+      trigger: this,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: (self) => {
+        const alignment = self.progress < 0.33 ? 'left' : self.progress < 0.66 ? 'center' : 'right';
+        tracks.forEach((track) => {
+          track.classList.toggle('is-align-left', alignment === 'left');
+          track.classList.toggle('is-align-center', alignment === 'center');
+          track.classList.toggle('is-align-right', alignment === 'right');
+        });
+      },
+    });
   }
 
   get activePanel() {
