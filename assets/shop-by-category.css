@@ -69,7 +69,7 @@
 
 .shop-by-category_wrapper_grid_item_label {
   font-family: var(--font-secondary--family);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   line-height: 1.219;
   color: var(--color-text-secondary, #494949);
