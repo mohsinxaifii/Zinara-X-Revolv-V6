@@ -57,6 +57,18 @@
   display: none;
 }
 
+.zinara-collections_wrapper_track.is-align-left {
+  justify-content: flex-start;
+}
+
+.zinara-collections_wrapper_track.is-align-center {
+  justify-content: center;
+}
+
+.zinara-collections_wrapper_track.is-align-right {
+  justify-content: flex-end;
+}
+
 .zinara-collections_wrapper_track_item {
   display: flex;
   flex-direction: column;
