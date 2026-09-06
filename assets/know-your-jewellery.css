@@ -115,19 +115,24 @@
   gap: 6px;
 }
 
+/* Widths match the Figma text boxes so line breaks land in the same place
+   and neighbouring labels don't run into each other. */
 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout--1 {
   left: 2.98%;
   top: 13.66%;
+  width: 30.25%;
 }
 
 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout--2 {
   left: 49.3%;
   top: 15.61%;
+  width: 39.39%;
 }
 
 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout--3 {
   left: 37.95%;
   top: 89.37%;
+  width: 44.42%;
 }
 
 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_icon {
@@ -149,20 +154,6 @@
   font-size: 14px;
   line-height: 13.25px;
   color: var(--color-brand, #712242);
-}
-
-/* Wrap widths match the Figma text boxes so the line breaks land in the
-   same place and the labels don't run into each other. */
-.know-your-jewellery_wrapper_grid_vermeil_diagram_callout--1 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text {
-  width: 25.54%;
-}
-
-.know-your-jewellery_wrapper_grid_vermeil_diagram_callout--2 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text {
-  width: 34.67%;
-}
-
-.know-your-jewellery_wrapper_grid_vermeil_diagram_callout--3 .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text {
-  width: 39.7%;
 }
 
 @media screen and (max-width: 480px) {
