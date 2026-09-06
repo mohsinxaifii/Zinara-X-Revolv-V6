@@ -100,7 +100,8 @@
   pointer-events: none;
 }
 
-.know-your-jewellery_wrapper_grid_vermeil_diagram_lines line {
+.know-your-jewellery_wrapper_grid_vermeil_diagram_lines path {
+  fill: none;
   stroke: var(--color-brand, #712242);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
