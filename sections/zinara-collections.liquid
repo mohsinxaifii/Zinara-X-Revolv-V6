@@ -25,7 +25,11 @@
           >
             <span class="zinara-collections_wrapper_track_item_image">
               {%- if block.settings.image -%}
-                {{ block.settings.image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: block.settings.label }}
+                {{
+                  block.settings.image
+                  | image_url: width: 480
+                  | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: block.settings.label
+                }}
               {%- endif -%}
             </span>
             <span class="zinara-collections_wrapper_track_item_label">{{ block.settings.label }}</span>
@@ -43,7 +47,12 @@
       </div>
     </div>
 
-    <button type="button" class="scroll-carousel_arrow zinara-collections_arrow" data-next aria-label="{{ 'accessibility.next_page' | t }}">
+    <button
+      type="button"
+      class="scroll-carousel_arrow zinara-collections_arrow"
+      data-next
+      aria-label="{{ 'accessibility.next_page' | t }}"
+    >
       {{ 'icon-caret-right.svg' | inline_asset_content }}
     </button>
   </scroll-carousel>

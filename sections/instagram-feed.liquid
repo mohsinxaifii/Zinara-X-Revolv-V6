@@ -17,7 +17,13 @@
 
       <div class="instagram-feed_wrapper_grid" data-animate>
         {%- for block in section.blocks -%}
-          <a href="{{ block.settings.link | default: 'https://instagram.com' }}" class="instagram-feed_wrapper_grid_item" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+          <a
+            href="{{ block.settings.link | default: 'https://instagram.com' }}"
+            class="instagram-feed_wrapper_grid_item"
+            target="_blank"
+            rel="noopener"
+            {{ block.shopify_attributes }}
+          >
             {%- if block.settings.image -%}
               {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: 'Instagram post' }}
             {%- endif -%}
@@ -25,7 +31,12 @@
         {%- endfor -%}
       </div>
 
-      <a href="{{ section.settings.instagram_url | default: 'https://instagram.com' }}" class="instagram-feed_wrapper_follow" target="_blank" rel="noopener">
+      <a
+        href="{{ section.settings.instagram_url | default: 'https://instagram.com' }}"
+        class="instagram-feed_wrapper_follow"
+        target="_blank"
+        rel="noopener"
+      >
         <span>{{ 'accessibility.follow_us' | t }}</span>
         {{ 'icon-instagram.svg' | inline_asset_content }}
         <span class="instagram-feed_wrapper_follow_handle">{{ section.settings.handle }}</span>

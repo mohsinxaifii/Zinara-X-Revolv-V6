@@ -20,8 +20,12 @@
             <summary class="faq_wrapper_list_item_summary">
               <span class="faq_wrapper_list_item_summary_question">{{ block.settings.question }}</span>
               <span class="faq_wrapper_list_item_summary_icon">
-                <span class="faq_wrapper_list_item_summary_icon_plus">{{ 'icon-faq-plus.svg' | inline_asset_content }}</span>
-                <span class="faq_wrapper_list_item_summary_icon_minus">{{ 'icon-faq-minus.svg' | inline_asset_content }}</span>
+                <span class="faq_wrapper_list_item_summary_icon_plus">
+                  {{- 'icon-faq-plus.svg' | inline_asset_content -}}
+                </span>
+                <span class="faq_wrapper_list_item_summary_icon_minus">
+                  {{- 'icon-faq-minus.svg' | inline_asset_content -}}
+                </span>
               </span>
             </summary>
             <div class="faq_wrapper_list_item_answer">{{ block.settings.answer }}</div>
@@ -68,7 +72,10 @@
             "answer": "Lab grown diamonds appear identical to natural diamonds and can't be distinguished by the naked eye and with standard microscopic tools. Trained jewellers and experts can't also tell the difference between them. They can only be distinguished from natural diamonds using specialized equipment that can detect the specific growth patterns and inclusions characteristic of their origin."
           }
         },
-        { "type": "question", "settings": { "question": "Can you tell the difference between lab grown diamonds and natural diamonds?" } },
+        {
+          "type": "question",
+          "settings": { "question": "Can you tell the difference between lab grown diamonds and natural diamonds?" }
+        },
         { "type": "question", "settings": { "question": "Are ZINARA lab grown diamonds graded and certified?" } },
         { "type": "question", "settings": { "question": "Do you deliver pan India?" } },
         { "type": "question", "settings": { "question": "Is ID proof required for delivery?" } },

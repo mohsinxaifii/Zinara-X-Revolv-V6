@@ -18,7 +18,11 @@
 
         {%- if section.settings.vermeil_image -%}
           <span class="know-your-jewellery_wrapper_grid_vermeil_image">
-            {{ section.settings.vermeil_image | image_url: width: 480 | image_tag: loading: 'lazy', alt: section.settings.vermeil_title }}
+            {{
+              section.settings.vermeil_image
+              | image_url: width: 480
+              | image_tag: loading: 'lazy', alt: section.settings.vermeil_title
+            }}
           </span>
         {%- endif -%}
 
@@ -44,7 +48,11 @@
           <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row">
             <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
               {%- if section.settings.mined_image -%}
-                {{ section.settings.mined_image | image_url: width: 80 | image_tag: loading: 'lazy', alt: 'Mined diamond' }}
+                {{
+                  section.settings.mined_image
+                  | image_url: width: 80
+                  | image_tag: loading: 'lazy', alt: 'Mined diamond'
+                }}
               {%- endif -%}
               <strong>{{ section.settings.mined_value }}</strong>
               <span>{{ section.settings.mined_label }}</span>
@@ -58,7 +66,11 @@
             </div>
             <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
               {%- if section.settings.mined_image -%}
-                {{ section.settings.mined_image | image_url: width: 40 | image_tag: loading: 'lazy', alt: 'Lab grown diamond' }}
+                {{
+                  section.settings.mined_image
+                  | image_url: width: 40
+                  | image_tag: loading: 'lazy', alt: 'Lab grown diamond'
+                }}
               {%- endif -%}
               <strong>{{ section.settings.lab_grown_value }}</strong>
               <span>{{ section.settings.lab_grown_label }}</span>
@@ -77,12 +89,16 @@
               >
                 <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_face know-your-jewellery_wrapper_grid_diamonds_flip_card_face--myth">
                   <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_label">MYTH</span>
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote">&ldquo;{{ block.settings.myth }}&rdquo;</span>
+                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote"
+                    >&ldquo;{{ block.settings.myth }}&rdquo;</span
+                  >
                   <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_hint">Tap to reveal fact</span>
                 </span>
                 <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_face know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact">
                   <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_label">FACT</span>
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote">{{ block.settings.fact }}</span>
+                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote">
+                    {{- block.settings.fact -}}
+                  </span>
                 </span>
               </button>
             {%- endfor -%}

@@ -24,7 +24,9 @@
             </span>
             <span class="journal_wrapper_grid_card_date">{{ article.published_at | date: '%-d %B, %Y' }}</span>
             <span class="journal_wrapper_grid_card_title">{{ article.title }}</span>
-            <span class="journal_wrapper_grid_card_excerpt">{{ article.excerpt_or_content | strip_html | truncate: 110 }}</span>
+            <span class="journal_wrapper_grid_card_excerpt">
+              {{- article.excerpt_or_content | strip_html | truncate: 110 -}}
+            </span>
             <span class="journal_wrapper_grid_card_readmore">
               {{ 'icon-caret-left.svg' | inline_asset_content }}
               Read more

@@ -1,0 +1,130 @@
+.journal {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+}
+
+.journal_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.journal_wrapper_heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.219;
+  color: var(--color-text-secondary, #494949);
+}
+
+.journal_wrapper_grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.journal_wrapper_grid_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 300px;
+  max-width: 332px;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  text-decoration: none;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.journal_wrapper_grid_card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.journal_wrapper_grid_card.is-featured {
+  margin-top: 20px;
+}
+
+.journal_wrapper_grid_card_tag {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: var(--color-brand, #712242);
+  box-shadow: inset 0 2px 3px 0 var(--color-accent, #f0166e);
+  color: #fff;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.journal_wrapper_grid_card_image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 316 / 193;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+
+.journal_wrapper_grid_card_image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.journal_wrapper_grid_card_date {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--color-icon, #666);
+}
+
+.journal_wrapper_grid_card_title {
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.journal_wrapper_grid_card_excerpt {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.571;
+  color: var(--color-text-secondary, #494949);
+}
+
+.journal_wrapper_grid_card_readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-brand, #712242);
+  text-decoration: underline;
+}
+
+.journal_wrapper_grid_card_readmore svg {
+  width: 24px;
+  height: 24px;
+}

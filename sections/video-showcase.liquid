@@ -13,12 +13,21 @@
           <video-card class="video-showcase_wrapper_track_item" {{ block.shopify_attributes }}>
             {%- if block.settings.cover_image -%}
               <span class="video-showcase_wrapper_track_item_poster">
-                {{ block.settings.cover_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '282px', alt: '' }}
+                {{
+                  block.settings.cover_image
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '282px', alt: ''
+                }}
               </span>
             {%- endif -%}
 
             {%- if block.settings.video != blank -%}
-              <button type="button" class="video-showcase_wrapper_track_item_play" data-play-video aria-label="Play video">
+              <button
+                type="button"
+                class="video-showcase_wrapper_track_item_play"
+                data-play-video
+                aria-label="Play video"
+              >
                 {{ 'icon-play.svg' | inline_asset_content }}
               </button>
               <span class="video-showcase_wrapper_track_item_video" hidden>
@@ -36,7 +45,12 @@
       <div class="scroll-carousel_dots" data-dots></div>
     </div>
 
-    <button type="button" class="scroll-carousel_arrow video-showcase_arrow" data-next aria-label="{{ 'accessibility.next_page' | t }}">
+    <button
+      type="button"
+      class="scroll-carousel_arrow video-showcase_arrow"
+      data-next
+      aria-label="{{ 'accessibility.next_page' | t }}"
+    >
       {{ 'icon-caret-right.svg' | inline_asset_content }}
     </button>
   </scroll-carousel>

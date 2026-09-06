@@ -13,12 +13,21 @@
           <div class="press-carousel_wrapper_track_item" {{ block.shopify_attributes }}>
             <span class="press-carousel_wrapper_track_item_image">
               {%- if block.settings.image -%}
-                {{ block.settings.image | image_url: width: 480 | image_tag: loading: 'lazy', alt: block.settings.caption }}
+                {{
+                  block.settings.image
+                  | image_url: width: 480
+                  | image_tag: loading: 'lazy', alt: block.settings.caption
+                }}
               {%- endif -%}
             </span>
             <span class="press-carousel_wrapper_track_item_caption">
               <span class="press-carousel_wrapper_track_item_caption_by">{{ block.settings.by_text }}</span>
-              <a href="{{ block.settings.link | default: '#' }}" class="press-carousel_wrapper_track_item_caption_title">{{ block.settings.caption }}</a>
+              <a
+                href="{{ block.settings.link | default: '#' }}"
+                class="press-carousel_wrapper_track_item_caption_title"
+              >
+                {{- block.settings.caption -}}
+              </a>
             </span>
           </div>
         {%- endfor -%}
@@ -27,10 +36,20 @@
       <div class="scroll-carousel_dots" data-dots></div>
     </div>
 
-    <button type="button" class="scroll-carousel_arrow press-carousel_arrow press-carousel_arrow--next" data-next aria-label="{{ 'accessibility.next_page' | t }}">
+    <button
+      type="button"
+      class="scroll-carousel_arrow press-carousel_arrow press-carousel_arrow--next"
+      data-next
+      aria-label="{{ 'accessibility.next_page' | t }}"
+    >
       {{ 'icon-caret-right.svg' | inline_asset_content }}
     </button>
-    <button type="button" class="scroll-carousel_arrow press-carousel_arrow press-carousel_arrow--prev" data-prev aria-label="{{ 'accessibility.previous_page' | t }}">
+    <button
+      type="button"
+      class="scroll-carousel_arrow press-carousel_arrow press-carousel_arrow--prev"
+      data-prev
+      aria-label="{{ 'accessibility.previous_page' | t }}"
+    >
       {{ 'icon-caret-left.svg' | inline_asset_content }}
     </button>
   </scroll-carousel>

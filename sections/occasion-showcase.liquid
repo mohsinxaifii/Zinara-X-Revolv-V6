@@ -17,7 +17,11 @@
           >
             <span class="occasion-showcase_wrapper_track_item_image">
               {%- if block.settings.image -%}
-                {{ block.settings.image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: block.settings.label }}
+                {{
+                  block.settings.image
+                  | image_url: width: 480
+                  | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: block.settings.label
+                }}
               {%- endif -%}
             </span>
             <span class="occasion-showcase_wrapper_track_item_label">{{ block.settings.label }}</span>
@@ -28,10 +32,20 @@
       <div class="scroll-carousel_dots" data-dots></div>
     </div>
 
-    <button type="button" class="scroll-carousel_arrow occasion-showcase_arrow occasion-showcase_arrow--next" data-next aria-label="{{ 'accessibility.next_page' | t }}">
+    <button
+      type="button"
+      class="scroll-carousel_arrow occasion-showcase_arrow occasion-showcase_arrow--next"
+      data-next
+      aria-label="{{ 'accessibility.next_page' | t }}"
+    >
       {{ 'icon-caret-right.svg' | inline_asset_content }}
     </button>
-    <button type="button" class="scroll-carousel_arrow occasion-showcase_arrow occasion-showcase_arrow--prev" data-prev aria-label="{{ 'accessibility.previous_page' | t }}">
+    <button
+      type="button"
+      class="scroll-carousel_arrow occasion-showcase_arrow occasion-showcase_arrow--prev"
+      data-prev
+      aria-label="{{ 'accessibility.previous_page' | t }}"
+    >
       {{ 'icon-caret-left.svg' | inline_asset_content }}
     </button>
   </scroll-carousel>
