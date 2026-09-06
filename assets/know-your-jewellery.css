@@ -177,6 +177,7 @@
   background: linear-gradient(180deg, #ffffff, #efe6ea);
   border: 1px solid var(--color-brand, #712242);
   border-radius: 16px;
+  transition: border-color 0.3s ease;
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_compare_tag {
@@ -349,7 +350,17 @@
   z-index: 1;
   transition:
     margin 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Only the front card carries a border: it fades out as a card drops back
+   and fades in on whichever card comes forward. The [data-depth] guard keeps
+   borders intact before the JS has assigned depths. */
+.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth]:not([data-depth='0']),
+.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth]:not([data-depth='0'])
+  .know-your-jewellery_wrapper_grid_diamonds_compare {
+  border-color: transparent;
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth='0'] {
