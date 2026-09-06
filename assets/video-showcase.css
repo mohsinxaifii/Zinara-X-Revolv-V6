@@ -36,6 +36,18 @@
   scrollbar-width: none;
 }
 
+.video-showcase_wrapper_track.is-align-left {
+  justify-content: flex-start;
+}
+
+.video-showcase_wrapper_track.is-align-center {
+  justify-content: center;
+}
+
+.video-showcase_wrapper_track.is-align-right {
+  justify-content: flex-end;
+}
+
 .video-showcase_wrapper_track::-webkit-scrollbar {
   display: none;
 }
