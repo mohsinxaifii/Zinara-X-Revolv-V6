@@ -17,16 +17,35 @@
         "message-1": {
           "type": "message",
           "settings": {
-            "text": "Sign up to avail 10% OFF on your first order!"
+            "text": "Sign up to avail 10% OFF on your first order!",
+            "link": ""
+          }
+        },
+        "message_3Mt9UH": {
+          "type": "message",
+          "settings": {
+            "text": "Sign up to avail 10% OFF on your first order!",
+            "link": ""
+          }
+        },
+        "message_RXiUML": {
+          "type": "message",
+          "settings": {
+            "text": "Sign up to avail 10% OFF on your first order!",
+            "link": ""
           }
         }
       },
-      "block_order": ["message-1"],
+      "block_order": [
+        "message-1",
+        "message_3Mt9UH",
+        "message_RXiUML"
+      ],
       "settings": {
         "show_icon": true,
         "autoplay": true,
         "autoplay_speed": 4,
-        "background_color": "#F9D79F",
+        "background_color": "#f9d79f",
         "text_color": "#000000",
         "icon_color": "#712242"
       }
@@ -34,24 +53,94 @@
     "header": {
       "type": "header",
       "settings": {
-        "menu": "main-menu"
+        "menu": "main-menu",
+        "wishlist_url": ""
       }
     },
     "category-nav": {
       "type": "category-nav",
       "blocks": {
-        "link-1": { "type": "link", "settings": { "label": "Shop all" } },
-        "link-2": { "type": "link", "settings": { "label": "New arrivals" } },
+        "link-1": {
+          "type": "link",
+          "settings": {
+            "label": "Shop all",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": false
+          }
+        },
+        "link-2": {
+          "type": "link",
+          "settings": {
+            "label": "New arrivals",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": false
+          }
+        },
         "link-3": {
           "type": "link",
-          "settings": { "label": "Rakhi collection", "show_new_badge": true }
+          "settings": {
+            "label": "Rakhi collection",
+            "url": "",
+            "show_new_badge": true,
+            "align_end": false
+          }
         },
-        "link-4": { "type": "link", "settings": { "label": "Rings" } },
-        "link-5": { "type": "link", "settings": { "label": "Earrings" } },
-        "link-6": { "type": "link", "settings": { "label": "Pendants/Necklaces" } },
-        "link-7": { "type": "link", "settings": { "label": "Bracelets" } },
-        "link-8": { "type": "link", "settings": { "label": "About us", "align_end": true } },
-        "link-9": { "type": "link", "settings": { "label": "Contact us", "align_end": true } }
+        "link-4": {
+          "type": "link",
+          "settings": {
+            "label": "Rings",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": false
+          }
+        },
+        "link-5": {
+          "type": "link",
+          "settings": {
+            "label": "Earrings",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": false
+          }
+        },
+        "link-6": {
+          "type": "link",
+          "settings": {
+            "label": "Pendants/Necklaces",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": false
+          }
+        },
+        "link-7": {
+          "type": "link",
+          "settings": {
+            "label": "Bracelets",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": false
+          }
+        },
+        "link-8": {
+          "type": "link",
+          "settings": {
+            "label": "About us",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": true
+          }
+        },
+        "link-9": {
+          "type": "link",
+          "settings": {
+            "label": "Contact us",
+            "url": "",
+            "show_new_badge": false,
+            "align_end": true
+          }
+        }
       },
       "block_order": [
         "link-1",
@@ -67,5 +156,9 @@
       "settings": {}
     }
   },
-  "order": ["announcement-bar", "header", "category-nav"]
+  "order": [
+    "announcement-bar",
+    "header",
+    "category-nav"
+  ]
 }
