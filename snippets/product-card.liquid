@@ -16,7 +16,7 @@
   endif
 
   assign card_image_alt = product.featured_image.alt | default: product.title
-  assign average_rating = product.metafields.judgeme.average_rating
+  assign average_rating = product.metafields.reviews.rating.value
 -%}
 
 <a href="{{ product.url }}" class="product-card">
@@ -60,7 +60,7 @@
     {%- if average_rating != blank -%}
       <span class="product-card_media_rating">
         {{ 'icon-star.svg' | inline_asset_content }}
-        <span class="product-card_media_rating_value">{{ average_rating }}</span>
+        <span class="product-card_media_rating_value">{{ average_rating | round: 1 }}</span>
       </span>
     {%- endif -%}
   </span>
