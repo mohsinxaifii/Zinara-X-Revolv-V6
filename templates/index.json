@@ -9,12 +9,22 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "custom-section",
-      "settings": {}
+    "hero-banner": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png"
+          }
+        }
+      },
+      "block_order": ["slide-1"],
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 6
+      }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["hero-banner"]
 }
