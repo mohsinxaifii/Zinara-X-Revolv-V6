@@ -291,13 +291,6 @@
   color: var(--color-icon, #666);
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
 @media screen and (max-width: 749px) {
   .know-your-jewellery_wrapper_grid {
     grid-template-columns: 1fr;
