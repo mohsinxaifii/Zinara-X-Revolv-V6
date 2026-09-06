@@ -1,7 +1,7 @@
 {{ 'shop-by-category.css' | asset_url | stylesheet_tag }}
 
 {%- if section.blocks.size > 0 -%}
-  <section class="shop-by-category full-width">
+  <section class="shop-by-category">
     <div class="shop-by-category_wrapper">
       {%- if section.settings.heading != blank -%}
         <h2 class="shop-by-category_wrapper_heading" data-animate>{{ section.settings.heading }}</h2>

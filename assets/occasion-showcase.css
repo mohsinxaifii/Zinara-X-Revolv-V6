@@ -35,18 +35,6 @@
   scrollbar-width: none;
 }
 
-.occasion-showcase_wrapper_track.is-align-left {
-  justify-content: flex-start;
-}
-
-.occasion-showcase_wrapper_track.is-align-center {
-  justify-content: center;
-}
-
-.occasion-showcase_wrapper_track.is-align-right {
-  justify-content: flex-end;
-}
-
 .occasion-showcase_wrapper_track::-webkit-scrollbar {
   display: none;
 }

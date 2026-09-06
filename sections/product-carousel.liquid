@@ -1,7 +1,7 @@
 {{ 'product-carousel.css' | asset_url | stylesheet_tag }}
 
 {%- if section.blocks.size > 0 -%}
-  <product-carousel class="product-carousel full-width">
+  <product-carousel class="product-carousel">
     <div class="product-carousel_wrapper">
       {%- if section.settings.heading != blank -%}
         <h2 class="product-carousel_wrapper_heading" data-animate>{{ section.settings.heading }}</h2>

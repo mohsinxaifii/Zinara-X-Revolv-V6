@@ -16,26 +16,6 @@ class ScrollCarousel extends HTMLElement {
     this.buildDots();
     this.track.addEventListener('scroll', () => this.updateActiveDot(), { passive: true });
     window.addEventListener('resize', () => this.buildDots());
-    this.setupScrollAlignment();
-  }
-
-  setupScrollAlignment() {
-    if (!window.gsap || !window.ScrollTrigger || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.create({
-      trigger: this,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => {
-        const alignment = self.progress < 0.33 ? 'left' : self.progress < 0.66 ? 'center' : 'right';
-        this.track.classList.toggle('is-align-left', alignment === 'left');
-        this.track.classList.toggle('is-align-center', alignment === 'center');
-        this.track.classList.toggle('is-align-right', alignment === 'right');
-      },
-    });
   }
 
   scrollByPage(direction) {

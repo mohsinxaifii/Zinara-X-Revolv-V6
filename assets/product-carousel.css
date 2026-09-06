@@ -109,18 +109,6 @@
   display: none;
 }
 
-.product-carousel_wrapper_stage_panel_track.is-align-left {
-  justify-content: flex-start;
-}
-
-.product-carousel_wrapper_stage_panel_track.is-align-center {
-  justify-content: center;
-}
-
-.product-carousel_wrapper_stage_panel_track.is-align-right {
-  justify-content: flex-end;
-}
-
 .product-carousel_wrapper_stage_next {
   position: absolute;
   top: 50%;

@@ -1,7 +1,7 @@
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
     this.menuToggle = this.querySelector('.header_wrapper_brand_menu-toggle');
-    this.closeButton = this.querySelector('.header_drawer_close');
+    this.closeButton = this.querySelector('.header_drawer_header_close');
     this.overlay = this.querySelector('.header_drawer_overlay');
     this.drawer = this.querySelector('.header_drawer');
     this.isOpen = false;
@@ -12,15 +12,6 @@ class HeaderComponent extends HTMLElement {
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && this.isOpen) this.close();
       if (event.key === 'Tab' && this.isOpen) this.trapFocus(event);
-    });
-
-    this.querySelectorAll('.header_drawer_nav_list_item_toggle').forEach((toggle) => {
-      toggle.addEventListener('click', () => {
-        const sublist = toggle.nextElementSibling;
-        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!isExpanded));
-        sublist.hidden = isExpanded;
-      });
     });
   }
 

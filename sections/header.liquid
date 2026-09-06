@@ -1,6 +1,6 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
-<header-component class="header full-width" data-drawer-open="false">
+<header-component class="header" data-drawer-open="false">
   <div class="header_wrapper">
     <div class="header_wrapper_brand">
       <button
@@ -76,67 +76,41 @@
     inert
     aria-label="{{ 'accessibility.menu' | t }}"
   >
-    <button type="button" class="header_drawer_close" aria-label="{{ 'accessibility.close_menu' | t }}">
-      {{ 'icon-close.svg' | inline_asset_content }}
-    </button>
+    <div class="header_drawer_header">
+      <a href="{{ routes.root_url }}" class="header_wrapper_brand_logo">
+        {%- if settings.logo -%}
+          {{
+            settings.logo
+            | image_url: width: 300
+            | image_tag: loading: 'lazy', width: settings.logo_width, alt: shop.name
+          }}
+        {%- else -%}
+          {{ 'logo.svg' | inline_asset_content }}
+        {%- endif -%}
+      </a>
+      <button type="button" class="header_drawer_header_close" aria-label="{{ 'accessibility.close_menu' | t }}">
+        {{ 'icon-menu.svg' | inline_asset_content }}
+      </button>
+    </div>
 
     <nav class="header_drawer_nav">
       <ul class="header_drawer_nav_list">
         {%- for link in section.settings.menu.links -%}
           <li class="header_drawer_nav_list_item">
+            <a href="{{ link.url }}" class="header_drawer_nav_list_item_link">{{ link.title }}</a>
             {%- if link.links != blank -%}
-              <button
-                type="button"
-                class="header_drawer_nav_list_item_toggle"
-                aria-expanded="false"
-              >
-                <span>{{ link.title }}</span>
-                {{ 'icon-caret-down.svg' | inline_asset_content }}
-              </button>
-              <ul class="header_drawer_nav_sublist" hidden>
+              <ul class="header_drawer_nav_sublist">
                 {%- for childlink in link.links -%}
                   <li>
-                    <a href="{{ childlink.url }}" class="header_drawer_nav_sublist_link">{{ childlink.title }}</a>
+                    <a href="{{ childlink.url }}" class="header_drawer_nav_list_item_link">{{ childlink.title }}</a>
                   </li>
                 {%- endfor -%}
               </ul>
-            {%- else -%}
-              <a
-                href="{{ link.url }}"
-                class="header_drawer_nav_list_item_link{% if link.url == request.path %} is-active{% endif %}"
-              >
-                {{ link.title }}
-              </a>
             {%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
     </nav>
-
-    <div class="header_drawer_footer">
-      <a href="{{ routes.account_url }}" class="header_drawer_footer_account">
-        {{ 'icon-user.svg' | inline_asset_content }}
-        <span>
-          {%- if customer -%}
-            {{ 'accessibility.account' | t }}
-          {%- else -%}
-            {{ 'accessibility.login' | t }}
-          {%- endif -%}
-        </span>
-      </a>
-      <div class="header_drawer_footer_social">
-        {%- if section.settings.instagram_url != blank -%}
-          <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
-            {{- 'icon-instagram.svg' | inline_asset_content -}}
-          </a>
-        {%- endif -%}
-        {%- if section.settings.facebook_url != blank -%}
-          <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
-            {{- 'icon-facebook.svg' | inline_asset_content -}}
-          </a>
-        {%- endif -%}
-      </div>
-    </div>
   </div>
 </header-component>
 
@@ -158,16 +132,6 @@
       "type": "url",
       "id": "wishlist_url",
       "label": "Wishlist page URL"
-    },
-    {
-      "type": "url",
-      "id": "instagram_url",
-      "label": "Instagram URL"
-    },
-    {
-      "type": "url",
-      "id": "facebook_url",
-      "label": "Facebook URL"
     }
   ]
 }

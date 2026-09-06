@@ -1,7 +1,7 @@
 {{ 'usp-grid.css' | asset_url | stylesheet_tag }}
 
 {%- if section.blocks.size > 0 -%}
-  <section class="usp-grid full-width">
+  <section class="usp-grid">
     <div class="usp-grid_wrapper" data-animate>
       {%- for block in section.blocks -%}
         <div class="usp-grid_wrapper_cell" {{ block.shopify_attributes }}>
