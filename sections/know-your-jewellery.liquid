@@ -59,85 +59,85 @@
 
         <card-stack class="know-your-jewellery_wrapper_grid_diamonds_carousel">
           <div class="know-your-jewellery_wrapper_grid_diamonds_stack_wrap">
-          <div class="know-your-jewellery_wrapper_grid_diamonds_stack">
-            <div class="know-your-jewellery_wrapper_grid_diamonds_stack_item is-active" data-stack-item>
-              <div class="know-your-jewellery_wrapper_grid_diamonds_compare">
-                <span class="know-your-jewellery_wrapper_grid_diamonds_compare_tag">FACT</span>
-                <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row">
-                  <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
-                    {%- if section.settings.mined_image -%}
-                      {{
-                        section.settings.mined_image
-                        | image_url: width: 80
-                        | image_tag: loading: 'lazy', alt: 'Mined diamond'
-                      }}
-                    {%- endif -%}
-                    <strong>{{ section.settings.mined_value }}</strong>
-                    <span>{{ section.settings.mined_label }}</span>
-                  </div>
-                  <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
-                    <strong class="is-accent">
-                      {{ section.settings.co2_reduction }}
-                      {{ 'icon-trend-down.svg' | inline_asset_content }}
-                    </strong>
-                    <span>{{ section.settings.co2_label }}</span>
-                  </div>
-                  <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
-                    {%- if section.settings.mined_image -%}
-                      {{
-                        section.settings.mined_image
-                        | image_url: width: 40
-                        | image_tag: loading: 'lazy', alt: 'Lab grown diamond'
-                      }}
-                    {%- endif -%}
-                    <strong>{{ section.settings.lab_grown_value }}</strong>
-                    <span>{{ section.settings.lab_grown_label }}</span>
+            <div class="know-your-jewellery_wrapper_grid_diamonds_stack">
+              <div class="know-your-jewellery_wrapper_grid_diamonds_stack_item is-active" data-stack-item>
+                <div class="know-your-jewellery_wrapper_grid_diamonds_compare">
+                  <span class="know-your-jewellery_wrapper_grid_diamonds_compare_tag">FACT</span>
+                  <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row">
+                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
+                      {%- if section.settings.mined_image -%}
+                        {{
+                          section.settings.mined_image
+                          | image_url: width: 80
+                          | image_tag: loading: 'lazy', alt: 'Mined diamond'
+                        }}
+                      {%- endif -%}
+                      <strong>{{ section.settings.mined_value }}</strong>
+                      <span>{{ section.settings.mined_label }}</span>
+                    </div>
+                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
+                      <strong class="is-accent">
+                        {{ section.settings.co2_reduction }}
+                        {{ 'icon-trend-down.svg' | inline_asset_content }}
+                      </strong>
+                      <span>{{ section.settings.co2_label }}</span>
+                    </div>
+                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
+                      {%- if section.settings.mined_image -%}
+                        {{
+                          section.settings.mined_image
+                          | image_url: width: 40
+                          | image_tag: loading: 'lazy', alt: 'Lab grown diamond'
+                        }}
+                      {%- endif -%}
+                      <strong>{{ section.settings.lab_grown_value }}</strong>
+                      <span>{{ section.settings.lab_grown_label }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {%- for block in flip_blocks -%}
+                <flip-card
+                  class="know-your-jewellery_wrapper_grid_diamonds_stack_item know-your-jewellery_wrapper_grid_diamonds_flip_card"
+                  data-stack-item
+                  role="button"
+                  tabindex="0"
+                  {{ block.shopify_attributes }}
+                >
+                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_face know-your-jewellery_wrapper_grid_diamonds_flip_card_face--myth">
+                    <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_label">MYTH</span>
+                    <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote"
+                      >&ldquo;{{ block.settings.myth }}&rdquo;</span
+                    >
+                    <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_hint">Tap to reveal fact</span>
+                  </span>
+                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_face know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact">
+                    <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_label">FACT</span>
+                    <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote">
+                      {{- block.settings.fact -}}
+                    </span>
+                  </span>
+                </flip-card>
+              {%- endfor -%}
             </div>
 
-            {%- for block in flip_blocks -%}
-              <flip-card
-                class="know-your-jewellery_wrapper_grid_diamonds_stack_item know-your-jewellery_wrapper_grid_diamonds_flip_card"
-                data-stack-item
-                role="button"
-                tabindex="0"
-                {{ block.shopify_attributes }}
-              >
-                <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_face know-your-jewellery_wrapper_grid_diamonds_flip_card_face--myth">
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_label">MYTH</span>
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote"
-                    >&ldquo;{{ block.settings.myth }}&rdquo;</span
-                  >
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_hint">Tap to reveal fact</span>
-                </span>
-                <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_face know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact">
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_label">FACT</span>
-                  <span class="know-your-jewellery_wrapper_grid_diamonds_flip_card_quote">
-                    {{- block.settings.fact -}}
-                  </span>
-                </span>
-              </flip-card>
-            {%- endfor -%}
-          </div>
-
-          <button
-            type="button"
-            class="scroll-carousel_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow--prev"
-            data-prev
-            aria-label="{{ 'accessibility.previous_page' | t }}"
-          >
-            {{ 'icon-caret-left.svg' | inline_asset_content }}
-          </button>
-          <button
-            type="button"
-            class="scroll-carousel_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow--next"
-            data-next
-            aria-label="{{ 'accessibility.next_page' | t }}"
-          >
-            {{ 'icon-caret-right.svg' | inline_asset_content }}
-          </button>
+            <button
+              type="button"
+              class="scroll-carousel_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow--prev"
+              data-prev
+              aria-label="{{ 'accessibility.previous_page' | t }}"
+            >
+              {{ 'icon-caret-left.svg' | inline_asset_content }}
+            </button>
+            <button
+              type="button"
+              class="scroll-carousel_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow know-your-jewellery_wrapper_grid_diamonds_stack_arrow--next"
+              data-next
+              aria-label="{{ 'accessibility.next_page' | t }}"
+            >
+              {{ 'icon-caret-right.svg' | inline_asset_content }}
+            </button>
           </div>
 
           <div class="scroll-carousel_dots" data-dots></div>
