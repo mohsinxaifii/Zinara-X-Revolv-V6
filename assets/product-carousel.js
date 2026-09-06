@@ -2,6 +2,7 @@ class ProductCarousel extends HTMLElement {
   connectedCallback() {
     this.tabs = Array.from(this.querySelectorAll('.product-carousel_wrapper_controls_tabs_tab'));
     this.panels = Array.from(this.querySelectorAll('.product-carousel_wrapper_stage_panel'));
+    this.prevButton = this.querySelector('.product-carousel_wrapper_stage_prev');
     this.nextButton = this.querySelector('.product-carousel_wrapper_stage_next');
     this.dotsContainer = this.querySelector('[data-dots]');
     this.viewAllLinks = Array.from(this.querySelectorAll('[data-view-all-link]'));
@@ -10,7 +11,8 @@ class ProductCarousel extends HTMLElement {
     this.tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => this.selectTab(index));
     });
-    this.nextButton?.addEventListener('click', () => this.scrollNext());
+    this.prevButton?.addEventListener('click', () => this.scrollByPage(-1));
+    this.nextButton?.addEventListener('click', () => this.scrollByPage(1));
 
     this.buildDots();
     this.activePanel?.addEventListener('scroll', () => this.updateActiveDot(), { passive: true });
@@ -46,12 +48,18 @@ class ProductCarousel extends HTMLElement {
     this.buildDots();
   }
 
-  scrollNext() {
+  scrollByPage(direction) {
     const track = this.activePanel;
     if (!track) return;
     const pageWidth = track.clientWidth;
     const maxScroll = track.scrollWidth - track.clientWidth;
-    const target = track.scrollLeft + pageWidth >= maxScroll - 1 ? 0 : track.scrollLeft + pageWidth;
+    let target = track.scrollLeft + pageWidth * direction;
+
+    if (direction > 0 && target >= maxScroll - 1) {
+      target = 0;
+    } else if (direction < 0 && target <= 1) {
+      target = maxScroll;
+    }
 
     if (window.gsap) {
       gsap.to(track, { scrollLeft: target, duration: 0.3, ease: 'power2.out' });
