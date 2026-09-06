@@ -2,7 +2,7 @@
 {{ 'occasion-showcase.css' | asset_url | stylesheet_tag }}
 
 {%- if section.blocks.size > 0 -%}
-  <scroll-carousel class="occasion-showcase">
+  <scroll-carousel class="occasion-showcase full-width">
     <div class="occasion-showcase_wrapper">
       {%- if section.settings.heading != blank -%}
         <h2 class="occasion-showcase_wrapper_heading" data-animate>{{ section.settings.heading }}</h2>
