@@ -9,6 +9,8 @@
   {{ settings.type_secondary_font | font_modify: 'weight', 600 | font_face: font_display: 'swap' }}
   {{ settings.type_secondary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
 
+  {{ settings.type_tertiary_font | font_face: font_display: 'swap' }}
+
   :root {
     --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
     --font-primary--style: {{ settings.type_primary_font.style }};
@@ -16,6 +18,7 @@
     --font-secondary--family: {{ settings.type_secondary_font.family }}, {{ settings.type_secondary_font.fallback_families }};
     --font-secondary--style: {{ settings.type_secondary_font.style }};
     --font-secondary--weight: {{ settings.type_secondary_font.weight }};
+    --font-tertiary--family: {{ settings.type_tertiary_font.family }}, {{ settings.type_tertiary_font.fallback_families }};
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
     --color-background: {{ settings.background_color }};
