@@ -57,7 +57,7 @@
       </button>
     </span>
 
-    {%- if average_rating != blank -%}
+    {%- if average_rating > 0 -%}
       <span class="product-card_media_rating">
         {{ 'icon-star.svg' | inline_asset_content }}
         <span class="product-card_media_rating_value">{{ average_rating | round: 1 }}</span>
