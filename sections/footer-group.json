@@ -21,7 +21,7 @@
       "block_order": ["app-1", "app-2", "app-3"],
       "settings": {
         "tagline": "Jewellery you'll never take off.",
-        "quick_links": "",
+        "quick_links": "main-menu",
         "policy_links": "footer-policies",
         "phone": "+91 88518 12814",
         "email": "admin@zinara.in",

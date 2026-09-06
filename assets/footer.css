@@ -89,6 +89,14 @@
   color: var(--color-brand, #712242);
 }
 
+.footer_wrapper_top_columns_col_list_link:not(.footer_wrapper_top_columns_col_list_link--icon) {
+  text-transform: lowercase;
+}
+
+.footer_wrapper_top_columns_col_list_link:not(.footer_wrapper_top_columns_col_list_link--icon)::first-letter {
+  text-transform: uppercase;
+}
+
 .footer_wrapper_top_columns_col_list_link--icon {
   display: flex;
   align-items: center;
