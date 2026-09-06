@@ -58,6 +58,7 @@
   margin: 0;
   text-align: center;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.24;
@@ -232,7 +233,7 @@
 
 .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat span {
   font-family: var(--font-secondary--family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 10px;
   color: var(--color-text-secondary, #494949);
 }
@@ -341,6 +342,7 @@
 .know-your-jewellery_wrapper_grid_diamonds_flip_card_quote {
   text-align: left;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-size: 13px;
   line-height: 1.43;
   color: #000;
@@ -349,6 +351,7 @@
 .know-your-jewellery_wrapper_grid_diamonds_flip_card_face--fact
   .know-your-jewellery_wrapper_grid_diamonds_flip_card_quote {
   font-family: var(--font-secondary--family);
+  font-style: normal;
   color: var(--color-text-secondary, #494949);
 }
 
