@@ -21,7 +21,12 @@
     "previous_slide": "Previous slide",
     "next_slide": "Next slide",
     "slides": "Slides",
-    "go_to_slide": "Go to slide {{ number }}"
+    "go_to_slide": "Go to slide {{ number }}",
+    "wishlist_add": "Add to wishlist",
+    "wishlist_remove": "Remove from wishlist",
+    "view_all": "View all",
+    "previous_page": "Previous",
+    "next_page": "Next"
   },
   "404": {
     "title": "404",

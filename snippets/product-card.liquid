@@ -14,6 +14,8 @@
   if product.tags contains 'Ready to ship'
     assign is_ready_to_ship = true
   endif
+
+  assign card_image_alt = product.featured_image.alt | default: product.title
 -%}
 
 <a href="{{ product.url }}" class="product-card">
@@ -22,7 +24,7 @@
       {{
         product.featured_image
         | image_url: width: 480
-        | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: product.featured_image.alt | default: product.title, class: 'product-card_media_image'
+        | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: card_image_alt, class: 'product-card_media_image'
       }}
     {%- endif -%}
 
