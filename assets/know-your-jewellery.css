@@ -238,6 +238,10 @@
   color: var(--color-text-secondary, #494949);
 }
 
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--accent span {
+  font-weight: 500;
+}
+
 /* Diamonds column: a stack of cards (compare-stat card on top by default,
    myth/fact cards behind it) with prev/next arrows and dots to cycle through */
 .know-your-jewellery_wrapper_grid_diamonds_carousel {
