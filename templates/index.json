@@ -41,12 +41,23 @@
             "button_label": "",
             "button_url": ""
           }
+        },
+        "slide_4KCA4Q": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
         }
       },
       "block_order": [
         "slide-1",
         "slide_mkRNm4",
-        "slide_BEYVhA"
+        "slide_BEYVhA",
+        "slide_4KCA4Q"
       ],
       "settings": {
         "autoplay": true,
