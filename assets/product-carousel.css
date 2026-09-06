@@ -132,11 +132,11 @@
 }
 
 .product-carousel_wrapper_stage_prev {
-  left: 0;
+  left: -20px;
 }
 
 .product-carousel_wrapper_stage_next {
-  right: 0;
+  right: -20px;
 }
 
 .product-carousel_wrapper_stage_prev svg,
