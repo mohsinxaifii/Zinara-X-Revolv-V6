@@ -1,0 +1,66 @@
+{%- doc -%}
+  Renders one product card (image, badge, wishlist, rating, price, title).
+
+  @param {object} product - a Shopify product object
+{%- enddoc -%}
+
+{%- liquid
+  assign feature_badge = product.metafields.content['product-features-badges'].first
+  assign is_price_drop = false
+  assign is_ready_to_ship = false
+  if product.compare_at_price > product.price
+    assign is_price_drop = true
+  endif
+  if product.tags contains 'Ready to ship'
+    assign is_ready_to_ship = true
+  endif
+-%}
+
+<a href="{{ product.url }}" class="product-card">
+  <span class="product-card_media">
+    {%- if product.featured_image -%}
+      {{
+        product.featured_image
+        | image_url: width: 480
+        | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: product.featured_image.alt | default: product.title, class: 'product-card_media_image'
+      }}
+    {%- endif -%}
+
+    <span class="product-card_media_top">
+      {%- if feature_badge != blank -%}
+        <span class="product-card_media_top_badge product-card_media_top_badge--feature">{{ feature_badge }}</span>
+      {%- elsif is_price_drop -%}
+        <span class="product-card_media_top_badge product-card_media_top_badge--price-drop">Price drop</span>
+      {%- elsif is_ready_to_ship -%}
+        <span class="product-card_media_top_badge product-card_media_top_badge--ready">Ready to ship</span>
+      {%- else -%}
+        <span></span>
+      {%- endif -%}
+
+      <button
+        type="button"
+        class="product-card_media_top_wishlist"
+        data-wishlist-toggle
+        data-product-id="{{ product.id }}"
+        aria-label="{{ 'accessibility.wishlist_add' | t }}"
+        aria-pressed="false"
+      >
+        {{ 'icon-heart.svg' | inline_asset_content }}
+      </button>
+    </span>
+
+    {%- if product.metafields.judgeme.badge != blank -%}
+      <span class="product-card_media_rating">{{ product.metafields.judgeme.badge }}</span>
+    {%- endif -%}
+  </span>
+
+  <span class="product-card_info">
+    <span class="product-card_info_price">
+      <span class="product-card_info_price_current">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="product-card_info_price_compare">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </span>
+    <span class="product-card_info_title">{{ product.title }}</span>
+  </span>
+</a>
