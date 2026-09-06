@@ -1,5 +1,15 @@
 {{ 'usp-strip.css' | asset_url | stylesheet_tag }}
 
+<<<<<<< HEAD
+{%- style -%}
+  #shopify-section-{{ section.id }} .usp-strip_wrapper_pill {
+    --usp-strip-gradient-start: {{ section.settings.gradient_start }};
+    --usp-strip-gradient-middle: {{ section.settings.gradient_middle }};
+  }
+{%- endstyle -%}
+
+=======
+>>>>>>> 3320215be41a99538531fe74fd389139c87d647a
 {%- if section.blocks.size > 0 -%}
   <section class="usp-strip">
     <div class="usp-strip_wrapper">
