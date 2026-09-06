@@ -1,5 +1,6 @@
 {{ 'scroll-carousel.css' | asset_url | stylesheet_tag }}
 {{ 'testimonial-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'review-dialog.css' | asset_url | stylesheet_tag }}
 
 {%- if section.blocks.size > 0 -%}
   <scroll-carousel class="testimonial-carousel full-width">
@@ -112,7 +113,6 @@
         { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "text", "id": "name", "label": "Customer name", "default": "Customer name" },
         { "type": "textarea", "id": "quote", "label": "Quote" },
-        { "type": "url", "id": "quote_link", "label": "\"Read more\" link (optional)" },
         { "type": "product", "id": "product", "label": "Product mentioned" }
       ]
     }
