@@ -65,34 +65,53 @@
                 <div class="know-your-jewellery_wrapper_grid_diamonds_compare">
                   <span class="know-your-jewellery_wrapper_grid_diamonds_compare_tag">FACT</span>
                   <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row">
-                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
-                      {%- if section.settings.mined_image -%}
-                        {{
-                          section.settings.mined_image
-                          | image_url: width: 80
-                          | image_tag: loading: 'lazy', alt: 'Mined diamond'
-                        }}
-                      {%- endif -%}
-                      <strong>{{ section.settings.mined_value }}</strong>
-                      <span>{{ section.settings.mined_label }}</span>
+                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--mined">
+                      <span class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_media">
+                        {%- if section.settings.mined_image -%}
+                          {{
+                            section.settings.mined_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', alt: 'Mined diamond'
+                          }}
+                        {%- endif -%}
+                      </span>
+                      {%- render 'stat-value', value: section.settings.mined_value -%}
+                      <span class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label">
+                        {{- section.settings.mined_label -}}
+                      </span>
                     </div>
                     <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--accent">
-                      <strong class="is-accent">
+                      <span class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_value know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_value--accent">
                         {{ section.settings.co2_reduction }}
                         {{ 'icon-trend-down.svg' | inline_asset_content }}
-                      </strong>
-                      <span>{{ section.settings.co2_label }}</span>
+                      </span>
+                      <svg
+                        class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_arrow"
+                        viewBox="0 0 82 8"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path d="M0 4 L80 4" />
+                        <path d="M77.5 0.5 L81 4 L77.5 7.5" />
+                      </svg>
+                      <span class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label">
+                        {{- section.settings.co2_label -}}
+                      </span>
                     </div>
-                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat">
-                      {%- if section.settings.mined_image -%}
-                        {{
-                          section.settings.mined_image
-                          | image_url: width: 40
-                          | image_tag: loading: 'lazy', alt: 'Lab grown diamond'
-                        }}
-                      {%- endif -%}
-                      <strong>{{ section.settings.lab_grown_value }}</strong>
-                      <span>{{ section.settings.lab_grown_label }}</span>
+                    <div class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--lab">
+                      <span class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_media">
+                        {%- if section.settings.mined_image -%}
+                          {{
+                            section.settings.mined_image
+                            | image_url: width: 40
+                            | image_tag: loading: 'lazy', alt: 'Lab grown diamond'
+                          }}
+                        {%- endif -%}
+                      </span>
+                      {%- render 'stat-value', value: section.settings.lab_grown_value -%}
+                      <span class="know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label">
+                        {{- section.settings.lab_grown_label -}}
+                      </span>
                     </div>
                   </div>
                 </div>
