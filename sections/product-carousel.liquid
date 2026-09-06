@@ -29,8 +29,8 @@
           class="product-carousel_wrapper_controls_view-all"
           data-view-all-link
         >
-          {{ 'icon-shopping-bag.svg' | inline_asset_content }}
           {{ 'accessibility.view_all' | t }}
+          {{ 'icon-caret-right.svg' | inline_asset_content }}
         </a>
       </div>
 
@@ -50,6 +50,14 @@
             </div>
           </div>
         {%- endfor -%}
+
+        <button
+          type="button"
+          class="product-carousel_wrapper_stage_prev"
+          aria-label="{{ 'accessibility.previous_page' | t }}"
+        >
+          {{ 'icon-caret-left.svg' | inline_asset_content }}
+        </button>
 
         <button
           type="button"
