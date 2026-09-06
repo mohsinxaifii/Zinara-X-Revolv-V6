@@ -53,19 +53,53 @@
           }
         }
       },
-      "block_order": [
-        "slide-1",
-        "slide_mkRNm4",
-        "slide_BEYVhA",
-        "slide_4KCA4Q"
-      ],
+      "block_order": ["slide-1", "slide_mkRNm4", "slide_BEYVhA", "slide_4KCA4Q"],
       "settings": {
         "autoplay": true,
         "autoplay_speed": 6
       }
+    },
+    "shop-by-category": {
+      "type": "shop-by-category",
+      "blocks": {
+        "category-1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-rings.png",
+            "label": "Rings",
+            "url": "/collections/all-rings"
+          }
+        },
+        "category-2": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-earrings.png",
+            "label": "Earrings",
+            "url": "/collections/all-earrings"
+          }
+        },
+        "category-3": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-pendants.png",
+            "label": "Pendants",
+            "url": "/collections/all-pendants"
+          }
+        },
+        "category-4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/zinara-category-bracelets.png",
+            "label": "Bracelets",
+            "url": ""
+          }
+        }
+      },
+      "block_order": ["category-1", "category-2", "category-3", "category-4"],
+      "settings": {
+        "heading": "Shop by category"
+      }
     }
   },
-  "order": [
-    "hero-banner"
-  ]
+  "order": ["hero-banner", "shop-by-category"]
 }
