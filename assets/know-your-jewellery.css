@@ -330,36 +330,76 @@
   width: 100%;
 }
 
+/* The cards sit in a deck: the active one is in front, the ones behind are
+   inset horizontally and pushed down so their bottom edges peek out. */
 .know-your-jewellery_wrapper_grid_diamonds_stack {
   position: relative;
   width: 100%;
   max-width: 361px;
-  height: 164px;
+  height: 185px;
   margin-inline: auto;
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_stack_item {
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.96);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 164px;
+  z-index: 1;
   transition:
-    opacity 0.3s ease,
+    margin 0.3s ease,
     transform 0.3s ease;
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_stack_item.is-active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
+.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth='0'] {
+  z-index: 3;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth='1'] {
+  z-index: 2;
+  margin-inline: 8.5px;
+  transform: translateY(12.27px);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth='2'] {
+  margin-inline: 13.5px;
+  transform: translateY(20.57px);
+}
+
+/* Anything deeper than the two visible peeks hides behind them. */
+.know-your-jewellery_wrapper_grid_diamonds_stack_item[data-depth='3'] {
+  margin-inline: 13.5px;
+  transform: translateY(20.57px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_stack_arrow {
   position: absolute;
-  top: 50%;
-  z-index: 3;
+  top: 82px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: 0;
+  background: none;
+  color: var(--color-brand, #712242);
+  cursor: pointer;
   transform: translateY(-50%);
+  transition: opacity 0.2s ease;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_arrow:hover {
+  opacity: 0.65;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_arrow svg {
+  width: 24px;
+  height: 24px;
 }
 
 .know-your-jewellery_wrapper_grid_diamonds_stack_arrow--prev {
