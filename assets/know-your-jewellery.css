@@ -229,7 +229,8 @@
   color: var(--color-text-secondary, #494949);
 }
 
-/* Diamonds column carousel (compare-stat slide + myth/fact slides) */
+/* Diamonds column: a stack of cards (compare-stat card on top by default,
+   myth/fact cards behind it) with prev/next arrows and dots to cycle through */
 .know-your-jewellery_wrapper_grid_diamonds_carousel {
   display: flex;
   flex-direction: column;
@@ -238,40 +239,54 @@
   width: 100%;
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_carousel_row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.know-your-jewellery_wrapper_grid_diamonds_stack_wrap {
+  position: relative;
   width: 100%;
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_carousel_track {
-  display: flex;
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+.know-your-jewellery_wrapper_grid_diamonds_stack {
+  position: relative;
+  width: 100%;
+  max-width: 361px;
+  height: 176px;
+  margin-inline: auto;
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_carousel_track::-webkit-scrollbar {
-  display: none;
+.know-your-jewellery_wrapper_grid_diamonds_stack_item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.96);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_carousel_slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  display: flex;
-  justify-content: center;
+.know-your-jewellery_wrapper_grid_diamonds_stack_item.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  transform: translateY(-50%);
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_arrow--prev {
+  left: 0;
+}
+
+.know-your-jewellery_wrapper_grid_diamonds_stack_arrow--next {
+  right: 0;
 }
 
 /* Myth / fact flip card */
 .know-your-jewellery_wrapper_grid_diamonds_flip_card {
-  position: relative;
   display: block;
-  width: 100%;
-  max-width: 334px;
-  height: 140px;
   padding: 0;
   border: 1px solid #e0e0e0;
   border-radius: 15px;
