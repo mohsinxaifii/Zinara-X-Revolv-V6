@@ -15,16 +15,46 @@
         "slide-1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/zinara-hero-slide-1.png"
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "slide_mkRNm4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "slide_BEYVhA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/zinara-hero-slide-1.png",
+            "heading": "",
+            "subheading": "",
+            "button_label": "",
+            "button_url": ""
           }
         }
       },
-      "block_order": ["slide-1"],
+      "block_order": [
+        "slide-1",
+        "slide_mkRNm4",
+        "slide_BEYVhA"
+      ],
       "settings": {
         "autoplay": true,
         "autoplay_speed": 6
       }
     }
   },
-  "order": ["hero-banner"]
+  "order": [
+    "hero-banner"
+  ]
 }
