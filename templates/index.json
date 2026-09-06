@@ -106,7 +106,7 @@
         "badge-1": {
           "type": "badge",
           "settings": {
-            "image": "shopify://shop_images/icon-gold-plating.svg",
+            "image": "shopify://shop_images/zinara-icon-gold-plating.svg",
             "text": "5x thicker 18 KT gold plating"
           }
         },
