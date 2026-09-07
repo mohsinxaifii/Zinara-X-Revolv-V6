@@ -26,18 +26,30 @@
   color: var(--color-text-secondary, #494949);
 }
 
-.video-showcase_wrapper_track {
-  display: flex;
-  justify-content: center;
-  gap: 48px;
+/* Stage: clipped viewport + arrows sitting just outside the track */
+.video-showcase_wrapper_stage {
+  position: relative;
   width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
 }
 
-.video-showcase_wrapper_track::-webkit-scrollbar {
-  display: none;
+.video-showcase_wrapper_viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-showcase_wrapper_track {
+  --video-showcase-card-width: 282px;
+  --video-showcase-gap: 48px;
+  display: flex;
+  align-items: center;
+  gap: var(--video-showcase-gap);
+  width: max-content;
+  padding-block: 12px;
+  will-change: transform;
+}
+
+.video-showcase_wrapper_track.is-animating {
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .video-showcase_wrapper_track_item {
@@ -45,20 +57,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 282px;
-  width: 282px;
+  flex: 0 0 var(--video-showcase-card-width);
+  width: var(--video-showcase-card-width);
   height: 400px;
-  scroll-snap-align: start;
   border-radius: 12px;
   overflow: hidden;
   background-color: #000;
+  cursor: pointer;
+  opacity: 0.9;
+  transform: scale(0.96);
+  transition:
+    opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+    transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.video-showcase_wrapper_track_item.is-active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  cursor: default;
+}
+
+.video-showcase_wrapper_track_item_media,
+.video-showcase_wrapper_track_item_video-wrap {
+  position: absolute;
+  inset: 0;
 }
 
 .video-showcase_wrapper_track_item_poster {
   position: absolute;
-  inset: 8px;
-  border-radius: 8px;
-  overflow: hidden;
+  inset: 0;
+  z-index: 1;
 }
 
 .video-showcase_wrapper_track_item_poster img {
@@ -68,56 +98,160 @@
   object-fit: cover;
 }
 
+.video-showcase_wrapper_track_item.is-active .video-showcase_wrapper_track_item_poster {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-showcase_wrapper_track_item_media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #000;
+  pointer-events: none;
+}
+
+/* Timeline shown on top of the active card */
+.video-showcase_wrapper_track_item_progress {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 3;
+  height: 5px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.video-showcase_wrapper_track_item.is-active .video-showcase_wrapper_track_item_progress {
+  opacity: 1;
+}
+
+.video-showcase_wrapper_track_item_progress_bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background-color: #fff;
+}
+
+/* Play affordance on the resting cards */
 .video-showcase_wrapper_track_item_play {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border: 0;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  opacity: 1;
+  transition:
+    opacity 0.3s ease,
+    transform 0.2s ease;
+  pointer-events: none;
+}
+
+.video-showcase_wrapper_track_item_play svg {
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+}
+
+.video-showcase_wrapper_track_item.is-active .video-showcase_wrapper_track_item_play,
+.video-showcase_wrapper_track_item.is-playing .video-showcase_wrapper_track_item_play {
+  opacity: 0;
+}
+
+.video-showcase_wrapper_track_item.is-active.is-paused .video-showcase_wrapper_track_item_play {
+  opacity: 1;
+}
+
+.video-showcase_wrapper_track_item:not(.is-active):hover .video-showcase_wrapper_track_item_play {
+  transform: scale(1.1);
+}
+
+.video-showcase_wrapper_track_item_link {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+.video-showcase_wrapper_stage_prev,
+.video-showcase_wrapper_stage_next {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid var(--color-brand, #712242);
+  border-radius: 8px;
+  background-color: var(--color-brand, #712242);
   color: #fff;
   cursor: pointer;
+  transform: translateY(-50%);
   transition:
     transform 0.2s ease,
     background-color 0.2s ease;
 }
 
-.video-showcase_wrapper_track_item_play svg {
-  width: 20px;
-  height: 20px;
+.video-showcase_wrapper_stage_prev {
+  left: -20px;
 }
 
-.video-showcase_wrapper_track_item_play:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-  transform: scale(1.1);
+.video-showcase_wrapper_stage_next {
+  right: -20px;
 }
 
-.video-showcase_wrapper_track_item_video {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-.video-showcase_wrapper_track_item_video video {
-  display: block;
+.video-showcase_wrapper_stage_prev svg,
+.video-showcase_wrapper_stage_next svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-.video-showcase_arrow {
-  position: absolute;
-  top: 50%;
-  right: var(--page-margin);
-  transform: translateY(-50%);
+.video-showcase_wrapper_stage_prev:hover,
+.video-showcase_wrapper_stage_next:hover {
+  background-color: #5a1b34;
 }
 
 @media screen and (max-width: 989px) {
-  .video-showcase_arrow {
+  .video-showcase_wrapper_track {
+    --video-showcase-gap: 24px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .video-showcase_wrapper_track {
+    --video-showcase-card-width: 220px;
+    --video-showcase-gap: 16px;
+  }
+
+  .video-showcase_wrapper_track_item {
+    height: 312px;
+  }
+
+  .video-showcase_wrapper_stage_prev,
+  .video-showcase_wrapper_stage_next {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-showcase_wrapper_track.is-animating {
+    transition-duration: 0.01ms;
+  }
+
+  .video-showcase_wrapper_track_item {
+    transition-duration: 0.01ms;
   }
 }
