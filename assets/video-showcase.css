@@ -30,6 +30,7 @@
 .video-showcase_wrapper_stage {
   position: relative;
   width: 100%;
+  container-type: inline-size;
 }
 
 .video-showcase_wrapper_viewport {
@@ -43,14 +44,27 @@
 }
 
 .video-showcase_wrapper_track {
-  --video-showcase-card-width: 282px;
+  /* How many card slots span the stage. 3.6 puts five cards on screen: the
+     active one, a full card either side, and a sliver at each edge. */
+  --video-showcase-visible: 3.6;
+  --video-showcase-ratio: 9 / 16;
+  --video-showcase-step: 330px;
   --video-showcase-gap: 48px;
+  --video-showcase-card-width: 282px;
 
   display: flex;
   align-items: center;
   gap: var(--video-showcase-gap);
   width: max-content;
   will-change: transform;
+}
+
+@supports (container-type: inline-size) {
+  .video-showcase_wrapper_track {
+    --video-showcase-step: calc(100cqw / var(--video-showcase-visible));
+    --video-showcase-gap: calc(var(--video-showcase-step) * 0.14);
+    --video-showcase-card-width: calc(var(--video-showcase-step) - var(--video-showcase-gap));
+  }
 }
 
 .video-showcase_wrapper_track.is-animating {
@@ -64,7 +78,9 @@
   justify-content: center;
   flex: 0 0 var(--video-showcase-card-width);
   width: var(--video-showcase-card-width);
-  height: 400px;
+
+  /* Height follows the video's own ratio, so nothing is stretched or cropped. */
+  aspect-ratio: var(--video-showcase-ratio);
   border-radius: 12px;
   overflow: hidden;
   background-color: #000;
@@ -248,18 +264,19 @@
 
 @media screen and (max-width: 989px) {
   .video-showcase_wrapper_track {
-    --video-showcase-gap: 24px;
+    --video-showcase-visible: 2.8;
+    --video-showcase-step: 260px;
+    --video-showcase-gap: 32px;
+    --video-showcase-card-width: 228px;
   }
 }
 
 @media screen and (max-width: 749px) {
   .video-showcase_wrapper_track {
-    --video-showcase-card-width: 220px;
-    --video-showcase-gap: 16px;
-  }
-
-  .video-showcase_wrapper_track_item {
-    height: 312px;
+    --video-showcase-visible: 1.9;
+    --video-showcase-step: 196px;
+    --video-showcase-gap: 20px;
+    --video-showcase-card-width: 176px;
   }
 
   .video-showcase_wrapper_stage_prev,
