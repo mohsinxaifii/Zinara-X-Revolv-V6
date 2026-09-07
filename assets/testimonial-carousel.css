@@ -88,19 +88,24 @@
 .testimonial-carousel_wrapper_track_card_row {
   display: flex;
   gap: 3.797%;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
+/* Height comes from the text beside it, which is what keeps the two columns
+   level at 178px on the Figma card and still level once the card narrows and
+   the quote wraps onto more lines. */
 .testimonial-carousel_wrapper_track_card_row_image {
+  position: relative;
   display: block;
   flex: 0 0 39.873%;
-  aspect-ratio: 126 / 178;
   border-radius: 8px;
   overflow: hidden;
   background-color: #f2f2f2;
 }
 
 .testimonial-carousel_wrapper_track_card_row_image img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -112,6 +117,7 @@
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  min-height: 178px;
   flex: 1 1 auto;
 }
 
