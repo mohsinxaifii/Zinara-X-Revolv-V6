@@ -1,6 +1,17 @@
 {{ 'instagram-feed.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  The Figma heading is Libre Baskerville italic. Load that face only if the
+  picked font actually has one - font_modify returns nil otherwise, and passing
+  nil to font_face emits a Liquid error straight into the stylesheet.
+{%- endcomment -%}
+{%- assign heading_font = settings.type_tertiary_font | font_modify: 'style', 'italic' -%}
+
 {%- style -%}
+  {%- if heading_font -%}
+    {{ heading_font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
   #shopify-section-{{ section.id }} .instagram-feed {
     background-color: {{ section.settings.background_color }};
   }

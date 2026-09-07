@@ -67,9 +67,11 @@
 
   <span class="product-card_info">
     <span class="product-card_info_price">
-      <span class="product-card_info_price_current">{{ product.price | money }}</span>
+      <span class="product-card_info_price_current">{{ product.price | money_without_trailing_zeros }}</span>
       {%- if product.compare_at_price > product.price -%}
-        <span class="product-card_info_price_compare">{{ product.compare_at_price | money }}</span>
+        <span class="product-card_info_price_compare">
+          {{- product.compare_at_price | money_without_trailing_zeros -}}
+        </span>
       {%- endif -%}
     </span>
     <span class="product-card_info_title">{{ product.title }}</span>

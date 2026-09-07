@@ -1,14 +1,25 @@
 {{ 'scroll-carousel.css' | asset_url | stylesheet_tag }}
 {{ 'zinara-collections.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  The Figma labels are Libre Baskerville italic. Load that face only if the
+  picked font actually has one - font_modify returns nil otherwise, and passing
+  nil to font_face emits a Liquid error straight into the stylesheet.
+{%- endcomment -%}
+{%- assign label_font = settings.type_tertiary_font | font_modify: 'style', 'italic' -%}
+
 {%- style -%}
+  {%- if label_font -%}
+    {{ label_font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
   #shopify-section-{{ section.id }} .zinara-collections {
     background-color: {{ section.settings.background_color }};
   }
 {%- endstyle -%}
 
 {%- if section.blocks.size > 0 -%}
-  <scroll-carousel class="zinara-collections">
+  <scroll-carousel class="zinara-collections" loop>
     <span class="zinara-collections_wave" aria-hidden="true">{{ 'decorative-wave.svg' | inline_asset_content }}</span>
 
     <div class="zinara-collections_wrapper">
@@ -16,46 +27,56 @@
         <h2 class="zinara-collections_wrapper_heading" data-animate>{{ section.settings.heading }}</h2>
       {%- endif -%}
 
-      <div class="zinara-collections_wrapper_track" data-track>
-        {%- for block in section.blocks -%}
-          <a
-            href="{{ block.settings.url | default: '#' }}"
-            class="zinara-collections_wrapper_track_item"
-            {{ block.shopify_attributes }}
-          >
-            <span class="zinara-collections_wrapper_track_item_image">
-              {%- if block.settings.image -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 480
-                  | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: block.settings.label
-                }}
-              {%- endif -%}
-            </span>
-            <span class="zinara-collections_wrapper_track_item_label">{{ block.settings.label }}</span>
-          </a>
-        {%- endfor -%}
-      </div>
+      <div class="zinara-collections_wrapper_stage">
+        <div class="zinara-collections_wrapper_track" data-track>
+          {%- for block in section.blocks -%}
+            <a
+              href="{{ block.settings.url | default: '#' }}"
+              class="zinara-collections_wrapper_track_item"
+              {{ block.shopify_attributes }}
+            >
+              <span class="zinara-collections_wrapper_track_item_image">
+                {%- if block.settings.image -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 480
+                    | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '240px', alt: block.settings.label
+                  }}
+                {%- endif -%}
+              </span>
+              <span class="zinara-collections_wrapper_track_item_label">{{ block.settings.label }}</span>
+            </a>
+          {%- endfor -%}
+        </div>
 
-      <div class="zinara-collections_wrapper_footer">
-        <div class="scroll-carousel_dots" data-dots></div>
-        <a href="{{ section.blocks.first.settings.url | default: '#' }}" class="zinara-collections_wrapper_footer_link">
+        <button
+          type="button"
+          class="scroll-carousel_arrow zinara-collections_wrapper_stage_prev"
+          data-prev
+          aria-label="{{ 'accessibility.previous_page' | t }}"
+        >
           {{ 'icon-caret-left.svg' | inline_asset_content }}
-          {{ 'accessibility.view_all' | t }}
-          {{ 'icon-caret-right.svg' | inline_asset_content }}
-        </a>
-      </div>
-    </div>
+        </button>
 
-    <button
-      type="button"
-      class="scroll-carousel_arrow zinara-collections_arrow"
-      data-next
-      aria-label="{{ 'accessibility.next_page' | t }}"
-    >
-      {{ 'icon-caret-right.svg' | inline_asset_content }}
-    </button>
+        <button
+          type="button"
+          class="scroll-carousel_arrow zinara-collections_wrapper_stage_next"
+          data-next
+          aria-label="{{ 'accessibility.next_page' | t }}"
+        >
+          {{ 'icon-caret-right.svg' | inline_asset_content }}
+        </button>
+      </div>
+
+      <div class="scroll-carousel_dots" data-dots></div>
+
+      <a href="{{ section.blocks.first.settings.url | default: '#' }}" class="zinara-collections_wrapper_link">
+        {{- 'accessibility.view_all' | t -}}
+      </a>
+    </div>
   </scroll-carousel>
+
+  <script src="{{ 'carousel-scroll.js' | asset_url }}" defer="defer"></script>
 
   <script src="{{ 'scroll-carousel.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}

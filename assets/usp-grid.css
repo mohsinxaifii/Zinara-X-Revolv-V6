@@ -1,3 +1,6 @@
+/* Figma: Home page 827:24395 > Frame 1116601776 (860:30618).
+   Section padding 24/72/32, a content-width 2x2 grid centred in the page,
+   64px rows, 1px #D38A0D frame with 12px corners. */
 .usp-grid {
   display: block;
   width: 100%;
@@ -6,11 +9,16 @@
   box-sizing: border-box;
 }
 
+/* The frame is one unbroken rounded rectangle on the wrapper; the cells only
+   draw the dividers between them, so no border is lost to the corner clip. */
 .usp-grid_wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: var(--page-width);
+  grid-template-columns: repeat(2, 1fr);
+
+  /* Figma authors both columns at 421px wide; shrink rather than overflow. */
+  width: min(842px, 100%);
   margin-inline: auto;
+  border: 1px solid #d38a0d;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -19,39 +27,29 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 32px 24px;
-  border: 1px solid #d38a0d;
-  margin: -1px 0 0 -1px;
+  min-height: 64px;
+  padding-inline: 24px;
+  border-top: 1px solid #d38a0d;
+  border-left: 1px solid #d38a0d;
+  box-sizing: border-box;
 }
 
-.usp-grid_wrapper_cell:nth-child(1) {
-  border-top-left-radius: 12px;
+.usp-grid_wrapper_cell:nth-child(-n + 2) {
+  border-top: 0;
 }
 
-.usp-grid_wrapper_cell:nth-child(2) {
-  border-top-right-radius: 12px;
+.usp-grid_wrapper_cell:nth-child(odd) {
+  border-left: 0;
 }
 
-.usp-grid_wrapper_cell:nth-child(3) {
-  border-bottom-left-radius: 12px;
-}
-
-.usp-grid_wrapper_cell:nth-child(4) {
-  border-bottom-right-radius: 12px;
-}
-
+/* Uploaded icon files carry their own baked-in colours, so mask them instead of
+   drawing them: every icon in the design is the single amber below. */
 .usp-grid_wrapper_cell_icon {
-  display: flex;
   flex: 0 0 auto;
   width: 32px;
   height: 32px;
-  color: #d38a0d;
-}
-
-.usp-grid_wrapper_cell_icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  background-color: #d38a0d;
+  mask: var(--usp-grid-icon) center / contain no-repeat;
 }
 
 .usp-grid_wrapper_cell_text {
@@ -65,19 +63,14 @@
 @media screen and (max-width: 749px) {
   .usp-grid_wrapper {
     grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .usp-grid_wrapper_cell {
+    border-left: 0;
   }
 
   .usp-grid_wrapper_cell:nth-child(2) {
-    border-top-right-radius: 0;
-  }
-
-  .usp-grid_wrapper_cell:nth-child(3) {
-    border-bottom-left-radius: 0;
-  }
-
-  .usp-grid_wrapper_cell:nth-child(4) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
+    border-top: 1px solid #d38a0d;
   }
 }

@@ -1,3 +1,5 @@
+/* Figma: Home page 827:24395 > Frame 1116601775 (827:24849).
+   Section 32/72 padding, 20px rows, four 253x339 tiles on a 24px gap. */
 .instagram-feed {
   position: relative;
   display: block;
@@ -7,11 +9,9 @@
 
 .instagram-feed_wave {
   position: absolute;
-  top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: auto;
-  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -38,6 +38,7 @@
   margin: 0;
   text-align: center;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.24;
@@ -48,14 +49,16 @@
   display: flex;
   justify-content: center;
   gap: 24px;
-  flex-wrap: wrap;
   width: 100%;
 }
 
+/* Figma caps the tiles at 253 wide; below that they share the row equally
+   instead of wrapping the last one onto a line of its own. */
 .instagram-feed_wrapper_grid_item {
   display: block;
-  flex: 0 1 253px;
-  width: 253px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 253px;
   aspect-ratio: 253 / 339;
   border-radius: 12px;
   overflow: hidden;
@@ -101,7 +104,12 @@
 }
 
 @media screen and (max-width: 749px) {
+  .instagram-feed_wrapper_grid {
+    flex-wrap: wrap;
+  }
+
   .instagram-feed_wrapper_grid_item {
-    flex-basis: 45%;
+    flex: 0 1 calc(50% - 12px);
+    max-width: none;
   }
 }

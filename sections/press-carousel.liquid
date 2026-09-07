@@ -2,57 +2,62 @@
 {{ 'press-carousel.css' | asset_url | stylesheet_tag }}
 
 {%- if section.blocks.size > 0 -%}
-  <scroll-carousel class="press-carousel">
+  <scroll-carousel class="press-carousel" loop>
     <div class="press-carousel_wrapper">
       {%- if section.settings.heading != blank -%}
         <h2 class="press-carousel_wrapper_heading" data-animate>{{ section.settings.heading }}</h2>
       {%- endif -%}
 
-      <div class="press-carousel_wrapper_track" data-track>
-        {%- for block in section.blocks -%}
-          <div class="press-carousel_wrapper_track_item" {{ block.shopify_attributes }}>
-            <span class="press-carousel_wrapper_track_item_image">
-              {%- if block.settings.image -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 480
-                  | image_tag: loading: 'lazy', alt: block.settings.caption
-                }}
-              {%- endif -%}
-            </span>
-            <span class="press-carousel_wrapper_track_item_caption">
-              <span class="press-carousel_wrapper_track_item_caption_by">{{ block.settings.by_text }}</span>
-              <a
-                href="{{ block.settings.link | default: '#' }}"
-                class="press-carousel_wrapper_track_item_caption_title"
-              >
-                {{- block.settings.caption -}}
-              </a>
-            </span>
-          </div>
-        {%- endfor -%}
+      <div class="press-carousel_wrapper_stage">
+        <div class="press-carousel_wrapper_track" data-track>
+          {%- for block in section.blocks -%}
+            <div class="press-carousel_wrapper_track_item" {{ block.shopify_attributes }}>
+              <span class="press-carousel_wrapper_track_item_image">
+                {%- if block.settings.image -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 480
+                    | image_tag: loading: 'lazy', alt: block.settings.caption
+                  }}
+                {%- endif -%}
+              </span>
+              <span class="press-carousel_wrapper_track_item_caption">
+                <span class="press-carousel_wrapper_track_item_caption_by">{{ block.settings.by_text }}</span>
+                <a
+                  href="{{ block.settings.link | default: '#' }}"
+                  class="press-carousel_wrapper_track_item_caption_title"
+                >
+                  {{- block.settings.caption -}}
+                </a>
+              </span>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <button
+          type="button"
+          class="scroll-carousel_arrow press-carousel_wrapper_stage_prev"
+          data-prev
+          aria-label="{{ 'accessibility.previous_page' | t }}"
+        >
+          {{ 'icon-caret-left.svg' | inline_asset_content }}
+        </button>
+
+        <button
+          type="button"
+          class="scroll-carousel_arrow press-carousel_wrapper_stage_next"
+          data-next
+          aria-label="{{ 'accessibility.next_page' | t }}"
+        >
+          {{ 'icon-caret-right.svg' | inline_asset_content }}
+        </button>
       </div>
 
       <div class="scroll-carousel_dots" data-dots></div>
     </div>
-
-    <button
-      type="button"
-      class="scroll-carousel_arrow press-carousel_arrow press-carousel_arrow--next"
-      data-next
-      aria-label="{{ 'accessibility.next_page' | t }}"
-    >
-      {{ 'icon-caret-right.svg' | inline_asset_content }}
-    </button>
-    <button
-      type="button"
-      class="scroll-carousel_arrow press-carousel_arrow press-carousel_arrow--prev"
-      data-prev
-      aria-label="{{ 'accessibility.previous_page' | t }}"
-    >
-      {{ 'icon-caret-left.svg' | inline_asset_content }}
-    </button>
   </scroll-carousel>
+
+  <script src="{{ 'carousel-scroll.js' | asset_url }}" defer="defer"></script>
 
   <script src="{{ 'scroll-carousel.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
