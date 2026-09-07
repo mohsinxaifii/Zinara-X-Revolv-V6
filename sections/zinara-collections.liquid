@@ -1,7 +1,18 @@
 {{ 'scroll-carousel.css' | asset_url | stylesheet_tag }}
 {{ 'zinara-collections.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  The Figma labels are Libre Baskerville italic. Load that face only if the
+  picked font actually has one - font_modify returns nil otherwise, and passing
+  nil to font_face emits a Liquid error straight into the stylesheet.
+{%- endcomment -%}
+{%- assign label_font = settings.type_tertiary_font | font_modify: 'style', 'italic' -%}
+
 {%- style -%}
+  {%- if label_font -%}
+    {{ label_font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
   #shopify-section-{{ section.id }} .zinara-collections {
     background-color: {{ section.settings.background_color }};
   }

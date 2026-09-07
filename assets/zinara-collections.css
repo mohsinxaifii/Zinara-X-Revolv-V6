@@ -62,7 +62,7 @@
 @supports (container-type: inline-size) {
   .zinara-collections_wrapper_stage {
     --zinara-collections-step: calc(100cqw / var(--zinara-collections-visible));
-    --zinara-collections-gap: calc(var(--zinara-collections-step) * 0.090909);
+    --zinara-collections-gap: calc(var(--zinara-collections-step) * 0.0909);
     --zinara-collections-card: calc(var(--zinara-collections-step) - var(--zinara-collections-gap));
   }
 }
@@ -115,7 +115,7 @@
 .zinara-collections_wrapper_track_item_label {
   font-family: var(--font-tertiary--family);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   line-height: 1.24;
   color: var(--color-brand, #712242);
@@ -127,7 +127,7 @@
 .zinara-collections_wrapper_stage_prev,
 .zinara-collections_wrapper_stage_next {
   position: absolute;
-  top: calc(var(--zinara-collections-card) * 0.64375);
+  top: calc(var(--zinara-collections-card) * 0.6438);
   z-index: 2;
   transform: translateY(-50%);
 }
