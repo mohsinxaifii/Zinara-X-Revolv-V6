@@ -1,3 +1,5 @@
+/* Figma: Home page 827:24395 > Frame 1116601658 (827:24813).
+   Section 32/72 padding, 20px rows, 240x339 images on a 24px gap. */
 .press-carousel {
   position: relative;
   display: block;
@@ -14,6 +16,7 @@
   margin-inline: auto;
   padding: 32px var(--page-margin);
   box-sizing: border-box;
+  container-type: inline-size;
 }
 
 .press-carousel_wrapper_heading {
@@ -26,9 +29,29 @@
   color: var(--color-text-secondary, #494949);
 }
 
+.press-carousel_wrapper_stage {
+  /* Figma fits 1136 / 264 = 4.303 card slots across the content width. The 264
+     ceiling stops cards growing past the design and the floor keeps them usable. */
+  --press-visible: 4.303;
+  --press-step: 264px;
+  --press-gap: 24px;
+  --press-card: 240px;
+
+  position: relative;
+  width: 100%;
+}
+
+@supports (container-type: inline-size) {
+  .press-carousel_wrapper_stage {
+    --press-step: clamp(170px, calc(100cqw / var(--press-visible)), 264px);
+    --press-gap: calc(var(--press-step) * 0.0909);
+    --press-card: calc(var(--press-step) - var(--press-gap));
+  }
+}
+
 .press-carousel_wrapper_track {
   display: flex;
-  gap: 24px;
+  gap: var(--press-gap);
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -44,13 +67,14 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  flex: 0 0 240px;
+  flex: 0 0 var(--press-card);
+  width: var(--press-card);
   scroll-snap-align: start;
 }
 
 .press-carousel_wrapper_track_item_image {
   display: block;
-  width: 240px;
+  width: 100%;
   aspect-ratio: 240 / 339;
   border-radius: 12px;
   overflow: hidden;
@@ -87,23 +111,27 @@
   text-decoration: underline;
 }
 
-.press-carousel_arrow--next {
+/* Centred on the image rather than the whole card, and 20px outside the track.
+   Offset with `top` rather than translateY so the shared :hover transform in
+   scroll-carousel.css cannot displace them. */
+.press-carousel_wrapper_stage_prev,
+.press-carousel_wrapper_stage_next {
   position: absolute;
-  top: 50%;
-  right: var(--page-margin);
-  transform: translateY(-50%);
+  top: calc(var(--press-card) * 0.70625 - 20px);
+  z-index: 2;
 }
 
-.press-carousel_arrow--prev {
-  position: absolute;
-  top: 50%;
-  left: var(--page-margin);
-  transform: translateY(-50%);
+.press-carousel_wrapper_stage_prev {
+  left: -20px;
 }
 
-@media screen and (max-width: 989px) {
-  .press-carousel_arrow--next,
-  .press-carousel_arrow--prev {
+.press-carousel_wrapper_stage_next {
+  right: -20px;
+}
+
+@media screen and (max-width: 749px) {
+  .press-carousel_wrapper_stage_prev,
+  .press-carousel_wrapper_stage_next {
     display: none;
   }
 }
