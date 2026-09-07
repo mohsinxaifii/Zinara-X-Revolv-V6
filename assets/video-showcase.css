@@ -255,3 +255,10 @@
     transition-duration: 0.01ms;
   }
 }
+
+/* Instant repositioning used by the seamless loop */
+.video-showcase_wrapper_track.is-snapping,
+.video-showcase_wrapper_track.is-snapping .video-showcase_wrapper_track_item,
+.video-showcase_wrapper_track.is-snapping .video-showcase_wrapper_track_item * {
+  transition: none !important;
+}
