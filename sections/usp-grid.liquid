@@ -6,9 +6,11 @@
       {%- for block in section.blocks -%}
         <div class="usp-grid_wrapper_cell" {{ block.shopify_attributes }}>
           {%- if block.settings.icon -%}
-            <span class="usp-grid_wrapper_cell_icon">
-              {{ block.settings.icon | image_url: width: 64 | image_tag: loading: 'lazy', alt: '' }}
-            </span>
+            <span
+              class="usp-grid_wrapper_cell_icon"
+              style="--usp-grid-icon: url({{ block.settings.icon | image_url: width: 64 }});"
+              role="presentation"
+            ></span>
           {%- endif -%}
           <span class="usp-grid_wrapper_cell_text">{{ block.settings.text }}</span>
         </div>
