@@ -67,6 +67,10 @@ class ScrollCarousel extends HTMLElement {
 
   /* ------------------------------------------------------------ geometry */
 
+<<<<<<< HEAD
+  cardStep() {
+    return window.carouselScroll.step(this.track);
+=======
   /* Distance between two cards, so every move lands on a snap point. */
   cardStep() {
     const items = this.track.children;
@@ -74,6 +78,7 @@ class ScrollCarousel extends HTMLElement {
     const first = items[0].getBoundingClientRect();
     const second = items[1].getBoundingClientRect();
     return Math.max(0, second.left - first.left);
+>>>>>>> fad59c508aa077c2352062bc076e27d3a2cd172c
   }
 
   /* Exact scroll offset that aligns child `index` with the start of the track.
