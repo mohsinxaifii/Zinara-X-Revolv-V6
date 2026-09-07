@@ -147,13 +147,9 @@ class VideoShowcase extends HTMLElement {
     const first = this.slides[0];
     const styles = getComputedStyle(this.track);
     const gap = parseFloat(styles.columnGap || styles.gap) || 0;
-    this.cardWidth = first ? first.getBoundingClientRect().width / this.scaleOf(first) : 0;
+    // offsetWidth is the layout width, so the resting scale() does not skew it.
+    this.cardWidth = first ? first.offsetWidth : 0;
     this.step = this.cardWidth + gap;
-  }
-
-  scaleOf(slide) {
-    // getBoundingClientRect() reports the scaled box; undo the resting scale.
-    return slide.classList.contains('is-active') ? 1 : 0.96;
   }
 
   applyTransform() {
@@ -252,7 +248,9 @@ class VideoShowcase extends HTMLElement {
     video.loop = false;
     video.preload = 'auto';
     this.onVideoEnded = () => this.next();
+    this.onVideoError = () => this.startFallbackTimer();
     video.addEventListener('ended', this.onVideoEnded);
+    video.addEventListener('error', this.onVideoError);
 
     try {
       video.currentTime = 0;
@@ -279,6 +277,7 @@ class VideoShowcase extends HTMLElement {
     const video = this.currentVideo;
     if (!video) return;
     if (this.onVideoEnded) video.removeEventListener('ended', this.onVideoEnded);
+    if (this.onVideoError) video.removeEventListener('error', this.onVideoError);
     video.pause();
     video.preload = 'metadata';
     try {
@@ -289,6 +288,7 @@ class VideoShowcase extends HTMLElement {
     this.currentSlide?.classList.remove('is-playing', 'is-paused');
     this.currentVideo = null;
     this.onVideoEnded = null;
+    this.onVideoError = null;
   }
 
   togglePlayback() {
@@ -299,7 +299,7 @@ class VideoShowcase extends HTMLElement {
       this.currentSlide.classList.remove('is-paused');
       this.currentSlide.classList.add('is-playing');
       this.currentVideo?.play().catch(() => {});
-      this.fallbackStart = performance.now() - this.fallbackElapsed;
+      this.fallbackStart = performance.now() - (this.fallbackElapsed || 0);
       this.startTicker();
     } else {
       this.isPaused = true;
@@ -321,7 +321,7 @@ class VideoShowcase extends HTMLElement {
     if (this.currentVideo) {
       this.currentVideo.play().catch(() => {});
     } else {
-      this.fallbackStart = performance.now() - this.fallbackElapsed;
+      this.fallbackStart = performance.now() - (this.fallbackElapsed || 0);
     }
     this.startTicker();
   }
