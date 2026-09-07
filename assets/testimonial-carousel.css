@@ -269,20 +269,25 @@
 .review-dialog_panel_body {
   display: flex;
   gap: 12px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
+/* Sized by the text beside it rather than a fixed crop, so the panel has no
+   dead space under a short review. */
 .review-dialog_panel_body_image {
+  position: relative;
   display: block;
   flex: 0 0 160px;
   width: 160px;
-  aspect-ratio: 126 / 178;
+  min-height: 180px;
   border-radius: 8px;
   overflow: hidden;
   background-color: #f2f2f2;
 }
 
 .review-dialog_panel_body_image img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
