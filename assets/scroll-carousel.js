@@ -46,6 +46,15 @@ class ScrollCarousel extends HTMLElement {
     if (this.recentreTimer) clearTimeout(this.recentreTimer);
   }
 
+  /* Coalesce the observer's bursts into one rebuild per frame. */
+  scheduleRebuild() {
+    if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
+    this.rebuildFrame = requestAnimationFrame(() => {
+      this.rebuildFrame = null;
+      this.buildDots();
+    });
+  }
+
   /* ------------------------------------------------------------ geometry */
 
   /* Distance between two cards, so every move lands on a snap point. */
