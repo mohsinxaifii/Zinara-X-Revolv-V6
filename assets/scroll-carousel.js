@@ -15,15 +15,53 @@ class ScrollCarousel extends HTMLElement {
 
     this.buildDots();
     this.track.addEventListener('scroll', () => this.updateActiveDot(), { passive: true });
-    window.addEventListener('resize', () => this.buildDots());
+
+    // Rebuild on real size changes, not just window resize: connectedCallback can
+    // run before the section stylesheet has applied, and a track measured then
+    // looks like it fits on one page, so the dots would never appear at all.
+    if ('ResizeObserver' in window) {
+      this.resizeObserver = new ResizeObserver(() => this.scheduleRebuild());
+      this.resizeObserver.observe(this.track);
+      Array.from(this.track.children).forEach((child) => this.resizeObserver.observe(child));
+    } else {
+      window.addEventListener('resize', () => this.buildDots());
+    }
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
+    if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
+  }
+
+  scheduleRebuild() {
+    if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
+    this.rebuildFrame = requestAnimationFrame(() => {
+      this.rebuildFrame = null;
+      this.buildDots();
+    });
+  }
+
+  /* Distance between two cards, so a move always lands on a snap point. */
+  cardStep() {
+    const items = this.track.children;
+    if (items.length < 2) return 0;
+    const first = items[0].getBoundingClientRect();
+    const second = items[1].getBoundingClientRect();
+    return Math.max(0, second.left - first.left);
   }
 
   scrollByPage(direction) {
     const maxScroll = this.track.scrollWidth - this.track.clientWidth;
     if (maxScroll <= 0) return;
 
+    const step = this.cardStep();
+    const distance =
+      step > 0
+        ? Math.max(1, Math.floor(this.track.clientWidth / step)) * step
+        : this.track.clientWidth;
+
     const current = this.track.scrollLeft;
-    const target = current + this.track.clientWidth * direction;
+    const target = current + distance * direction;
 
     // Clamp before wrapping. A track only a little wider than one page would
     // otherwise overshoot on the first click and snap straight back to 0,
