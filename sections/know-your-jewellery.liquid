@@ -49,7 +49,9 @@
                   {{ block.settings.icon | image_url: width: 40 | image_tag: loading: 'lazy', alt: '' }}
                 </span>
               {%- endif -%}
-              <span class="know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text">{{ block.settings.text }}</span>
+              <span class="know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text">
+                {{- block.settings.text -}}
+              </span>
             </div>
           {%- endfor -%}
         </div>
