@@ -34,6 +34,11 @@
 
 .video-showcase_wrapper_viewport {
   width: 100%;
+
+  /* Padding + matching negative margin widens the clip box vertically so the
+     active card's shadow is not cut off, without changing the stage height. */
+  padding-block: 48px;
+  margin-block: -48px;
   overflow: hidden;
 }
 
@@ -45,7 +50,6 @@
   align-items: center;
   gap: var(--video-showcase-gap);
   width: max-content;
-  padding-block: 12px;
   will-change: transform;
 }
 
@@ -114,6 +118,23 @@
 }
 
 /* Timeline shown on top of the active card */
+.video-showcase_wrapper_track_item_scrim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: 64px;
+  background: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.video-showcase_wrapper_track_item.is-active .video-showcase_wrapper_track_item_scrim {
+  opacity: 1;
+}
+
 .video-showcase_wrapper_track_item_progress {
   position: absolute;
   top: 10px;
