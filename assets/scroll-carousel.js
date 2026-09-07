@@ -43,6 +43,7 @@ class ScrollCarousel extends HTMLElement {
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
     if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
+    if (this.tweenFrame) cancelAnimationFrame(this.tweenFrame);
     if (this.recentreTimer) clearTimeout(this.recentreTimer);
   }
 
@@ -164,12 +165,41 @@ class ScrollCarousel extends HTMLElement {
     this.scrollTrackTo(destination);
   }
 
+  /* Tweened by hand rather than via gsap.to() or scrollTo({behavior:'smooth'}).
+     Both write scrollLeft repeatedly, and mandatory snapping re-snaps after every
+     write, which collapses the whole animation into one jump - so snapping is
+     suspended for the duration and the easing is run explicitly. */
   scrollTrackTo(left) {
-    if (window.gsap) {
-      gsap.to(this.track, { scrollLeft: left, duration: 0.45, ease: 'power2.out' });
-    } else {
-      this.track.scrollTo({ left, behavior: 'smooth' });
+    const start = this.track.scrollLeft;
+    const distance = left - start;
+    if (Math.abs(distance) < 1) return;
+
+    if (this.tweenFrame) cancelAnimationFrame(this.tweenFrame);
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.track.scrollLeft = left;
+      return;
     }
+
+    this.track.classList.add('is-scrolling');
+
+    const duration = 450;
+    const startedAt = performance.now();
+    const easeOutCubic = (t) => 1 - (1 - t) ** 3;
+
+    const frame = (now) => {
+      const progress = Math.min(1, (now - startedAt) / duration);
+      this.track.scrollLeft = start + distance * easeOutCubic(progress);
+
+      if (progress < 1) {
+        this.tweenFrame = requestAnimationFrame(frame);
+      } else {
+        this.tweenFrame = null;
+        this.track.classList.remove('is-scrolling');
+      }
+    };
+
+    this.tweenFrame = requestAnimationFrame(frame);
   }
 
   /* ---------------------------------------------------------------- dots */

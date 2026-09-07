@@ -50,3 +50,10 @@
   background-color: #5a1b34;
   transform: scale(1.05);
 }
+
+/* Snapping fights a scripted scroll animation: every scrollLeft write gets
+   re-snapped, so the tween collapses into a jump. Suspended while animating,
+   which leaves touch swiping snapped as before. */
+[data-track].is-scrolling {
+  scroll-snap-type: none;
+}
