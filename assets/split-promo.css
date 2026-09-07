@@ -156,6 +156,12 @@
   .split-promo_right_card_content_heading {
     font-size: clamp(20px, 7.8cqw, 28px);
   }
+
+  /* Figma's 40px gutters eat too much of a narrow card for the heading to hold
+     its two lines, so they narrow with it. */
+  .split-promo_right_card {
+    padding-inline: clamp(16px, 11.05cqw, 40px);
+  }
 }
 
 .split-promo_button {
