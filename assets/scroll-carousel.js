@@ -224,11 +224,16 @@ class ScrollCarousel extends HTMLElement {
     this.track.classList.add('is-scrolling');
 
     const duration = 450;
-    const startedAt = performance.now();
     const easeOutCubic = (t) => 1 - (1 - t) ** 3;
 
+    // Anchor to the first frame's own timestamp. rAF can hand back a timestamp
+    // from before this call, which would make the first step negative and kick
+    // the track backwards before it sets off.
+    let startedAt = null;
+
     const frame = (now) => {
-      const progress = Math.min(1, (now - startedAt) / duration);
+      if (startedAt === null) startedAt = now;
+      const progress = Math.min(1, Math.max(0, (now - startedAt) / duration));
       this.track.scrollLeft = start + distance * easeOutCubic(progress);
 
       if (progress < 1) {
