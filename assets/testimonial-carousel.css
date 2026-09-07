@@ -69,7 +69,11 @@
   scroll-snap-align: start;
   padding: 8px;
   background-color: #fff;
-  border: 1px solid #e0e0e0;
+
+  /* Inset outline rather than a border: Figma's stroke does not consume layout
+     space, so a border would eat 2px off the 178px content column. */
+  outline: 1px solid #e0e0e0;
+  outline-offset: -1px;
   border-radius: 12px;
   box-sizing: border-box;
 }
