@@ -61,7 +61,15 @@
 
 @supports (container-type: inline-size) {
   .zinara-collections_wrapper_stage {
-    --zinara-collections-step: calc(100cqw / var(--zinara-collections-visible));
+    /* Figma's 264px step is the ceiling, so cards never grow past the design.
+       Below the floor the count drops off on its own, with no breakpoint to
+       jump at - stepping the count instead made cards *larger* as the section
+       narrowed. */
+    --zinara-collections-step: clamp(
+      170px,
+      calc(100cqw / var(--zinara-collections-visible)),
+      264px
+    );
     --zinara-collections-gap: calc(var(--zinara-collections-step) * 0.0909);
     --zinara-collections-card: calc(var(--zinara-collections-step) - var(--zinara-collections-gap));
   }
@@ -154,17 +162,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 989px) {
-  .zinara-collections_wrapper_stage {
-    --zinara-collections-visible: 2.6;
-  }
-}
-
 @media screen and (max-width: 749px) {
-  .zinara-collections_wrapper_stage {
-    --zinara-collections-visible: 1.6;
-  }
-
   .zinara-collections_wrapper_stage_prev,
   .zinara-collections_wrapper_stage_next {
     display: none;
