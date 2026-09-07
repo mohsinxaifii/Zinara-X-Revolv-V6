@@ -6,12 +6,15 @@
   box-sizing: border-box;
 }
 
+/* The border and radius live on the wrapper so the outer frame is a single
+   unbroken rounded rectangle; the cells only draw the dividers between them. */
 .usp-grid_wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: var(--page-width);
   margin-inline: auto;
-  border-radius: 12px;
+  border: 1px solid #d38a0d;
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -19,32 +22,25 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 32px 24px;
-  border: 1px solid #d38a0d;
-  margin: -1px 0 0 -1px;
+  padding: 14px 24px;
+  border-top: 1px solid #d38a0d;
+  border-left: 1px solid #d38a0d;
+  box-sizing: border-box;
 }
 
-.usp-grid_wrapper_cell:nth-child(1) {
-  border-top-left-radius: 12px;
+.usp-grid_wrapper_cell:nth-child(-n + 2) {
+  border-top: 0;
 }
 
-.usp-grid_wrapper_cell:nth-child(2) {
-  border-top-right-radius: 12px;
-}
-
-.usp-grid_wrapper_cell:nth-child(3) {
-  border-bottom-left-radius: 12px;
-}
-
-.usp-grid_wrapper_cell:nth-child(4) {
-  border-bottom-right-radius: 12px;
+.usp-grid_wrapper_cell:nth-child(odd) {
+  border-left: 0;
 }
 
 .usp-grid_wrapper_cell_icon {
   display: flex;
   flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   color: #d38a0d;
 }
 
@@ -57,8 +53,8 @@
 .usp-grid_wrapper_cell_text {
   font-family: var(--font-secondary--family);
   font-weight: 500;
-  font-size: 20px;
-  line-height: 0.8;
+  font-size: 16px;
+  line-height: 1.25;
   color: var(--color-brand, #712242);
 }
 
@@ -67,17 +63,11 @@
     grid-template-columns: 1fr;
   }
 
+  .usp-grid_wrapper_cell {
+    border-left: 0;
+  }
+
   .usp-grid_wrapper_cell:nth-child(2) {
-    border-top-right-radius: 0;
-  }
-
-  .usp-grid_wrapper_cell:nth-child(3) {
-    border-bottom-left-radius: 0;
-  }
-
-  .usp-grid_wrapper_cell:nth-child(4) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
+    border-top: 1px solid #d38a0d;
   }
 }
