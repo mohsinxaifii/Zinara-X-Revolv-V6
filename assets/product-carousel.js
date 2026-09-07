@@ -14,9 +14,38 @@ class ProductCarousel extends HTMLElement {
     this.prevButton?.addEventListener('click', () => this.scrollByPage(-1));
     this.nextButton?.addEventListener('click', () => this.scrollByPage(1));
 
+    // Bind every panel, not just the one open at start: switching tabs swaps
+    // the track, and a listener left on the old one stops updating the dots.
+    this.panels.forEach((panel) => {
+      panel
+        .querySelector('.product-carousel_wrapper_stage_panel_track')
+        ?.addEventListener('scroll', () => this.updateActiveDot(), { passive: true });
+    });
+
     this.buildDots();
-    this.activePanel?.addEventListener('scroll', () => this.updateActiveDot(), { passive: true });
-    window.addEventListener('resize', () => this.buildDots());
+
+    // Rebuild on real size changes, not just window resize: connectedCallback
+    // can run before the section stylesheet has applied, and a track measured
+    // then looks like it fits on one page, so no dots would appear at all.
+    if ('ResizeObserver' in window) {
+      this.resizeObserver = new ResizeObserver(() => this.scheduleRebuild());
+      if (this.activePanel) this.resizeObserver.observe(this.activePanel);
+    } else {
+      window.addEventListener('resize', () => this.buildDots());
+    }
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
+    if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
+  }
+
+  scheduleRebuild() {
+    if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
+    this.rebuildFrame = requestAnimationFrame(() => {
+      this.rebuildFrame = null;
+      this.buildDots();
+    });
   }
 
   get activePanel() {
@@ -51,21 +80,28 @@ class ProductCarousel extends HTMLElement {
   scrollByPage(direction) {
     const track = this.activePanel;
     if (!track) return;
-    const pageWidth = track.clientWidth;
+
     const maxScroll = track.scrollWidth - track.clientWidth;
-    let target = track.scrollLeft + pageWidth * direction;
+    if (maxScroll <= 0) return;
 
-    if (direction > 0 && target >= maxScroll - 1) {
-      target = 0;
-    } else if (direction < 0 && target <= 1) {
-      target = maxScroll;
-    }
+    // Advance by whole cards so every move lands on a snap point.
+    const step = window.carouselScroll.step(track);
+    const distance =
+      step > 0 ? Math.max(1, Math.floor(track.clientWidth / step)) * step : track.clientWidth;
 
-    if (window.gsap) {
-      gsap.to(track, { scrollLeft: target, duration: 0.3, ease: 'power2.out' });
+    const current = track.scrollLeft;
+    const target = current + distance * direction;
+
+    // Clamp before wrapping. Jumping straight back to 0 the moment a page
+    // overshoots leaves the last stretch of cards unreachable.
+    let destination;
+    if (direction > 0) {
+      destination = current >= maxScroll - 1 ? 0 : Math.min(target, maxScroll);
     } else {
-      track.scrollTo({ left: target, behavior: 'smooth' });
+      destination = current <= 1 ? maxScroll : Math.max(target, 0);
     }
+
+    window.carouselScroll.to(track, destination);
   }
 
   buildDots() {
@@ -85,25 +121,27 @@ class ProductCarousel extends HTMLElement {
       if (i === 0) dot.classList.add('is-active');
       dot.setAttribute('aria-label', `Go to page ${i + 1}`);
       dot.addEventListener('click', () => {
-        const target = i * pageWidth;
-        if (window.gsap) {
-          gsap.to(track, { scrollLeft: target, duration: 0.3, ease: 'power2.out' });
-        } else {
-          track.scrollTo({ left: target, behavior: 'smooth' });
-        }
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        window.carouselScroll.to(track, (i / (pageCount - 1)) * maxScroll);
       });
       this.dotsContainer.appendChild(dot);
     }
+
+    this.updateActiveDot();
   }
 
   updateActiveDot() {
     const track = this.activePanel;
     if (!track || !this.dotsContainer) return;
-    const pageWidth = track.clientWidth;
-    const currentPage = pageWidth > 0 ? Math.round(track.scrollLeft / pageWidth) : 0;
-    Array.from(this.dotsContainer.children).forEach((dot, i) => {
-      dot.classList.toggle('is-active', i === currentPage);
-    });
+    const dots = Array.from(this.dotsContainer.children);
+    if (dots.length === 0) return;
+
+    // Spread the dots over the distance the track can actually travel, so the
+    // last dot lights up at the end of the scroll rather than a page beyond it.
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    const progress = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
+    const current = Math.round(progress * (dots.length - 1));
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
   }
 }
 
