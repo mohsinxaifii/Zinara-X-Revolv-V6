@@ -43,7 +43,6 @@ class ScrollCarousel extends HTMLElement {
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
     if (this.rebuildFrame) cancelAnimationFrame(this.rebuildFrame);
-    if (this.tweenFrame) cancelAnimationFrame(this.tweenFrame);
     if (this.recentreTimer) clearTimeout(this.recentreTimer);
   }
 
@@ -205,46 +204,8 @@ class ScrollCarousel extends HTMLElement {
     this.scrollTrackTo(destination);
   }
 
-  /* Tweened by hand rather than via gsap.to() or scrollTo({behavior:'smooth'}).
-     Both write scrollLeft repeatedly, and mandatory snapping re-snaps after every
-     write, which collapses the whole animation into one jump - so snapping is
-     suspended for the duration and the easing is run explicitly. */
   scrollTrackTo(left) {
-    const start = this.track.scrollLeft;
-    const distance = left - start;
-    if (Math.abs(distance) < 1) return;
-
-    if (this.tweenFrame) cancelAnimationFrame(this.tweenFrame);
-
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.track.scrollLeft = left;
-      return;
-    }
-
-    this.track.classList.add('is-scrolling');
-
-    const duration = 450;
-    const easeOutCubic = (t) => 1 - (1 - t) ** 3;
-
-    // Anchor to the first frame's own timestamp. rAF can hand back a timestamp
-    // from before this call, which would make the first step negative and kick
-    // the track backwards before it sets off.
-    let startedAt = null;
-
-    const frame = (now) => {
-      if (startedAt === null) startedAt = now;
-      const progress = Math.min(1, Math.max(0, (now - startedAt) / duration));
-      this.track.scrollLeft = start + distance * easeOutCubic(progress);
-
-      if (progress < 1) {
-        this.tweenFrame = requestAnimationFrame(frame);
-      } else {
-        this.tweenFrame = null;
-        this.track.classList.remove('is-scrolling');
-      }
-    };
-
-    this.tweenFrame = requestAnimationFrame(frame);
+    window.carouselScroll.to(this.track, left);
   }
 
   /* ---------------------------------------------------------------- dots */
