@@ -40,6 +40,7 @@
 .video-showcase_wrapper_track {
   --video-showcase-card-width: 282px;
   --video-showcase-gap: 48px;
+
   display: flex;
   align-items: center;
   gap: var(--video-showcase-gap);
