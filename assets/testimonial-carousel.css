@@ -78,17 +78,19 @@
   box-sizing: border-box;
 }
 
+/* Figma's 332px card holds a 316px content box split 126 / 12 / 178. Those are
+   kept as ratios, not pixels: the card width tracks the container, so a fixed
+   image would swallow the text column as the card narrows. */
 .testimonial-carousel_wrapper_track_card_row {
   display: flex;
-  gap: 12px;
+  gap: 3.797%;
   align-items: flex-start;
 }
 
 .testimonial-carousel_wrapper_track_card_row_image {
   display: block;
-  flex: 0 0 126px;
-  width: 126px;
-  height: 178px;
+  flex: 0 0 39.873%;
+  aspect-ratio: 126 / 178;
   border-radius: 8px;
   overflow: hidden;
   background-color: #f2f2f2;
@@ -317,6 +319,18 @@
   color: var(--color-text-secondary, #494949);
 }
 
+@container (max-width: 900px) {
+  .testimonial-carousel_wrapper_stage {
+    --testimonial-visible: 2.2;
+  }
+}
+
+@container (max-width: 620px) {
+  .testimonial-carousel_wrapper_stage {
+    --testimonial-visible: 1.35;
+  }
+}
+
 @media screen and (max-width: 989px) {
   .testimonial-carousel_wrapper_stage {
     --testimonial-visible: 2.2;
@@ -324,10 +338,6 @@
 }
 
 @media screen and (max-width: 749px) {
-  .testimonial-carousel_wrapper_stage {
-    --testimonial-visible: 1.25;
-  }
-
   .testimonial-carousel_wrapper_stage_prev,
   .testimonial-carousel_wrapper_stage_next {
     display: none;
