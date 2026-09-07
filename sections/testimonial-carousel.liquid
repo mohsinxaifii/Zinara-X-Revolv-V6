@@ -74,7 +74,12 @@
                 <div class="review-dialog_panel">
                   <div class="review-dialog_panel_head">
                     <p class="review-dialog_panel_head_title">{{ 'accessibility.review' | t }}</p>
-                    <button type="button" class="review-dialog_panel_head_close" data-review-close aria-label="{{ 'accessibility.close' | t }}">
+                    <button
+                      type="button"
+                      class="review-dialog_panel_head_close"
+                      data-review-close
+                      aria-label="{{ 'accessibility.close' | t }}"
+                    >
                       {{ 'icon-close.svg' | inline_asset_content }}
                     </button>
                   </div>
@@ -167,7 +172,12 @@
         { "type": "image_picker", "id": "image", "label": "Customer photo" },
         { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "text", "id": "name", "label": "Customer name", "default": "Customer name" },
-        { "type": "textarea", "id": "quote", "label": "Quote", "info": "Trimmed to four lines on the card; the full text shows in the pop-up." },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "info": "Trimmed to four lines on the card; the full text shows in the pop-up."
+        },
         { "type": "header", "content": "Product mentioned" },
         { "type": "product", "id": "product", "label": "Product" },
         {
