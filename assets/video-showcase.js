@@ -144,12 +144,19 @@ class VideoShowcase extends HTMLElement {
   /* ------------------------------------------------------------ geometry */
 
   measure() {
-    const first = this.slides[0];
+    const first = this.slides[0]?.getBoundingClientRect();
+    const second = this.slides[1]?.getBoundingClientRect();
+    if (!first) return;
+
     const styles = getComputedStyle(this.track);
     const gap = parseFloat(styles.columnGap || styles.gap) || 0;
-    // offsetWidth is the layout width, so the resting scale() does not skew it.
-    this.cardWidth = first ? first.offsetWidth : 0;
-    this.step = this.cardWidth + gap;
+
+    // Scaling a card about its own centre leaves that centre in place, so the
+    // gap between two centres is the true step even while cards are scaled.
+    this.step = second
+      ? second.left + second.width / 2 - (first.left + first.width / 2)
+      : first.width + gap;
+    this.cardWidth = this.step - gap;
   }
 
   applyTransform() {
