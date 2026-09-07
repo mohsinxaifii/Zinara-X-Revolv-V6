@@ -70,13 +70,15 @@
 
       <div class="product-carousel_wrapper_dots" data-dots></div>
 
-      <a
-        href="{{ section.blocks.first.settings.collection.url }}"
-        class="product-carousel_wrapper_bottom-link"
-        data-view-all-link
-      >
-        {{ 'accessibility.view_all' | t }}
-      </a>
+      {%- if section.settings.show_bottom_link -%}
+        <a
+          href="{{ section.blocks.first.settings.collection.url }}"
+          class="product-carousel_wrapper_bottom-link"
+          data-view-all-link
+        >
+          {{ 'accessibility.view_all' | t }}
+        </a>
+      {%- endif -%}
     </div>
   </product-carousel>
 
@@ -94,6 +96,13 @@
       "id": "heading",
       "label": "Heading",
       "default": "Featured products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_link",
+      "label": "Show \"View all\" link below the carousel",
+      "info": "The link beside the tabs is always shown.",
+      "default": true
     }
   ],
   "blocks": [
