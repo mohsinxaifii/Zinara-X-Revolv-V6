@@ -43,7 +43,11 @@
 
 @supports (container-type: inline-size) {
   .testimonial-carousel_wrapper_stage {
-    --testimonial-step: calc(100cqw / var(--testimonial-visible));
+    /* Figma's 356px step is the ceiling, so cards never grow past the design.
+       The 240px floor keeps the text column readable once the section is too
+       narrow to fit 3.191 of them - the count then falls off on its own, with
+       no breakpoint to jump at. */
+    --testimonial-step: clamp(240px, calc(100cqw / var(--testimonial-visible)), 356px);
     --testimonial-gap: calc(var(--testimonial-step) * 0.0674);
     --testimonial-card: calc(var(--testimonial-step) - var(--testimonial-gap));
   }
@@ -317,18 +321,6 @@
   font-size: 14px;
   line-height: 1.286;
   color: var(--color-text-secondary, #494949);
-}
-
-@container (max-width: 900px) {
-  .testimonial-carousel_wrapper_stage {
-    --testimonial-visible: 2.2;
-  }
-}
-
-@container (max-width: 620px) {
-  .testimonial-carousel_wrapper_stage {
-    --testimonial-visible: 1.35;
-  }
 }
 
 @media screen and (max-width: 749px) {
