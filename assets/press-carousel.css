@@ -117,7 +117,7 @@
 .press-carousel_wrapper_stage_prev,
 .press-carousel_wrapper_stage_next {
   position: absolute;
-  top: calc(var(--press-card) * 0.70625 - 20px);
+  top: calc(var(--press-card) * 0.7063 - 20px);
   z-index: 2;
 }
 
