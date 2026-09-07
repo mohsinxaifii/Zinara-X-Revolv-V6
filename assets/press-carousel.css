@@ -100,6 +100,7 @@
   font-family: var(--font-secondary--family);
   font-weight: 500;
   font-size: 14px;
+  line-height: 1.219;
   color: var(--color-text-secondary, #494949);
 }
 
@@ -107,6 +108,7 @@
   font-family: var(--font-secondary--family);
   font-weight: 500;
   font-size: 14px;
+  line-height: 1.219;
   color: var(--color-brand, #712242);
   text-decoration: underline;
 }
