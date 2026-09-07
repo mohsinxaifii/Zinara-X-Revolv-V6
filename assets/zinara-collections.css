@@ -1,3 +1,5 @@
+/* Figma: Home page 827:24395 > Frame 1116601721 (827:24625).
+   Section 32/72 padding, 20px between every row, 240x309 cards on a 24px gap. */
 .zinara-collections {
   position: relative;
   display: block;
@@ -5,13 +7,13 @@
   overflow: hidden;
 }
 
+/* The exported vector already carries its 0.3 stroke opacity, and it sits
+   flush with the bottom of the section. */
 .zinara-collections_wave {
   position: absolute;
-  top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: auto;
-  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -32,6 +34,7 @@
   margin-inline: auto;
   padding: 32px var(--page-margin);
   box-sizing: border-box;
+  container-type: inline-size;
 }
 
 .zinara-collections_wrapper_heading {
@@ -44,9 +47,29 @@
   color: var(--color-text-secondary, #494949);
 }
 
+.zinara-collections_wrapper_stage {
+  /* Figma fits 1136 / 264 = 4.303 card slots across the content width. Deriving
+     the card from the container keeps that count identical at every width. */
+  --zinara-collections-visible: 4.303;
+  --zinara-collections-step: 264px;
+  --zinara-collections-gap: 24px;
+  --zinara-collections-card: 240px;
+
+  position: relative;
+  width: 100%;
+}
+
+@supports (container-type: inline-size) {
+  .zinara-collections_wrapper_stage {
+    --zinara-collections-step: calc(100cqw / var(--zinara-collections-visible));
+    --zinara-collections-gap: calc(var(--zinara-collections-step) * 0.090909);
+    --zinara-collections-card: calc(var(--zinara-collections-step) - var(--zinara-collections-gap));
+  }
+}
+
 .zinara-collections_wrapper_track {
   display: flex;
-  gap: 24px;
+  gap: var(--zinara-collections-gap);
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -62,14 +85,15 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  flex: 0 0 240px;
+  flex: 0 0 var(--zinara-collections-card);
+  width: var(--zinara-collections-card);
   scroll-snap-align: start;
   text-decoration: none;
 }
 
 .zinara-collections_wrapper_track_item_image {
   display: block;
-  width: 240px;
+  width: 100%;
   aspect-ratio: 240 / 309;
   border-radius: 12px;
   overflow: hidden;
@@ -90,6 +114,7 @@
 
 .zinara-collections_wrapper_track_item_label {
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.24;
@@ -97,14 +122,30 @@
   text-align: center;
 }
 
-.zinara-collections_wrapper_footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+/* Arrows are centred on the image, not the whole card, and sit 20px outside
+   the track the way the other carousels on this page do. */
+.zinara-collections_wrapper_stage_prev,
+.zinara-collections_wrapper_stage_next {
+  position: absolute;
+  top: calc(var(--zinara-collections-card) * 0.64375);
+  z-index: 2;
+  transform: translateY(-50%);
 }
 
-.zinara-collections_wrapper_footer_link {
+.zinara-collections_wrapper_stage_prev {
+  left: -20px;
+}
+
+.zinara-collections_wrapper_stage_next {
+  right: -20px;
+}
+
+.zinara-collections_wrapper_stage_prev:hover,
+.zinara-collections_wrapper_stage_next:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.zinara-collections_wrapper_link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -116,20 +157,35 @@
   text-decoration: underline;
 }
 
-.zinara-collections_wrapper_footer_link svg {
+.zinara-collections_wrapper_link_caret {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.zinara-collections_wrapper_link_caret svg {
   width: 24px;
   height: 24px;
 }
 
-.zinara-collections_arrow {
-  position: absolute;
-  bottom: 32px;
-  right: var(--page-margin);
-  z-index: 2;
+/* Figma draws the leading caret in white, so it reads as a spacer rather than
+   a second control. */
+.zinara-collections_wrapper_link_caret--lead {
+  color: #fff;
+}
+
+@media screen and (max-width: 989px) {
+  .zinara-collections_wrapper_stage {
+    --zinara-collections-visible: 2.6;
+  }
 }
 
 @media screen and (max-width: 749px) {
-  .zinara-collections_arrow {
+  .zinara-collections_wrapper_stage {
+    --zinara-collections-visible: 1.6;
+  }
+
+  .zinara-collections_wrapper_stage_prev,
+  .zinara-collections_wrapper_stage_next {
     display: none;
   }
 }
