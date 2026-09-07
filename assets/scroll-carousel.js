@@ -53,7 +53,24 @@ class ScrollCarousel extends HTMLElement {
     this.rebuildFrame = requestAnimationFrame(() => {
       this.rebuildFrame = null;
       this.buildDots();
+      this.alignToCurrentCard();
     });
+  }
+
+  /* Re-park on an exact card boundary once sizes settle. The initial park runs
+     before fonts and images land, so its card step can be slightly stale, and
+     snapping hides the discrepancy until the first animation releases it. */
+  alignToCurrentCard() {
+    if (!this.loop) return;
+    const step = this.cardStep();
+    if (step <= 0) return;
+
+    const total = this.originals.length;
+    const raw = Math.round((this.track.scrollLeft - this.setWidth) / step);
+    const index = ((raw % total) + total) % total;
+    const left = this.setWidth + index * step;
+
+    if (Math.abs(this.track.scrollLeft - left) >= 1) this.track.scrollLeft = left;
   }
 
   /* ------------------------------------------------------------ geometry */
