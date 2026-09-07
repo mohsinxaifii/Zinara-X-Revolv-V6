@@ -71,13 +71,7 @@
       <div class="scroll-carousel_dots" data-dots></div>
 
       <a href="{{ section.blocks.first.settings.url | default: '#' }}" class="zinara-collections_wrapper_link">
-        <span class="zinara-collections_wrapper_link_caret zinara-collections_wrapper_link_caret--lead">
-          {{ 'icon-caret-left.svg' | inline_asset_content }}
-        </span>
-        {{ 'accessibility.view_all' | t }}
-        <span class="zinara-collections_wrapper_link_caret">
-          {{ 'icon-caret-right.svg' | inline_asset_content }}
-        </span>
+        {{- 'accessibility.view_all' | t -}}
       </a>
     </div>
   </scroll-carousel>

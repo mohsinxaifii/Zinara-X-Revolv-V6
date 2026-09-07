@@ -146,29 +146,12 @@
 .zinara-collections_wrapper_link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   font-family: var(--font-secondary--family);
   font-weight: 600;
   font-size: 18px;
   line-height: 1.219;
   color: var(--color-brand, #712242);
   text-decoration: underline;
-}
-
-.zinara-collections_wrapper_link_caret {
-  display: flex;
-  flex: 0 0 auto;
-}
-
-.zinara-collections_wrapper_link_caret svg {
-  width: 24px;
-  height: 24px;
-}
-
-/* Figma draws the leading caret in white, so it reads as a spacer rather than
-   a second control. */
-.zinara-collections_wrapper_link_caret--lead {
-  color: #fff;
 }
 
 @media screen and (max-width: 989px) {
