@@ -62,15 +62,8 @@ class ScrollCarousel extends HTMLElement {
      snapping hides the discrepancy until the first animation releases it. */
   alignToCurrentCard() {
     if (!this.loop) return;
-    const step = this.cardStep();
-    if (step <= 0) return;
-
-    const total = this.originals.length;
-    const raw = Math.round((this.track.scrollLeft - this.setWidth) / step);
-    const index = ((raw % total) + total) % total;
-    const left = this.setWidth + index * step;
-
-    if (Math.abs(this.track.scrollLeft - left) >= 1) this.track.scrollLeft = left;
+    this.jumpToIndex(this.nearestIndex());
+    this.normaliseIndex();
   }
 
   /* ------------------------------------------------------------ geometry */
@@ -84,8 +77,33 @@ class ScrollCarousel extends HTMLElement {
     return Math.max(0, second.left - first.left);
   }
 
-  get setWidth() {
-    return this.loop ? this.originals.length * this.cardStep() : 0;
+  /* Exact scroll offset that aligns child `index` with the start of the track.
+     Read from real layout rather than multiplying a measured step, so it lands
+     precisely on the browser's own snap point and never drifts. */
+  scrollOffsetOf(index) {
+    const child = this.track.children[index];
+    if (!child) return this.track.scrollLeft;
+    return (
+      this.track.scrollLeft +
+      child.getBoundingClientRect().left -
+      this.track.getBoundingClientRect().left -
+      this.track.clientLeft
+    );
+  }
+
+  /* Index of the card currently sitting at the start of the track. */
+  nearestIndex() {
+    const trackLeft = this.track.getBoundingClientRect().left + this.track.clientLeft;
+    let best = 0;
+    let bestDistance = Infinity;
+    Array.from(this.track.children).forEach((child, i) => {
+      const distance = Math.abs(child.getBoundingClientRect().left - trackLeft);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = i;
+      }
+    });
+    return best;
   }
 
   /* ---------------------------------------------------------------- loop */
@@ -109,7 +127,8 @@ class ScrollCarousel extends HTMLElement {
     this.track.insertBefore(before, this.track.firstChild);
     this.track.appendChild(after);
 
-    requestAnimationFrame(() => this.recentre(true));
+    this.index = this.originals.length;
+    requestAnimationFrame(() => this.jumpToIndex(this.index));
   }
 
   cloneItem(item) {
@@ -124,18 +143,19 @@ class ScrollCarousel extends HTMLElement {
     return clone;
   }
 
-  recentre(initial) {
+  jumpToIndex(index) {
+    this.index = index;
+    const left = this.scrollOffsetOf(index);
+    if (Math.abs(this.track.scrollLeft - left) >= 0.5) this.track.scrollLeft = left;
+  }
+
+  /* Move back into the middle copy. The copies are identical, so shifting a
+     whole set changes nothing on screen. */
+  normaliseIndex() {
     if (!this.loop) return;
-    const setWidth = this.setWidth;
-    if (setWidth <= 0) return;
-
-    const current = this.track.scrollLeft;
-    let left = current;
-    if (initial) left = setWidth;
-    else if (current >= setWidth * 2) left = current - setWidth;
-    else if (current < setWidth) left = current + setWidth;
-
-    if (left !== current) this.track.scrollLeft = left;
+    const total = this.originals.length;
+    if (this.index >= total * 2) this.jumpToIndex(this.index - total);
+    else if (this.index < total) this.jumpToIndex(this.index + total);
   }
 
   /* Only correct once the scroll has settled, so an in-flight smooth scroll is
@@ -143,7 +163,10 @@ class ScrollCarousel extends HTMLElement {
   scheduleRecentre() {
     if (!this.loop) return;
     if (this.recentreTimer) clearTimeout(this.recentreTimer);
-    this.recentreTimer = setTimeout(() => this.recentre(false), 120);
+    this.recentreTimer = setTimeout(() => {
+      this.index = this.nearestIndex();
+      this.normaliseIndex();
+    }, 120);
   }
 
   /* ------------------------------------------------------------ movement */
@@ -152,9 +175,9 @@ class ScrollCarousel extends HTMLElement {
     const step = this.cardStep();
 
     if (this.loop) {
-      if (step <= 0) return;
-      this.recentre(false); // instant, before the animation starts
-      this.scrollTrackTo(this.track.scrollLeft + step * direction);
+      this.normaliseIndex(); // instant, before the animation starts
+      this.index += direction;
+      this.scrollTrackTo(this.scrollOffsetOf(this.index));
       return;
     }
 
@@ -248,8 +271,9 @@ class ScrollCarousel extends HTMLElement {
 
   offsetForDot(index, count) {
     if (this.loop) {
-      this.recentre(false);
-      return this.setWidth + index * this.cardStep();
+      this.normaliseIndex();
+      this.index = this.originals.length + index;
+      return this.scrollOffsetOf(this.index);
     }
     const maxScroll = this.track.scrollWidth - this.track.clientWidth;
     return count > 1 ? (index / (count - 1)) * maxScroll : 0;
@@ -262,9 +286,7 @@ class ScrollCarousel extends HTMLElement {
 
     let current;
     if (this.loop) {
-      const step = this.cardStep();
-      const offset = step > 0 ? Math.round((this.track.scrollLeft - this.setWidth) / step) : 0;
-      current = ((offset % dots.length) + dots.length) % dots.length;
+      current = ((this.nearestIndex() % dots.length) + dots.length) % dots.length;
     } else {
       // Spread the dots over the distance the track can actually travel, so the
       // last dot lights up at the end of the scroll rather than a page beyond it.
