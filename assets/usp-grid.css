@@ -49,7 +49,6 @@
   width: 32px;
   height: 32px;
   background-color: #d38a0d;
-  -webkit-mask: var(--usp-grid-icon) center / contain no-repeat;
   mask: var(--usp-grid-icon) center / contain no-repeat;
 }
 
