@@ -212,6 +212,10 @@
 .review-dialog {
   width: min(560px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
+
+  /* The theme's `* { margin: 0 }` reset kills the dialog's default auto margin,
+     which is what centres it in the viewport. */
+  margin: auto;
   padding: 0;
   border: 0;
   border-radius: 12px;
@@ -291,6 +295,11 @@
   gap: 8px;
   min-width: 0;
   flex: 1 1 auto;
+}
+
+.review-dialog_panel_body_content .testimonial-carousel_wrapper_track_card_row_content_product {
+  overflow: visible;
+  white-space: normal;
 }
 
 .review-dialog_panel_body_content_quote {
