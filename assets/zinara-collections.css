@@ -127,9 +127,12 @@
 .zinara-collections_wrapper_stage_prev,
 .zinara-collections_wrapper_stage_next {
   position: absolute;
-  top: calc(var(--zinara-collections-card) * 0.6438);
+
+  /* Offset by half the 40px button rather than translateY(-50%): later sections
+     link scroll-carousel.css again, so its :hover transform wins the cascade and
+     would drop the button by half its height. */
+  top: calc(var(--zinara-collections-card) * 0.6438 - 20px);
   z-index: 2;
-  transform: translateY(-50%);
 }
 
 .zinara-collections_wrapper_stage_prev {
@@ -138,11 +141,6 @@
 
 .zinara-collections_wrapper_stage_next {
   right: -20px;
-}
-
-.zinara-collections_wrapper_stage_prev:hover,
-.zinara-collections_wrapper_stage_next:hover {
-  transform: translateY(-50%) scale(1.05);
 }
 
 .zinara-collections_wrapper_link {
