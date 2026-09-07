@@ -9,12 +9,13 @@
       {% endif %}
     >
       <div class="split-promo_left_card_content">
-        <h2 class="split-promo_left_card_content_heading">{{ section.settings.left_heading }}</h2>
-        <p class="split-promo_left_card_content_subheading">{{ section.settings.left_subheading }}</p>
+        <div class="split-promo_left_card_content_text">
+          <h2 class="split-promo_left_card_content_text_heading">{{ section.settings.left_heading }}</h2>
+          <p class="split-promo_left_card_content_text_subheading">{{ section.settings.left_subheading }}</p>
+        </div>
         <a href="{{ section.settings.left_button_url | default: '#' }}" class="split-promo_button">
-          {{ 'icon-pencil.svg' | inline_asset_content }}
+          <span class="split-promo_button_icon">{{ 'icon-pencil.svg' | inline_asset_content }}</span>
           {{ section.settings.left_button_label }}
-          {{ 'icon-shopping-bag.svg' | inline_asset_content }}
         </a>
       </div>
     </div>
@@ -34,12 +35,12 @@
           </span>
         {%- endif -%}
       </div>
-      <h2 class="split-promo_right_card_heading">{{ section.settings.right_heading }}</h2>
-      <a href="{{ section.settings.right_button_url | default: '#' }}" class="split-promo_button">
-        {{ 'icon-pencil.svg' | inline_asset_content }}
-        {{ section.settings.right_button_label }}
-        {{ 'icon-shopping-bag.svg' | inline_asset_content }}
-      </a>
+      <div class="split-promo_right_card_content">
+        <h2 class="split-promo_right_card_content_heading">{{ section.settings.right_heading }}</h2>
+        <a href="{{ section.settings.right_button_url | default: '#' }}" class="split-promo_button">
+          {{ section.settings.right_button_label }}
+        </a>
+      </div>
     </div>
   </div>
 </section>
