@@ -3,7 +3,8 @@
    64px rows, 1px #D38A0D frame with 12px corners. */
 .usp-grid {
   display: block;
-  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
   background-color: #fff;
   padding: 24px var(--page-margin) 32px;
   box-sizing: border-box;

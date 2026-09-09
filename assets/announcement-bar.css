@@ -4,13 +4,17 @@
   background-color: var(--announcement-bar-bg, #f9d79f);
 }
 
+/* The root now bleeds to the viewport edges, so the bar's own content takes
+   over the page-width cap the other sections' wrappers apply. */
 .announcement-bar_wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2px;
-  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
   padding: 12px 16px;
+  box-sizing: border-box;
 }
 
 .announcement-bar_wrapper_prev,
