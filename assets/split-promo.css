@@ -12,10 +12,9 @@
   box-sizing: border-box;
 }
 
-/* The .shopify-section grid already insets the row by the page margin, so the
-   cards divide the 1136 content width between them: 748 + 26 + 362. Sizing off
-   that split rather than a round 65/35 keeps the ratio exact as the row narrows,
-   which is what holds the headings on their authored line counts. */
+/* The cards divide the row's 1136 content width between them: 748 + 26 + 362.
+   Sizing off that split rather than a round 65/35 keeps the ratio exact as the
+   row narrows, which is what holds the headings on their authored line counts. */
 .split-promo_left {
   flex: 0 1 calc((100% - 26px) * 748 / 1110);
   min-width: 0;
