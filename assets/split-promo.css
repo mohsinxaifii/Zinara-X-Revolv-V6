@@ -1,22 +1,28 @@
 /* Figma: Home page 827:24395 > Frame 1116601888 (915:44712).
-   832 / 448 split, both cards 320 tall on a 26px gutter. */
+   832 / 448 columns on the 1280 page, which is a 748 and a 362 card either
+   side of a 26px gutter once the 72px page margins come off. Both 320 tall. */
 .split-promo {
   display: flex;
-  flex-wrap: wrap;
+  gap: 26px;
   width: 100%;
+  padding-block: 32px;
   background-color: #fff;
 }
 
+/* The .shopify-section grid already insets the row by the page margin, so the
+   cards divide the 1136 content width between them: 748 + 26 + 362. Sizing off
+   that split rather than a round 65/35 keeps the ratio exact as the row narrows,
+   which is what holds the headings on their authored line counts. */
 .split-promo_left {
-  flex: 1 1 65%;
-  padding: 32px 12px 32px var(--page-margin);
+  flex: 0 1 calc((100% - 26px) * 748 / 1110);
+  min-width: 0;
   box-sizing: border-box;
 }
 
 .split-promo_right {
-  flex: 1 1 35%;
+  flex: 0 1 calc((100% - 26px) * 362 / 1110);
+  min-width: 0;
   container-type: inline-size;
-  padding: 32px var(--page-margin) 32px 14px;
   box-sizing: border-box;
 }
 
@@ -204,11 +210,12 @@
 @media screen and (max-width: 989px) {
   .split-promo {
     flex-direction: column;
+    gap: 32px;
+    padding-block: 16px;
   }
 
   .split-promo_left,
   .split-promo_right {
     flex-basis: auto;
-    padding: 16px var(--page-margin);
   }
 }
