@@ -5,8 +5,11 @@
   display: flex;
   gap: 26px;
   width: 100%;
-  padding-block: 32px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
   background-color: #fff;
+  box-sizing: border-box;
 }
 
 /* The .shopify-section grid already insets the row by the page margin, so the
@@ -211,7 +214,7 @@
   .split-promo {
     flex-direction: column;
     gap: 32px;
-    padding-block: 16px;
+    padding: 16px var(--page-margin);
   }
 
   .split-promo_left,
