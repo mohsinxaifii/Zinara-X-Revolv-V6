@@ -80,9 +80,10 @@
 
 /* Sits 16px in from the card's left edge and laps 12px over its top. */
 .journal_wrapper_stage_track_item_tag {
+  position: absolute;
+  top: -16px;
+  left: 16px;
   z-index: 2;
-  margin-left: 16px;
-  margin-bottom: -12px;
   padding: 4px 8px;
   border-radius: 4px;
   background-color: var(--color-brand, #712242);
