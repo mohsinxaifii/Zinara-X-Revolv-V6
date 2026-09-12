@@ -79,7 +79,10 @@
         data-option-position="{{ option.position }}"
       >
         <legend class="variant-drawer_panel_body_options_group_head">
-          <span class="variant-drawer_panel_body_options_group_head_name">{{ option.name }}{% if is_swatch_option %}:{% endif %}</span>
+          <span class="variant-drawer_panel_body_options_group_head_name">
+            {{- option.name -}}
+            {%- if is_swatch_option %}:{% endif -%}
+          </span>
           {%- if is_swatch_option -%}
             <span class="variant-drawer_panel_body_options_group_head_value" data-option-readout>
               {{- option.selected_value -}}
@@ -111,14 +114,19 @@
                 name="option-{{ option.position }}"
                 value="{{ value | escape }}"
                 data-option-input
-                {% if value == option.selected_value %}checked{% endif %}
+                {% if value == option.selected_value %}
+                  checked
+                {% endif %}
               >
               {%- if is_swatch_option -%}
                 <span
                   class="variant-drawer_panel_body_options_group_values_value_swatch"
                   style="--variant-swatch: {% if value.swatch.image %}url({{ value.swatch.image | image_url: width: 64 }}){% elsif value.swatch.color %}{{ value.swatch.color }}{% else %}var(--variant-swatch-{{ value | handle }}, #ddd){% endif %};"
                 >
-                  <span class="variant-drawer_panel_body_options_group_values_value_swatch_dot" aria-hidden="true"></span>
+                  <span
+                    class="variant-drawer_panel_body_options_group_values_value_swatch_dot"
+                    aria-hidden="true"
+                  ></span>
                   <span class="visually-hidden">{{ value }}</span>
                 </span>
               {%- else -%}
@@ -152,8 +160,6 @@
 {% schema %}
 {
   "name": "Variant drawer",
-  "settings": [
-    { "type": "url", "id": "size_guide_url", "label": "Size guide link" }
-  ]
+  "settings": [{ "type": "url", "id": "size_guide_url", "label": "Size guide link" }]
 }
 {% endschema %}
