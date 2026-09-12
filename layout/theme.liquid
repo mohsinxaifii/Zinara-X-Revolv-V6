@@ -37,6 +37,20 @@
 
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'motion.css' | asset_url | stylesheet_tag }}
+    {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+
+    {% comment %}
+      Set before first paint so the reveal's hidden state applies to the very
+      first frame - added by script rather than written into the markup so that
+      a visitor with JS off, or with reduced motion asked for, never gets a
+      stylesheet that hides content with nothing left to reveal it.
+    {% endcomment %}
+    <script>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('motion');
+      }
+    </script>
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
@@ -51,7 +65,23 @@
 
     {% sections 'footer-group' %}
 
-    {% # Animation engine: GSAP + ScrollTrigger for creative scroll/timeline effects %}
+    {% # Cart drawer: one per page, opened by every add-to-cart in the theme %}
+    {% render 'cart-drawer' %}
+
+    <script>
+      window.themeStrings = {
+        adding: {{ 'cart.adding' | t | json }},
+        added: {{ 'cart.added' | t | json }},
+        failed: {{ 'cart.failed' | t | json }},
+      };
+    </script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+    {% comment %}
+      Animation engine. animations.js waits for these and falls back to showing
+      everything outright if the CDN is blocked, so the order matters but the
+      arrival does not.
+    {% endcomment %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer="defer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer="defer"></script>
     <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
