@@ -24,15 +24,6 @@
   color: var(--color-foreground, #000);
 }
 
-.search_head_terms {
-  margin: 8px 0 0;
-  font-family: var(--font-secondary--family);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--color-text-secondary, #494949);
-}
-
 /* The heading already pays the 32px top inset, so the grid below it only needs
    the 24px the Figma leaves between the two. */
 .search .collection_wrapper {

@@ -20,6 +20,12 @@
   max-width: none;
 }
 
+/* Chrome draws its own clear affordance inside type=search, which would sit
+   beside the one the design specifies. */
+.search-suggest .header_wrapper_search_input::-webkit-search-cancel-button {
+  display: none;
+}
+
 .search-suggest_clear {
   display: flex;
   flex: 0 0 auto;
@@ -52,6 +58,14 @@
   z-index: 50;
 }
 
+/* The design leaves the announcement strip lit above the open field - it sits in
+   its own section, so it has to be raised alongside the header rather than with
+   it. */
+.search-suggest-open .shopify-section--announcement-bar {
+  position: relative;
+  z-index: 50;
+}
+
 /* The focused field grows to the 762px the design centres in the bar, and the
    clusters either side stand down to make room. */
 .header.is-searching .header_wrapper_brand,
@@ -72,6 +86,12 @@
   height: 46px;
   border-color: var(--color-border-dark, #999);
   box-shadow: none;
+}
+
+/* The panel sets its own `display`, which would otherwise beat the user agent's
+   `[hidden] { display: none }` and leave an empty white box under the header. */
+.search-suggest_panel[hidden] {
+  display: none;
 }
 
 .search-suggest_panel {
