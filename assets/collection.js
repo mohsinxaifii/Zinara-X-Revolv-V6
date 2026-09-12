@@ -225,14 +225,7 @@ class CollectionPage extends HTMLElement {
      through the variant drawer first. Either way the shared cart runs the
      request and the feedback. */
   async addToCart(button) {
-<<<<<<< HEAD
     await window.zinaraCart?.add([{ id: Number(button.dataset.variantId), quantity: 1 }], button);
-=======
-    await window.zinaraCart?.add(
-      [{ id: Number(button.dataset.variantId), quantity: 1 }],
-      button,
-    );
->>>>>>> d934e3190453b45852befc51f7ecb9755d7ec783
   }
 }
 

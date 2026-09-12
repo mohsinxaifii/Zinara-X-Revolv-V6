@@ -523,13 +523,9 @@
       this.addEventListener('click', (event) => {
         const button = event.target.closest('[data-add-single]');
         if (!button) return;
-<<<<<<< HEAD
         this.addToCart([{ id: Number(button.dataset.variantId), quantity: 1 }], {
           trigger: button,
         });
-=======
-        this.addToCart([{ id: Number(button.dataset.variantId), quantity: 1 }], { trigger: button });
->>>>>>> d934e3190453b45852befc51f7ecb9755d7ec783
       });
     }
 
