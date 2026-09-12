@@ -74,6 +74,9 @@
         adding: {{ 'cart.adding' | t | json }},
         added: {{ 'cart.added' | t | json }},
         failed: {{ 'cart.failed' | t | json }},
+        wishlistRemove: {{ 'accessibility.wishlist_remove' | t | json }},
+        wishlistCount: {{ 'wishlist.item_count' | t: count: '{{ count }}' | json }},
+        wishlistCountOne: {{ 'wishlist.item_count_one' | t | json }},
       };
     </script>
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>

@@ -54,10 +54,14 @@
     const isActive = handle !== '' && read().includes(handle);
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
-    button.setAttribute(
-      'aria-label',
-      isActive ? window.themeStrings?.wishlistRemove || 'Remove from wishlist' : button.dataset.addLabel || button.getAttribute('aria-label')
-    );
+
+    /* The markup ships the "add" label, so it is cached on the first sync and
+       the button can be swapped back and forth from then on. */
+    if (!button.dataset.addLabel) {
+      button.dataset.addLabel = button.getAttribute('aria-label') || '';
+    }
+    const removeLabel = window.themeStrings?.wishlistRemove;
+    button.setAttribute('aria-label', isActive && removeLabel ? removeLabel : button.dataset.addLabel);
   }
 
   function toggle(button) {
