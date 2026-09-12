@@ -39,7 +39,7 @@ class CollectionPage extends HTMLElement {
       if (addButton) {
         // The button sits inside the card's <a>, so stop the navigation.
         event.preventDefault();
-        return this.addToCart(addButton);
+        return this.openVariantDrawer(addButton);
       }
     });
 
@@ -212,6 +212,14 @@ class CollectionPage extends HTMLElement {
   }
 
   /* ----------------------------------------------------------- add to cart */
+
+  /* Adding is the drawer's job - metal and size have to be chosen first. */
+  openVariantDrawer(button) {
+    const drawer = document.querySelector('variant-drawer');
+    const productUrl = button.closest('.product-card')?.getAttribute('href');
+    if (!drawer || !productUrl) return this.addToCart(button);
+    drawer.open(productUrl, button);
+  }
 
   async addToCart(button) {
     if (button.dataset.busy === 'true') return;
