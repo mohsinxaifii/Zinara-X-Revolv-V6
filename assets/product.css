@@ -1536,7 +1536,7 @@ button.pdp_trust_grid_item_inner {
 }
 
 .pdp_difference_table tbody th {
-  padding-block: 6px;
+  padding-block: 5px;
   border-bottom: 1px solid var(--pdp-border);
   font-weight: 500;
   font-size: 14px;
@@ -1546,7 +1546,7 @@ button.pdp_trust_grid_item_inner {
 }
 
 .pdp_difference_table tbody td {
-  padding-block: 6px;
+  padding-block: 5px;
   border-bottom: 1px solid var(--pdp-border);
   text-align: center;
 }
