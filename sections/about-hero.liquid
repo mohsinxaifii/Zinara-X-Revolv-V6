@@ -1,0 +1,58 @@
+{{ 'about-hero.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  The Figma quote is Libre Baskerville italic. Load that face only if the picked
+  font actually has one - font_modify returns nil otherwise, and passing nil to
+  font_face emits a Liquid error straight into the stylesheet.
+{%- endcomment -%}
+{%- assign quote_font = settings.type_tertiary_font | font_modify: 'style', 'italic' -%}
+
+{%- style -%}
+  {%- if quote_font -%}
+    {{ quote_font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
+  {%- if section.settings.image -%}
+    #shopify-section-{{ section.id }} .about-hero_wrapper_card {
+      background-image: url({{ section.settings.image | image_url: width: 2400 }});
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<section class="about-hero full-width">
+  <div class="about-hero_wrapper">
+    <div class="about-hero_wrapper_card" data-animate>
+      <span class="about-hero_wrapper_card_mark" aria-hidden="true">
+        {{- 'logo-mark.svg' | inline_asset_content -}}
+      </span>
+
+      <div class="about-hero_wrapper_card_text">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="about-hero_wrapper_card_text_eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.quote != blank -%}
+          <p class="about-hero_wrapper_card_text_quote">{{ section.settings.quote }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About hero",
+  "tag": "section",
+  "class": "shopify-section--about-hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our moto:" },
+    {
+      "type": "text",
+      "id": "quote",
+      "label": "Quote",
+      "default": "“Jewellery you'll never take off.”"
+    }
+  ],
+  "presets": [{ "name": "About hero" }]
+}
+{% endschema %}
