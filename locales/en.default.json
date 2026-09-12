@@ -47,7 +47,13 @@
     "comment_form_email": "Email",
     "comment_form_name": "Name",
     "comment_form_submit": "Post",
-    "comment_form_title": "Add a comment"
+    "comment_form_title": "Add a comment",
+    "featured_tag": "Featured",
+    "load_more": "Load more ({{ count }})",
+    "back_to_blog": "Back to the journal",
+    "view_all": "View all",
+    "empty": "No articles have been published yet.",
+    "share": "Share this article"
   },
   "cart": {
     "checkout": "Checkout",
@@ -105,7 +111,31 @@
     "empty": "No products match these filters."
   },
   "collections": {
-    "title": "Collections"
+    "title": "Collections",
+    "empty": "No collections to show yet.",
+    "product_count": "{{ count }} products"
+  },
+  "wishlist": {
+    "title": "My wishlist",
+    "item_count": "({{ count }} items)",
+    "item_count_one": "(1 item)",
+    "loading": "Loading your wishlist",
+    "empty_title": "Nothing saved yet",
+    "empty_body": "Tap the heart on any piece and it will wait for you here.",
+    "empty_action": "Start browsing",
+    "all": "All",
+    "remove": "Remove from wishlist"
+  },
+  "contact": {
+    "call_label": "Speak with our experts",
+    "email_label": "Write to us anytime",
+    "whatsapp_label": "Whatsapp us",
+    "copy": "Copy number",
+    "copied": "Copied"
+  },
+  "custom_design": {
+    "start": "Start your design",
+    "designed_for": "for {{ name }}"
   },
   "labels": {
     "new": "NEW"
