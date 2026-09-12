@@ -10,7 +10,10 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
-  gap: 24px;
+
+  /* Figma spends 24px either side of each rule, and the rule itself is a
+     zero-width layer - so the columns sit 48px apart, not 24px. */
+  gap: 48px;
   max-width: var(--page-width);
   margin-inline: auto;
   padding: 32px var(--page-margin);
@@ -28,14 +31,14 @@
   text-align: center;
 }
 
-/* The rule sits in the middle of the 24px gap, and spans the column rather than
-   the section so it stops level with the tallest stat. */
+/* The rule sits in the middle of that gap, and spans the column rather than the
+   section so it stops level with the tallest stat. */
 .about-stats_wrapper_stat + .about-stats_wrapper_stat::before {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -12px;
+  left: -24px;
   width: 1px;
   background-color: #e0e0e0;
 }
