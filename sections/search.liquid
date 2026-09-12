@@ -67,7 +67,7 @@
       <input type="hidden" name="type" value="product">
       <input type="hidden" name="sort_by" value="{{ sort_by }}" data-sort-input>
 
-      <aside class="collection_wrapper_filters" data-filters>
+      <aside class="collection_wrapper_filters" data-filters data-animate data-animate-from="left">
         <div class="collection_wrapper_filters_head">
           <h2 class="collection_wrapper_filters_head_title">{{ 'collection.filters' | t }}</h2>
           <a
@@ -162,7 +162,7 @@
         {%- endif -%}
 
         {%- paginate search.results by section.settings.results_per_page -%}
-          <div class="collection_wrapper_main_grid" data-grid>
+          <div class="collection_wrapper_main_grid" data-grid data-animate-group data-animate-stagger="0.05">
             {%- for item in search.results -%}
               {%- if item.object_type == 'product' -%}
                 {%- render 'product-card', product: item, variant: 'grid' -%}
