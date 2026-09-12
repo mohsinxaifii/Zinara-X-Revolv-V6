@@ -5,6 +5,15 @@
   if current == blank
     assign current = page.title
   endif
+  if current == blank
+    assign current = collection.title
+  endif
+  if current == blank
+    assign current = product.title
+  endif
+  if current == blank
+    assign current = blog.title
+  endif
 -%}
 
 <nav class="breadcrumb full-width" aria-label="{{ 'accessibility.breadcrumb' | t }}">
