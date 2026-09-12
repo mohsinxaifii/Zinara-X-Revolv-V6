@@ -1,17 +1,6 @@
 {{ 'about-hero.css' | asset_url | stylesheet_tag }}
 
-{%- comment -%}
-  The Figma quote is Libre Baskerville italic. Load that face only if the picked
-  font actually has one - font_modify returns nil otherwise, and passing nil to
-  font_face emits a Liquid error straight into the stylesheet.
-{%- endcomment -%}
-{%- assign quote_font = settings.type_tertiary_font | font_modify: 'style', 'italic' -%}
-
 {%- style -%}
-  {%- if quote_font -%}
-    {{ quote_font | font_face: font_display: 'swap' }}
-  {%- endif -%}
-
   {%- if section.settings.image -%}
     #shopify-section-{{ section.id }} .about-hero_wrapper_card {
       background-image: url({{ section.settings.image | image_url: width: 2400 }});

@@ -1,19 +1,6 @@
 {{ 'scroll-carousel.css' | asset_url | stylesheet_tag }}
 {{ 'about-story.css' | asset_url | stylesheet_tag }}
 
-{%- comment -%}
-  The Figma pull quote is Libre Baskerville italic. Load that face only if the
-  picked font actually has one - font_modify returns nil otherwise, and passing
-  nil to font_face emits a Liquid error straight into the stylesheet.
-{%- endcomment -%}
-{%- assign quote_font = settings.type_tertiary_font | font_modify: 'style', 'italic' -%}
-
-{%- style -%}
-  {%- if quote_font -%}
-    {{ quote_font | font_face: font_display: 'swap' }}
-  {%- endif -%}
-{%- endstyle -%}
-
 <scroll-carousel class="about-story full-width">
   <div class="about-story_wrapper">
     {%- if section.settings.heading != blank -%}
