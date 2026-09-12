@@ -113,7 +113,7 @@
   "collections": {
     "title": "Collections",
     "empty": "No collections to show yet.",
-    "product_count": "{{ count }} products"
+    "product_count": "{{ count }} items"
   },
   "wishlist": {
     "title": "My wishlist",
