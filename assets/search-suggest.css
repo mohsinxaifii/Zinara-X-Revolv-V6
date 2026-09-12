@@ -26,6 +26,12 @@
   display: none;
 }
 
+/* Both of these set a `display`, which beats the user agent's
+   `[hidden] { display: none }` unless it is restated. */
+.search-suggest_clear[hidden] {
+  display: none;
+}
+
 .search-suggest_clear {
   display: flex;
   flex: 0 0 auto;
