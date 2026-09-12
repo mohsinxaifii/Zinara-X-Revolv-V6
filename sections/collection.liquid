@@ -116,7 +116,7 @@
                   The catch-all chip: current whenever no other chip's path is.
                 endcomment
                 assign chip_url = collection.url
-                if request.path == collection.url
+                if forloop.first and request.path == collection.url
                   assign is_active = true
                 endif
               elsif chip_url == request.path
