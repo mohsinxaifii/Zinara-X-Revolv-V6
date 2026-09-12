@@ -48,3 +48,23 @@
 .breadcrumb_list_item_current {
   color: #4d4d4d;
 }
+
+/* The product trail is three rungs deep and the last one is a full product
+   title, which stacks into a column on a phone. Scrolling the trail sideways
+   keeps it on one line, the way it reads on every wider screen. */
+@media screen and (max-width: 620px) {
+  .breadcrumb_list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .breadcrumb_list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .breadcrumb_list_item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
