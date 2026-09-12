@@ -21,13 +21,13 @@
   assign primary_italic = primary | font_modify: 'style', 'italic'
   assign primary_bold_italic = primary_bold | font_modify: 'style', 'italic'
 
-  assign secondary_regular = secondary | font_modify: 'weight', 400
-  assign secondary_semibold = secondary | font_modify: 'weight', 600
+  assign secondary_regular = secondary | font_modify: 'weight', '400'
+  assign secondary_semibold = secondary | font_modify: 'weight', '600'
   assign secondary_bold = secondary | font_modify: 'weight', 'bold'
   assign secondary_italic = secondary | font_modify: 'style', 'italic'
   assign secondary_regular_italic = secondary_regular | font_modify: 'style', 'italic'
 
-  assign tertiary_semibold = tertiary | font_modify: 'weight', 600
+  assign tertiary_semibold = tertiary | font_modify: 'weight', '600'
   assign tertiary_bold = tertiary | font_modify: 'weight', 'bold'
   assign tertiary_italic = tertiary | font_modify: 'style', 'italic'
   assign tertiary_semibold_italic = tertiary_semibold | font_modify: 'style', 'italic'
@@ -53,8 +53,11 @@
     variable face so the 600 the designs use is a real instance. Declaring
     Shopify's static 400/700 under the same family name as well would leave two
     sources competing, and the static pair would win back the weights it has.
+    Matched with `contains`: Shopify quotes any family name that has a space in
+    it, so `.family` here is `"Libre Baskerville"` - quotes and all - and `==`
+    against the bare name silently never matches.
   {%- endcomment -%}
-  {%- unless tertiary.family == 'Libre Baskerville' -%}
+  {%- unless tertiary.family contains 'Libre Baskerville' -%}
     {{ tertiary | font_face: font_display: 'swap' }}
     {%- if tertiary_semibold %}{{ tertiary_semibold | font_face: font_display: 'swap' }}{% endif -%}
     {%- if tertiary_bold %}{{ tertiary_bold | font_face: font_display: 'swap' }}{% endif -%}
