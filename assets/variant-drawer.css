@@ -163,10 +163,6 @@
 
 /* ---------------------------------------------------------------- options */
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 5ac5d47f6f30d37725ed035ba6d09e4be2e71de2
 /* The --variant-swatch-* fallbacks cover metal names the shop has no swatch
    configured for, so the drawer still shows the finishes the design does
    rather than three grey dots. */
@@ -178,12 +174,6 @@
   --variant-swatch-silver: linear-gradient(135deg, #fff, #c4c4c4 50%, #8a8a8a);
   --variant-swatch-white: linear-gradient(135deg, #fff, #c4c4c4 50%, #8a8a8a);
 
-<<<<<<< HEAD
-=======
-=======
-.variant-drawer_panel_body_options {
->>>>>>> a08638e51dc3df80f8feafa766b8bb9f8b9979f2
->>>>>>> 5ac5d47f6f30d37725ed035ba6d09e4be2e71de2
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -329,23 +319,6 @@
   background: var(--variant-swatch, #ddd) center / cover no-repeat;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-/* Metal names the shop has no swatch configured for, so the drawer still shows
-   the finishes the design does rather than three grey dots. */
-.variant-drawer_panel_body_options {
-  --variant-swatch-yellow: linear-gradient(135deg, #f9d496, #d5a95d 50%, #b17e25);
-  --variant-swatch-gold: linear-gradient(135deg, #f9d496, #d5a95d 50%, #b17e25);
-  --variant-swatch-rose: linear-gradient(135deg, #efc9d3, #d8989e 50%, #c06769);
-  --variant-swatch-rose-gold: linear-gradient(135deg, #efc9d3, #d8989e 50%, #c06769);
-  --variant-swatch-silver: linear-gradient(135deg, #fff, #c4c4c4 50%, #8a8a8a);
-  --variant-swatch-white: linear-gradient(135deg, #fff, #c4c4c4 50%, #8a8a8a);
-}
-
->>>>>>> a08638e51dc3df80f8feafa766b8bb9f8b9979f2
->>>>>>> 5ac5d47f6f30d37725ed035ba6d09e4be2e71de2
 /* ----------------------------------------------------------------- footer */
 
 .variant-drawer_panel_footer {
