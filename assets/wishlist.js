@@ -181,13 +181,25 @@
       this.apply();
     }
 
+    /* Matched on whole words, not substrings: "rings" is a substring of
+       "earrings", so a plain `includes` would have the Rings chip pulling in
+       every pair of earrings. A multi-word chip value has no single token to
+       compare against, so those fall back to a substring test. */
+    matches(item) {
+      if (this.filter === '') return true;
+
+      const haystack = `${item.dataset.type || ''},${item.dataset.tags || ''}`;
+      if (this.filter.includes(' ')) return haystack.includes(this.filter);
+
+      return haystack.split(/[\s,]+/).includes(this.filter);
+    }
+
     apply() {
       const items = Array.from(this.querySelectorAll('[data-wishlist-item]'));
       let visible = 0;
 
       items.forEach((item) => {
-        const haystack = `${item.dataset.type || ''},${item.dataset.tags || ''}`;
-        const match = this.filter === '' || haystack.includes(this.filter);
+        const match = this.matches(item);
         item.hidden = !match;
         if (match) visible += 1;
       });
