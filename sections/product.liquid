@@ -30,12 +30,24 @@
   assign average_rating = product.metafields.reviews.rating.value.rating | plus: 0
   assign rating_count = product.metafields.reviews.rating_count.value | plus: 0
 
+  comment
+    Liquid has no decimal formatter, so "5" would print where the design shows
+    "5.00". The fraction is padded to two digits by hand.
+  endcomment
+  assign rating_whole = average_rating | floor
+  assign rating_frac = average_rating | minus: rating_whole | times: 100 | round
+  assign rating_frac = rating_frac | prepend: '00' | slice: -2, 2
+  assign rating_text = rating_whole | append: '.' | append: rating_frac
+
   assign material_tags = product.metafields.custom.pdp_material_tags.value
   assign media_badges = product.metafields.custom.pdp_media_badges.value
   assign highlights = product.metafields.custom.pdp_highlights.value
   assign addons = product.metafields.custom.pdp_addons.value
   assign ugc_videos = product.metafields.custom.pdp_ugc_videos.value
   assign reviews = product.metafields.custom.pdp_reviews.value
+  if reviews.size > 0
+    assign rating_count = reviews.size
+  endif
   comment
     Read the PDP-specific keys first and fall back to the shared ones. The live
     theme reads content.product_details_list and custom.size_chart, so this
@@ -805,16 +817,17 @@
       <section class="pdp_reviews" id="pdp-reviews">
         <div class="pdp_reviews_head">
           <h2 class="pdp_section_title">Customer reviews</h2>
-          {%- if section.settings.review_url != blank -%}
-            <a href="{{ section.settings.review_url }}" class="pdp_button pdp_button--primary pdp_button--compact">
-              Write a review
-            </a>
-          {%- endif -%}
+          <a
+            href="{{ section.settings.review_url | default: routes.root_url }}"
+            class="pdp_button pdp_button--primary pdp_button--compact"
+          >
+            Write a review
+          </a>
         </div>
 
         {%- if average_rating > 0 -%}
           <div class="pdp_reviews_summary">
-            <span class="pdp_reviews_summary_score">{{ average_rating | round: 2 }}</span>
+            <span class="pdp_reviews_summary_score">{{ rating_text }}</span>
             <span class="pdp_reviews_summary_rule" aria-hidden="true"></span>
             {%- render 'testimonial-stars', rating: average_rating -%}
             <span class="pdp_reviews_summary_count">{{ rating_count }} reviews</span>
