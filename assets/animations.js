@@ -120,19 +120,25 @@
   function initDialogs(root = document) {
     if (!hasGsap() || reduced.matches) return;
     const { gsap } = window;
+    ROOT.classList.add('motion-dialogs');
 
     root.querySelectorAll('dialog:not([data-motion-bound])').forEach((dialog) => {
       dialog.setAttribute('data-motion-bound', '');
 
-      // A sidesheet slides in from the edge it is pinned to; anything centred
-      // scales up from just under full size.
-      const panel = dialog.querySelector('.pdp-sheet_panel, .variant-drawer_panel') || null;
+      // A drawer travels its own full width, so it starts and ends genuinely
+      // outside the viewport rather than nudging in from a few pixels off.
+      // Anything centred scales up from just under full size instead.
+      const panel =
+        dialog.querySelector('.cart-drawer_panel, .pdp-sheet_panel, .variant-drawer_panel') || null;
       const centred =
         dialog.querySelector('.pdp-modal_panel, .pdp-lightbox_body, .pdp-ugc-box_reel') || null;
       const target = panel || centred || dialog.firstElementChild;
       if (!target) return;
 
-      const enter = panel ? { x: 40 } : { scale: 0.96 };
+      // xPercent is relative to the panel's own width, so the same figure works
+      // for the 435px drawer and for the full-width one on a phone.
+      const enter = panel ? { xPercent: 100 } : { scale: 0.96 };
+      const rest = panel ? { xPercent: 0 } : { scale: 1 };
 
       const nativeShow = dialog.showModal.bind(dialog);
       const nativeClose = dialog.close.bind(dialog);
@@ -140,15 +146,15 @@
 
       dialog.showModal = (...args) => {
         nativeShow(...args);
+        dialog.classList.remove('is-closing');
         gsap.killTweensOf(target);
         gsap.fromTo(
           target,
-          { opacity: 0, ...enter },
+          { opacity: panel ? 1 : 0, ...enter },
           {
             opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.34,
+            ...rest,
+            duration: 0.42,
             ease: 'power3.out',
             clearProps: 'transform',
           },
@@ -158,14 +164,18 @@
       dialog.close = (...args) => {
         if (closing || !dialog.open) return nativeClose(...args);
         closing = true;
+        // Lets CSS fade ::backdrop out alongside the panel - a pseudo-element
+        // cannot be tweened directly.
+        dialog.classList.add('is-closing');
         gsap.killTweensOf(target);
         gsap.to(target, {
-          opacity: 0,
+          opacity: panel ? 1 : 0,
           ...enter,
-          duration: 0.22,
+          duration: 0.3,
           ease: 'power2.in',
           onComplete: () => {
             closing = false;
+            dialog.classList.remove('is-closing');
             gsap.set(target, { clearProps: 'opacity,transform' });
             nativeClose(...args);
           },
@@ -175,6 +185,7 @@
       // Esc bypasses close() entirely, so the panel is reset for next time.
       dialog.addEventListener('close', () => {
         closing = false;
+        dialog.classList.remove('is-closing');
         gsap.set(target, { clearProps: 'opacity,transform' });
       });
     });

@@ -303,16 +303,22 @@ dialog::backdrop {
   animation: motion-fade var(--motion-base) var(--motion-ease);
 }
 
+/* A pseudo-element cannot be tweened, so animations.js flags the exit and the
+   backdrop fades out here in step with the panel leaving. */
+dialog.is-closing::backdrop {
+  animation: motion-fade var(--motion-base) var(--motion-ease) reverse forwards;
+}
+
 @keyframes motion-fade {
   from {
     opacity: 0;
   }
 }
 
+/* Travels the panel's own width, so it begins genuinely off-viewport. */
 @keyframes motion-slide-in {
   from {
-    opacity: 0;
-    transform: translateX(24px);
+    transform: translateX(100%);
   }
 }
 
@@ -323,13 +329,21 @@ dialog::backdrop {
   }
 }
 
-html:not(.motion) .pdp-sheet[open] .pdp-sheet_panel {
-  animation: motion-slide-in var(--motion-base) var(--motion-ease);
+/**
+ * Gated on `motion-dialogs`, which animations.js sets only once it has actually
+ * taken the dialogs over. `.motion` cannot be used here: it is cleared as soon
+ * as the reveals run, so it is absent in the normal case too and both this and
+ * the GSAP tween would fire on the same panel.
+ */
+html:not(.motion-dialogs) .cart-drawer[open] .cart-drawer_panel,
+html:not(.motion-dialogs) .pdp-sheet[open] .pdp-sheet_panel,
+html:not(.motion-dialogs) .variant-drawer[open] .variant-drawer_panel {
+  animation: motion-slide-in var(--motion-slow) var(--motion-ease);
 }
 
-html:not(.motion) .pdp-modal[open] .pdp-modal_panel,
-html:not(.motion) .pdp-lightbox[open] .pdp-lightbox_body,
-html:not(.motion) .pdp-ugc-box[open] .pdp-ugc-box_reel {
+html:not(.motion-dialogs) .pdp-modal[open] .pdp-modal_panel,
+html:not(.motion-dialogs) .pdp-lightbox[open] .pdp-lightbox_body,
+html:not(.motion-dialogs) .pdp-ugc-box[open] .pdp-ugc-box_reel {
   animation: motion-scale-in var(--motion-base) var(--motion-ease);
 }
 
