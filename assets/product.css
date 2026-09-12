@@ -2642,7 +2642,7 @@ button.pdp_trust_grid_item_inner {
 }
 
 .pdp-diff_compare_cell--ours {
-  border-radius: 0 0 12px 0;
+  border-radius: 0 0 12px;
   background-color: var(--pdp-surface-medium);
 }
 
