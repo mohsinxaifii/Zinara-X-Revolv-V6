@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
+    <!-- ZDBG family=[{{ settings.type_tertiary_font.family }}] json={{ settings.type_tertiary_font | json }} eq={% if settings.type_tertiary_font.family == 'Libre Baskerville' %}YES{% else %}NO{% endif %} -->
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
