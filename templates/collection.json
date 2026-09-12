@@ -9,10 +9,175 @@
  */
 {
   "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "home_label": "Home",
+        "current_label": ""
+      }
+    },
     "main": {
       "type": "collection",
-      "settings": {}
+      "blocks": {
+        "chip-1": {
+          "type": "category",
+          "settings": {
+            "label": "All",
+            "url": ""
+          }
+        },
+        "chip-2": {
+          "type": "category",
+          "settings": {
+            "label": "Everyday",
+            "url": ""
+          }
+        },
+        "chip-3": {
+          "type": "category",
+          "settings": {
+            "label": "Party",
+            "url": ""
+          }
+        },
+        "chip-4": {
+          "type": "category",
+          "settings": {
+            "label": "Officewear",
+            "url": ""
+          }
+        },
+        "chip-5": {
+          "type": "category",
+          "settings": {
+            "label": "Bands",
+            "url": ""
+          }
+        },
+        "chip-6": {
+          "type": "category",
+          "settings": {
+            "label": "Engagement rings",
+            "url": ""
+          }
+        },
+        "chip-7": {
+          "type": "category",
+          "settings": {
+            "label": "Pendants",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "chip-1",
+        "chip-2",
+        "chip-3",
+        "chip-4",
+        "chip-5",
+        "chip-6",
+        "chip-7"
+      ],
+      "settings": {
+        "products_per_page": 24
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are lab grown diamonds real?",
+            "answer": "Lab grown diamonds appear identical to natural diamonds and can't be distinguished by the naked eye and with standard microscopic tools. Trained jewellers and experts can't also tell the difference between them. They can only be distinguished from natural diamonds using specialized equipment that can detect the specific growth patterns and inclusions characteristic of their origin."
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can you tell the difference between lab grown diamonds and natural diamonds?",
+            "answer": ""
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are ZINARA lab grown diamonds graded and certified?",
+            "answer": ""
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver pan India?",
+            "answer": ""
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Is ID proof required for delivery?",
+            "answer": ""
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What payment options are available?",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
+    },
+    "featured-in": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo-1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-1.png"
+          }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-2.png"
+          }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-3.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo-1",
+        "logo-2",
+        "logo-3"
+      ],
+      "settings": {
+        "heading": "Featured in",
+        "background_color": "#fef4e2",
+        "speed": 25
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "breadcrumb",
+    "main",
+    "faq",
+    "featured-in"
+  ]
 }
