@@ -151,8 +151,8 @@ class VideoShowcase extends HTMLElement {
     const styles = getComputedStyle(this.track);
     const gap = parseFloat(styles.columnGap || styles.gap) || 0;
 
-    // Scaling a card about its own centre leaves that centre in place, so the
-    // gap between two centres is the true step even while cards are scaled.
+    // Measured centre to centre rather than edge to edge, so the step stays
+    // correct whatever transform a card is carrying.
     this.step = second
       ? second.left + second.width / 2 - (first.left + first.width / 2)
       : first.width + gap;
