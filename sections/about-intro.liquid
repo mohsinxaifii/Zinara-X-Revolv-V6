@@ -31,7 +31,11 @@
                 {%- endif -%}
                 <span class="about-intro_wrapper_row_mosaic_column_tile">
                   {%- if tile -%}
-                    {{ tile | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '200px', alt: '' }}
+                    {{
+                      tile
+                      | image_url: width: 400
+                      | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '200px', alt: ''
+                    }}
                   {%- endif -%}
                 </span>
               {%- endfor -%}
