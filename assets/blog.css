@@ -144,8 +144,8 @@
   }
 }
 
-/* ------------------------------------------------------------------ skeleton */
-/* Figma "Blogs page skeleton" 7930:93523. Mirrors the two bands above, so the
+/* ---------------------------------------------------------------- skeleton --
+   Figma "Blogs page skeleton" 7930:93523. Mirrors the two bands above, so the
    placeholder settles on the same rhythm the real page lands on. */
 .blog-skeleton_band {
   display: flex;

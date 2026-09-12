@@ -40,7 +40,11 @@
           {{
             article.image
             | image_url: width: 722
-            | image_tag: loading: 'lazy', widths: '361,542,722', sizes: '(max-width: 749px) 100vw, 361px', alt: card_image_alt
+            | image_tag:
+              loading: 'lazy',
+              widths: '361,542,722',
+              sizes: '(max-width: 749px) 100vw, 361px',
+              alt: card_image_alt
           }}
         {%- endif -%}
       </span>
