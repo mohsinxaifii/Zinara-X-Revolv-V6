@@ -398,3 +398,122 @@
 .product-carousel_wrapper_stage_panel_track.is-scrolling {
   scroll-snap-type: none;
 }
+
+/* ------------------------------------------------------- grid (PLP) variant
+   Figma: Product card / Desktop 7930:101972 - 266x386. Same media as the
+   carousel card, but the wishlist moves down beside the price and an
+   add-to-cart button closes the card, so the media keeps its full width
+   rather than being sized by a carousel step. */
+.product-card--grid {
+  flex: 0 0 auto;
+  width: 100%;
+  gap: 12px;
+  border-radius: 12px;
+}
+
+.product-card--grid .product-card_media {
+  aspect-ratio: 1;
+}
+
+.product-card--grid .product-card_info {
+  gap: 8px;
+  padding: 0 8px 8px;
+}
+
+.product-card--grid .product-card_info_price {
+  position: relative;
+  gap: 8px;
+  align-items: center;
+  min-height: 20px;
+  padding-right: 28px;
+}
+
+.product-card--grid .product-card_info_price_current {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.product-card--grid .product-card_info_price_compare {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.product-card--grid .product-card_info_price_wishlist {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: flex;
+  padding: 2px;
+  border: 0;
+  background: none;
+  color: var(--color-brand, #712242);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.product-card--grid .product-card_info_price_wishlist svg {
+  width: 20px;
+  height: 20px;
+}
+
+.product-card--grid .product-card_info_price_wishlist:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.product-card--grid .product-card_info_price_wishlist.is-active svg {
+  fill: currentcolor;
+}
+
+.product-card--grid .product-card_info_title {
+  font-size: 14px;
+  line-height: 1.429;
+}
+
+.product-card--grid .product-card_info_add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-brand, #712242);
+  border-radius: 8px;
+  background-color: var(--color-brand, #712242);
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.product-card--grid .product-card_info_add:hover {
+  background-color: #5a1b34;
+}
+
+.product-card--grid .product-card_info_add--disabled {
+  border-color: #e0e0e0;
+  background-color: #e0e0e0;
+  color: #666;
+  cursor: default;
+}
+
+/* The tick only belongs on the card once the line is actually in the cart. */
+.product-card--grid .product-card_info_add_icon {
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+
+.product-card--grid .product-card_info_add_icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.product-card--grid .product-card_info_add.is-added .product-card_info_add_icon {
+  display: flex;
+}
