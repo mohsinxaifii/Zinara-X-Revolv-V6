@@ -25,8 +25,9 @@
 >
   <p class="filter-price_caption">{{ 'collection.selected_price_range' | t }}</p>
   <p class="filter-price_value" data-price-readout>
-    {{- currency_symbol }}{{ min_value | times: 100 | money_without_currency | strip_html }} -
-    {{ currency_symbol }}{{ max_value | times: 100 | money_without_currency | strip_html -}}
+    {{- currency_symbol -}}
+    {{- min_value | times: 100 | money_without_currency | strip_html }} - {{ currency_symbol -}}
+    {{- max_value | times: 100 | money_without_currency | strip_html -}}
   </p>
 
   <div class="filter-price_slider">
@@ -56,8 +57,18 @@
     The values Shopify actually submits. The range inputs above drive these so
     the form can post plain currency amounts.
   {%- endcomment -%}
-  <input type="hidden" name="{{ filter.min_value.param_name }}" value="{% if filter.min_value.value %}{{ min_value }}{% endif %}" data-price-min-input>
-  <input type="hidden" name="{{ filter.max_value.param_name }}" value="{% if filter.max_value.value %}{{ max_value }}{% endif %}" data-price-max-input>
+  <input
+    type="hidden"
+    name="{{ filter.min_value.param_name }}"
+    value="{% if filter.min_value.value %}{{ min_value }}{% endif %}"
+    data-price-min-input
+  >
+  <input
+    type="hidden"
+    name="{{ filter.max_value.param_name }}"
+    value="{% if filter.max_value.value %}{{ max_value }}{% endif %}"
+    data-price-max-input
+  >
 
   <div class="filter-price_presets">
     {%- assign lower = 0 -%}
@@ -77,8 +88,9 @@
           data-min="{{ lower }}"
           data-max="{{ upper }}"
         >
-          {{ currency_symbol }}{{ lower | times: 100 | money_without_currency | strip_html }} -
-          {{ currency_symbol }}{{ upper | times: 100 | money_without_currency | strip_html }}
+          {{ currency_symbol -}}
+          {{- lower | times: 100 | money_without_currency | strip_html }} - {{ currency_symbol -}}
+          {{- upper | times: 100 | money_without_currency | strip_html }}
         </button>
       {%- endif -%}
       {%- assign lower = upper -%}
@@ -92,7 +104,8 @@
         data-min="{{ lower }}"
         data-max="{{ range_max }}"
       >
-        {{ currency_symbol }}{{ lower | times: 100 | money_without_currency | strip_html }}+
+        {{ currency_symbol -}}
+        {{- lower | times: 100 | money_without_currency | strip_html }}+
       </button>
     {%- endif -%}
   </div>

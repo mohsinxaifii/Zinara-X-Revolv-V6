@@ -70,7 +70,12 @@
 
         {%- if collection.sort_options.size > 0 -%}
           <div class="collection_wrapper_main_toolbar_sort" data-sort>
-            <button type="button" class="collection_wrapper_main_toolbar_sort_trigger" data-sort-trigger aria-expanded="false">
+            <button
+              type="button"
+              class="collection_wrapper_main_toolbar_sort_trigger"
+              data-sort-trigger
+              aria-expanded="false"
+            >
               <span class="collection_wrapper_main_toolbar_sort_trigger_label">
                 {{ 'collection.sort_by' | t }}
                 <strong data-sort-current>
@@ -121,7 +126,9 @@
             <a
               href="{{ chip_url }}"
               class="collection_wrapper_main_chips_chip{% if is_active %} is-active{% endif %}"
-              {% if is_active %}aria-current="page"{% endif %}
+              {% if is_active %}
+                aria-current="page"
+              {% endif %}
               {{ block.shopify_attributes }}
             >
               {{- block.settings.label -}}
