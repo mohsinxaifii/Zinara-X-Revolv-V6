@@ -11,3 +11,11 @@
 #
 # Ignore templates and sections with a regular expression:
 #   /(templates|sections)/.*\.json/
+
+# Editors and this repo's tooling write atomically: a temp sibling is created,
+# then renamed over the target. The dev watcher can catch that sibling mid-write
+# and then refuses every later upload ("contains illegal characters") until it is
+# restarted, so the temp names are kept out of its sight.
+*.tmp.*
+*.swp
+*~
