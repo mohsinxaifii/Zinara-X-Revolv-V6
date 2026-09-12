@@ -472,7 +472,7 @@
     initCart() {
       this.form?.addEventListener('submit', (event) => {
         event.preventDefault();
-        this.addToCart(this.buildItems());
+        this.addToCart(this.buildItems(), { trigger: this.querySelector('[data-add-to-cart]') });
       });
 
       const buyNow = this.querySelector('[data-buy-now]');
@@ -496,7 +496,8 @@
         this.sheets.get('addons')?.close();
       });
 
-      this.querySelector('[data-pair-add]')?.addEventListener('click', () => {
+      const pairAdd = this.querySelector('[data-pair-add]');
+      pairAdd?.addEventListener('click', () => {
         const items = Array.from(
           this.querySelectorAll('[data-pair-toggle][aria-pressed="true"]'),
         ).map((button) => ({
@@ -508,25 +509,21 @@
           id: Number(item.dataset.variantId),
           quantity: 1,
         }));
-        this.addToCart(items.length > 0 ? items : all);
+        this.addToCart(items.length > 0 ? items : all, { trigger: pairAdd });
       });
 
-      this.querySelector('[data-diff-add]')?.addEventListener('click', () => {
-        this.addToCart(this.buildItems());
-        this.sheets.get('price-difference')?.close();
+      const diffAdd = this.querySelector('[data-diff-add]');
+      diffAdd?.addEventListener('click', async () => {
+        // Close only once the line is in, so the drawer cannot open behind a
+        // sheet that is still on screen.
+        const ok = await this.addToCart(this.buildItems(), { trigger: diffAdd });
+        if (ok) this.sheets.get('price-difference')?.close();
       });
 
       this.addEventListener('click', (event) => {
         const button = event.target.closest('[data-add-single]');
         if (!button) return;
-        this.addToCart([{ id: Number(button.dataset.variantId), quantity: 1 }]);
-        const label = button.querySelector('[data-add-single-label]');
-        if (!label) return;
-        const original = label.textContent;
-        label.textContent = button.dataset.addedLabel || 'Added';
-        setTimeout(() => {
-          label.textContent = original;
-        }, 1600);
+        this.addToCart([{ id: Number(button.dataset.variantId), quantity: 1 }], { trigger: button });
       });
     }
 
