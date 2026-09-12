@@ -61,6 +61,24 @@
       "title": "Login"
     }
   },
+  "products": {
+    "add_to_cart": "Add to cart",
+    "added_to_cart": "Added to cart",
+    "sold_out": "Sold out"
+  },
+  "collection": {
+    "filters": "Filters",
+    "clear_all": "Clear all",
+    "sort_by": "Sort by:",
+    "product_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "selected_price_range": "Selected price range",
+    "load_more": "Load more",
+    "loading": "Loading",
+    "empty": "No products match these filters."
+  },
   "collections": {
     "title": "Collections"
   },
