@@ -27,14 +27,22 @@
 
 {%- liquid
   comment
-    200 words a minute, rounded up, so a short note reads "1 min" rather than
-    "0 min".
+    200 words a minute, floored at 1 so a short note reads "1 min" rather than
+    "0 min". Counted by splitting rather than with `number_of_words`, which
+    theme-check does not recognise. Runs of whitespace split into empty tokens
+    and so count slightly high, which is within the noise of an estimate.
   endcomment
-  assign words = article.content | strip_html | number_of_words
+  assign words = article.content | strip_html | strip_newlines | split: ' ' | size
   assign read_minutes = words | divided_by: 200
   if read_minutes < 1
     assign read_minutes = 1
   endif
+
+  comment
+    Filter arguments cannot themselves be filtered, so the fallback has to be
+    resolved before it reaches image_tag.
+  endcomment
+  assign hero_alt = article.image.alt | default: article.title
 
   assign aside_image = article.metafields.custom.aside_image.value
   if aside_image == blank
@@ -75,8 +83,7 @@
             {{
               article.image
               | image_url: width: 1496
-              | image_tag: widths: '748,1122,1496', sizes: '(max-width: 989px) 100vw, 748px', alt: article.image.alt
-              | default: article.title
+              | image_tag: widths: '748,1122,1496', sizes: '(max-width: 989px) 100vw, 748px', alt: hero_alt
             }}
           </div>
         {%- endif -%}
