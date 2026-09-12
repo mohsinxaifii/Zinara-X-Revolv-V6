@@ -199,6 +199,29 @@
           details.dataset.motionBusy = 'true';
 
           if (!details.open) {
+            // A named <details> is an exclusive group: opening one closes its
+            // siblings. The browser does that instantly, so they are collapsed
+            // here on the same curve instead of snapping shut underneath.
+            if (details.name) {
+              details.parentElement
+                ?.querySelectorAll(`details[name="${CSS.escape(details.name)}"][open]`)
+                .forEach((sibling) => {
+                  if (sibling === details) return;
+                  const siblingBody = sibling.querySelector('summary')?.nextElementSibling;
+                  if (!siblingBody) return;
+                  gsap.to(siblingBody, {
+                    height: 0,
+                    opacity: 0,
+                    duration: 0.28,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                      sibling.open = false;
+                      gsap.set(siblingBody, { clearProps: 'height,opacity,overflow' });
+                    },
+                  });
+                });
+            }
+
             details.open = true;
             gsap.fromTo(
               body,
