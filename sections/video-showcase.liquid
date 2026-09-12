@@ -16,7 +16,7 @@
           <div
             class="video-showcase_wrapper_track"
             data-track
-            style="--video-showcase-ratio: {{ section.settings.card_ratio | default: '9 / 16' }};"
+            style="--video-showcase-ratio: {{ section.settings.card_ratio | default: '282 / 400' }};"
           >
             {%- for block in section.blocks -%}
               <div
@@ -130,12 +130,13 @@
       "label": "Card shape",
       "info": "Match the aspect ratio of your videos so they are not cropped.",
       "options": [
+        { "value": "282 / 400", "label": "Showcase (as designed)" },
         { "value": "9 / 16", "label": "Vertical (9:16)" },
         { "value": "4 / 5", "label": "Portrait (4:5)" },
         { "value": "3 / 4", "label": "Portrait (3:4)" },
         { "value": "1 / 1", "label": "Square (1:1)" }
       ],
-      "default": "9 / 16"
+      "default": "282 / 400"
     },
     {
       "type": "range",
