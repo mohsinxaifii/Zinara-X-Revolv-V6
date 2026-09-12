@@ -72,6 +72,7 @@
   class="pdp"
   data-product-url="{{ product.url }}"
   data-product-handle="{{ product.handle }}"
+  data-delivery-days="{{ product.metafields.custom.pdp_delivery_days.value | default: 5 }}"
 >
   {%- render 'pdp-skeleton' -%}
 
