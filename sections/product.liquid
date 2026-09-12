@@ -32,8 +32,13 @@
   assign addons = product.metafields.custom.pdp_addons.value
   assign ugc_videos = product.metafields.custom.pdp_ugc_videos.value
   assign reviews = product.metafields.custom.pdp_reviews.value
-  assign size_chart = product.metafields.custom.size_chart.value
-  assign detail_lists = product.metafields.content.product_details_list.value
+  comment
+    Read the PDP-specific keys first and fall back to the shared ones. The live
+    theme reads content.product_details_list and custom.size_chart, so this
+    theme writes its own custom.pdp_* copies and never has to edit those.
+  endcomment
+  assign size_chart = product.metafields.custom.pdp_size_chart.value | default: product.metafields.custom.size_chart.value
+  assign detail_lists = product.metafields.custom.pdp_detail_lists.value | default: product.metafields.content.product_details_list.value
 
   assign pair_products = product.metafields['shopify--discovery--product_recommendation'].complementary_products.value
   assign related_products = product.metafields['shopify--discovery--product_recommendation'].related_products.value
@@ -304,6 +309,7 @@
             </legend>
 
             {%- if is_size and size_chart != blank -%}
+              {%- assign size_guide_inline = true -%}
               <button type="button" class="pdp_link pdp_option_guide" data-open="size-guide">
                 <span class="pdp_option_guide_icon" aria-hidden="true">
                   {{- 'icon-ruler.svg' | inline_asset_content -}}
@@ -339,6 +345,22 @@
             </div>
           </fieldset>
         {%- endfor -%}
+
+        {%- comment -%}
+          A product can carry a size chart without carrying a size option - a
+          chain length, say - and the sidesheet would then be unreachable, so the
+          link falls back to a row of its own.
+        {%- endcomment -%}
+        {%- if size_chart != blank and size_guide_inline != true -%}
+          <div class="pdp_option pdp_option--guide-only">
+            <button type="button" class="pdp_link" data-open="size-guide">
+              <span class="pdp_option_guide_icon" aria-hidden="true">
+                {{- 'icon-ruler.svg' | inline_asset_content -}}
+              </span>
+              Size guide
+            </button>
+          </div>
+        {%- endif -%}
 
         {%- comment -%} Vermeil explainer link - Figma 7930:96109 {%- endcomment -%}
         <button type="button" class="pdp_explainer" data-open="know-jewellery">

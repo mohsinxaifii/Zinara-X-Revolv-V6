@@ -10,9 +10,9 @@
 {%- enddoc -%}
 
 {%- liquid
-  assign rows = product.metafields.custom.size_chart.value
-  assign headings = product.metafields.custom.size_chart_headings.value
-  assign guide_video = product.metafields.custom.size_chart_video.value
+  assign rows = product.metafields.custom.pdp_size_chart.value | default: product.metafields.custom.size_chart.value
+  assign headings = product.metafields.custom.pdp_size_chart_headings.value | default: product.metafields.custom.size_chart_headings.value
+  assign guide_video = product.metafields.custom.pdp_size_guide_video.value | default: product.metafields.custom.size_chart_video.value
 -%}
 
 <dialog class="pdp-sheet" data-sheet="size-guide" scroll-lock aria-labelledby="PdpSizeGuideTitle">
