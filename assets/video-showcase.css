@@ -44,10 +44,10 @@
 }
 
 .video-showcase_wrapper_track {
-  /* How many card slots span the stage. 3.6 puts five cards on screen: the
-     active one, a full card either side, and a sliver at each edge. */
-  --video-showcase-visible: 3.6;
-  --video-showcase-ratio: 9 / 16;
+  /* How many card slots span the stage. Figma fits 1136 / 330 = 3.442 of them:
+     the active card, a full card either side, and a sliver at each edge. */
+  --video-showcase-visible: 3.442;
+  --video-showcase-ratio: 282 / 400;
   --video-showcase-step: 330px;
   --video-showcase-gap: 48px;
   --video-showcase-card-width: 282px;
@@ -62,7 +62,7 @@
 @supports (container-type: inline-size) {
   .video-showcase_wrapper_track {
     --video-showcase-step: calc(100cqw / var(--video-showcase-visible));
-    --video-showcase-gap: calc(var(--video-showcase-step) * 0.14);
+    --video-showcase-gap: calc(var(--video-showcase-step) * 0.1455);
     --video-showcase-card-width: calc(var(--video-showcase-step) - var(--video-showcase-gap));
   }
 }
@@ -85,18 +85,9 @@
   overflow: hidden;
   background-color: #000;
   cursor: pointer;
-  opacity: 0.9;
-  transform: scale(0.96);
-  transition:
-    opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1),
-    transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
-    box-shadow 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .video-showcase_wrapper_track_item.is-active {
-  opacity: 1;
-  transform: scale(1);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   cursor: default;
 }
 

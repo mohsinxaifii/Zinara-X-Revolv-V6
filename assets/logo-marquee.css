@@ -18,6 +18,7 @@
   margin: 0;
   text-align: center;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.24;
@@ -35,8 +36,8 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 64px;
-  padding-inline-end: 64px;
+  gap: 32px;
+  padding-inline-end: 32px;
   animation: logo-marquee-scroll var(--logo-marquee-speed, 25s) linear infinite;
 }
 
@@ -44,13 +45,13 @@
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  height: 35px;
+  max-height: 35px;
 }
 
 .logo-marquee_wrapper_track_set_logo img {
   display: block;
-  height: 100%;
   width: auto;
+  max-height: 35px;
   object-fit: contain;
 }
 

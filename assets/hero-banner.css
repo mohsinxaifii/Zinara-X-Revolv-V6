@@ -7,6 +7,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1280 / 576;
+  max-height: 576px;
   overflow: hidden;
   background-color: #f2f2f2;
 }

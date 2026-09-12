@@ -23,14 +23,22 @@
   color: #000;
 }
 
+.faq_wrapper_heading_accent {
+  color: var(--color-accent, #f0166e);
+}
+
 .faq_wrapper_list {
   display: flex;
   flex-direction: column;
 }
 
 .faq_wrapper_list_item {
-  border-bottom: 1px solid #999;
+  box-shadow: 0 1px 0 0 #999;
   padding: 12px 0;
+}
+
+.faq_wrapper_list_item:last-child {
+  box-shadow: none;
 }
 
 .faq_wrapper_list_item_summary {

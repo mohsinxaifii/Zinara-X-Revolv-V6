@@ -1,10 +1,10 @@
 {{ 'footer.css' | asset_url | stylesheet_tag }}
 
-<footer class="footer">
+<footer class="footer full-width">
   <div class="footer_wrapper">
     <div class="footer_wrapper_top">
       <div class="footer_wrapper_top_brand">
-        {{ 'logo.svg' | inline_asset_content }}
+        <span class="footer_wrapper_top_brand_mark">{{ 'logo-mark.svg' | inline_asset_content }}</span>
         <p class="footer_wrapper_top_brand_tagline">{{ section.settings.tagline }}</p>
       </div>
 
@@ -109,9 +109,20 @@
       <div class="footer_wrapper_payment">
         <p class="footer_wrapper_payment_title">Accepted payment methods</p>
         <div class="footer_wrapper_payment_icons">
-          {%- for type in shop.enabled_payment_types -%}
-            {{ type | payment_type_svg_tag: class: 'footer_wrapper_payment_icons_icon' }}
-          {%- endfor -%}
+          {%- assign payment_blocks = section.blocks | where: 'type', 'payment_icon' -%}
+          {%- if payment_blocks.size > 0 -%}
+            {%- for block in payment_blocks -%}
+              <span class="footer_wrapper_payment_icons_icon" {{ block.shopify_attributes }}>
+                {%- if block.settings.image -%}
+                  {{ block.settings.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+                {%- endif -%}
+              </span>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: class: 'footer_wrapper_payment_icons_fallback' }}
+            {%- endfor -%}
+          {%- endif -%}
         </div>
       </div>
     {%- endif -%}
@@ -160,6 +171,11 @@
         { "type": "image_picker", "id": "image", "label": "Badge image" },
         { "type": "url", "id": "link", "label": "Link" }
       ]
+    },
+    {
+      "type": "payment_icon",
+      "name": "Payment icon",
+      "settings": [{ "type": "image_picker", "id": "image", "label": "Icon image" }]
     }
   ]
 }

@@ -77,11 +77,18 @@ class ScrollCarousel extends HTMLElement {
   scrollOffsetOf(index) {
     const child = this.track.children[index];
     if (!child) return this.track.scrollLeft;
+
+    // Tracks that bleed into the page margin pad their content back in, and
+    // that padding is part of every child's offset - so discount it, or the
+    // first card parks against the viewport edge instead of the content edge.
+    const padStart = parseFloat(getComputedStyle(this.track).paddingInlineStart) || 0;
+
     return (
       this.track.scrollLeft +
       child.getBoundingClientRect().left -
       this.track.getBoundingClientRect().left -
-      this.track.clientLeft
+      this.track.clientLeft -
+      padStart
     );
   }
 

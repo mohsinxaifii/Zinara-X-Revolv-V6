@@ -24,22 +24,30 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1 1 335px;
+  flex: 0 1 335px;
+  min-width: 0;
 }
 
-.footer_wrapper_top_brand svg {
-  height: 48px;
-  width: auto;
+/* Figma 7930:104703 - the Z monogram at 54 wide, not the wordmark. */
+.footer_wrapper_top_brand_mark {
+  display: block;
   color: var(--color-brand, #712242);
+}
+
+.footer_wrapper_top_brand_mark svg {
+  display: block;
+  width: 54px;
+  height: auto;
 }
 
 .footer_wrapper_top_brand_tagline {
   margin: 0;
-  max-width: 20ch;
+  max-width: 261px;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 32px;
-  line-height: 1.24;
+  line-height: 1.25;
   color: var(--color-brand, #712242);
 }
 
@@ -47,19 +55,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  flex: 2 1 600px;
+  flex: 0 1 auto;
 }
 
 .footer_wrapper_top_columns_col {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  flex: 1 1 150px;
+  flex: 0 0 174.5px;
+  width: 174.5px;
 }
 
 .footer_wrapper_top_columns_col_title {
   margin: 0;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.375;
@@ -89,11 +99,18 @@
   color: var(--color-brand, #712242);
 }
 
+/* Menu titles arrive in whatever case the merchant typed; Figma sets them in
+   sentence case. `inline-block` is load-bearing - ::first-letter only applies to
+   block containers, so on a plain inline <a> the rule below is silently ignored
+   and every link renders lowercase. */
 .footer_wrapper_top_columns_col_list_link:not(.footer_wrapper_top_columns_col_list_link--icon) {
+  display: inline-block;
   text-transform: lowercase;
 }
 
-.footer_wrapper_top_columns_col_list_link:not(.footer_wrapper_top_columns_col_list_link--icon)::first-letter {
+.footer_wrapper_top_columns_col_list_link:not(
+    .footer_wrapper_top_columns_col_list_link--icon
+  )::first-letter {
   text-transform: uppercase;
 }
 
@@ -126,14 +143,16 @@
 .footer_wrapper_legal_company {
   margin: 0;
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 16px;
+  line-height: 1.5;
   color: var(--color-brand, #712242);
 }
 
+/* Figma 7930:104760 runs the address on one line across the full width. */
 .footer_wrapper_legal_address {
   margin: 0;
-  max-width: 60ch;
   font-family: var(--font-secondary--family);
   font-weight: 500;
   font-size: 14px;
@@ -170,6 +189,7 @@
   font-family: var(--font-secondary--family);
   font-weight: 600;
   font-size: 14px;
+  line-height: 1.714;
   color: var(--color-brand, #712242);
 }
 
@@ -178,17 +198,40 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+/* Figma 7930:104766 / 104772 - the badges sit on 16px, the payment row on 13px. */
+.footer_wrapper_apps_badges {
   gap: 16px;
 }
 
+.footer_wrapper_payment_icons {
+  gap: 13px;
+}
+
+/* Each mark is drawn at its own size in Figma (66x19.8, 108x42.12, 86x33 and a
+   payment row from 20.7 to 35.2 tall), so cap the height rather than set it -
+   a single height would stretch every logo to the same band. */
 .footer_wrapper_apps_badges_badge img {
   display: block;
-  height: 42px;
   width: auto;
+  max-height: 42px;
   object-fit: contain;
 }
 
 .footer_wrapper_payment_icons_icon {
+  display: flex;
+  align-items: center;
+}
+
+.footer_wrapper_payment_icons_icon img {
+  display: block;
+  width: auto;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+.footer_wrapper_payment_icons_fallback {
   height: 32px;
   width: auto;
 }

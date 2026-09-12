@@ -30,7 +30,8 @@
     "read_more": "Read more",
     "close": "Close",
     "review": "Review",
-    "follow_us": "Follow us on"
+    "follow_us": "Follow us on",
+    "breadcrumb": "Breadcrumb"
   },
   "404": {
     "title": "404",

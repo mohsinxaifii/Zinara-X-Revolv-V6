@@ -4,6 +4,8 @@
 .usp-grid {
   display: block;
   width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
   background-color: #fff;
   padding: 24px var(--page-margin) 32px;
   box-sizing: border-box;
@@ -18,7 +20,7 @@
   /* Figma authors both columns at 421px wide; shrink rather than overflow. */
   width: min(842px, 100%);
   margin-inline: auto;
-  border: 1px solid #d38a0d;
+  box-shadow: inset 0 0 0 1px #d38a0d;
   border-radius: 12px;
   overflow: hidden;
 }

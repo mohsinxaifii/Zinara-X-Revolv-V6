@@ -1,0 +1,124 @@
+/* Figma: About us 7930:95474 > Frame 1116601747 (7930:95516).
+   Copy on the left, and on the right three 200px columns whose 410px stacks are
+   clipped to a 230px window - the middle one anchored to the bottom, so the
+   tiles read as a staggered mosaic. */
+.about-intro {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+}
+
+.about-intro_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+  box-sizing: border-box;
+}
+
+.about-intro_wrapper_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+}
+
+.about-intro_wrapper_row_text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 0 1 397px;
+  min-width: 0;
+}
+
+.about-intro_wrapper_row_text_heading {
+  margin: 0;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.219;
+  color: #000;
+}
+
+.about-intro_wrapper_row_text_body {
+  margin: 0;
+  font-family: var(--font-secondary--family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text-secondary, #494949);
+}
+
+.about-intro_wrapper_row_mosaic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 0 0 auto;
+}
+
+.about-intro_wrapper_row_mosaic_column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+  width: 200px;
+  height: 230px;
+  overflow: hidden;
+}
+
+/* Outer columns hang from the top, the middle one from the bottom. The 12px
+   inset is what leaves the following tile peeking rather than flush. */
+.about-intro_wrapper_row_mosaic_column--1,
+.about-intro_wrapper_row_mosaic_column--3 {
+  justify-content: flex-start;
+  padding-bottom: 12px;
+}
+
+.about-intro_wrapper_row_mosaic_column--2 {
+  justify-content: flex-end;
+  padding-top: 12px;
+}
+
+.about-intro_wrapper_row_mosaic_column_tile {
+  display: block;
+  flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+
+.about-intro_wrapper_row_mosaic_column_tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 989px) {
+  .about-intro_wrapper_row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-intro_wrapper_row_text {
+    flex-basis: auto;
+  }
+
+  .about-intro_wrapper_row_mosaic {
+    align-self: center;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .about-intro_wrapper_row_mosaic_column--3 {
+    display: none;
+  }
+}

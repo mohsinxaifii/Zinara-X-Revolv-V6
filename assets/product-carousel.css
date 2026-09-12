@@ -114,12 +114,20 @@
 }
 
 .product-carousel_wrapper_stage_panel_track {
+  width: calc(100% + var(--page-margin) * 2);
   display: flex;
   gap: var(--product-card-gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   padding-bottom: 2px;
+
+  /* Figma runs the row to the edge of the page, so the next card breaks the
+     margin instead of stopping at it. The track spans the full width and pads
+     its own content back in, which keeps the first card on the content edge. */
+  margin-inline: calc(var(--page-margin) * -1);
+  padding-inline: var(--page-margin);
+  scroll-padding-inline-start: var(--page-margin);
 }
 
 .product-carousel_wrapper_stage_panel_track::-webkit-scrollbar {

@@ -1,0 +1,37 @@
+{{ 'breadcrumb.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign current = section.settings.current_label
+  if current == blank
+    assign current = page.title
+  endif
+-%}
+
+<nav class="breadcrumb full-width" aria-label="{{ 'accessibility.breadcrumb' | t }}">
+  <ol class="breadcrumb_list">
+    <li class="breadcrumb_list_item">
+      <a href="{{ routes.root_url }}" class="breadcrumb_list_item_link">{{ section.settings.home_label }}</a>
+    </li>
+    <li class="breadcrumb_list_item">
+      <span class="breadcrumb_list_item_current" aria-current="page">{{ current }}</span>
+    </li>
+  </ol>
+</nav>
+
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "tag": "section",
+  "class": "shopify-section--breadcrumb",
+  "settings": [
+    { "type": "text", "id": "home_label", "label": "Home label", "default": "Home" },
+    {
+      "type": "text",
+      "id": "current_label",
+      "label": "Current page label",
+      "info": "Leave empty to use the page title."
+    }
+  ],
+  "presets": [{ "name": "Breadcrumb" }]
+}
+{% endschema %}

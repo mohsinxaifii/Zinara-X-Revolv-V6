@@ -56,10 +56,17 @@
 .testimonial-carousel_wrapper_track {
   display: flex;
   gap: var(--testimonial-gap);
-  width: 100%;
+  width: calc(100% + var(--page-margin) * 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+
+  /* Figma runs the row to the edge of the page, so the next card breaks the
+     margin instead of stopping at it. The track spans the full width and pads
+     its own content back in, which keeps the first card on the content edge. */
+  margin-inline: calc(var(--page-margin) * -1);
+  padding-inline: var(--page-margin);
+  scroll-padding-inline-start: var(--page-margin);
 }
 
 .testimonial-carousel_wrapper_track::-webkit-scrollbar {
@@ -146,7 +153,7 @@
 .testimonial-carousel_wrapper_track_card_row_content_name {
   margin: 0;
   font-family: var(--font-secondary--family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
   color: #000;
@@ -193,7 +200,7 @@
   margin-top: auto;
   overflow: hidden;
   font-family: var(--font-secondary--family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   line-height: 1.428;
   color: var(--color-brand, #712242);
