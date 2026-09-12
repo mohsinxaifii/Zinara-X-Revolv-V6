@@ -104,6 +104,19 @@
       <product-gallery class="pdp_gallery_inner">
         <div class="pdp_gallery_stage">
           {%- for media in product.media -%}
+            {%- liquid
+              comment
+                The first frame is the LCP image, so it is fetched eagerly while
+                the rest wait. Both of these have to be resolved before the tag:
+                a filter written inline in image_tag's argument list binds to the
+                tag's output, not to the argument.
+              endcomment
+              assign media_loading = 'lazy'
+              if forloop.first
+                assign media_loading = 'eager'
+              endif
+              assign media_alt = media.alt | default: product.title
+            -%}
             <button
               type="button"
               class="pdp_gallery_stage_slide{% if forloop.first %} is-active{% endif %}"
@@ -124,11 +137,7 @@
                 {{
                   media
                   | image_url: width: 1112
-                  | image_tag:
-                    loading: forloop.first | default: 'lazy',
-                    widths: '556,834,1112',
-                    sizes: '556px',
-                    alt: media.alt | default: product.title
+                  | image_tag: loading: media_loading, widths: '556,834,1112', sizes: '556px', alt: media_alt
                 }}
               {%- endif -%}
             </button>
@@ -552,11 +561,16 @@
                 {%- for item in highlights -%}
                   {%- assign icon_index = forloop.index0 | modulo: 5 -%}
                   {%- case icon_index -%}
-                    {%- when 0 -%}{%- assign icon_name = 'icon-leaf.svg' -%}
-                    {%- when 1 -%}{%- assign icon_name = 'icon-sparkles.svg' -%}
-                    {%- when 2 -%}{%- assign icon_name = 'icon-zap.svg' -%}
-                    {%- when 3 -%}{%- assign icon_name = 'icon-bacteria.svg' -%}
-                    {%- else -%}{%- assign icon_name = 'icon-honour-star.svg' -%}
+                    {%- when 0 -%}
+                      {%- assign icon_name = 'icon-leaf.svg' -%}
+                    {%- when 1 -%}
+                      {%- assign icon_name = 'icon-sparkles.svg' -%}
+                    {%- when 2 -%}
+                      {%- assign icon_name = 'icon-zap.svg' -%}
+                    {%- when 3 -%}
+                      {%- assign icon_name = 'icon-bacteria.svg' -%}
+                    {%- else -%}
+                      {%- assign icon_name = 'icon-honour-star.svg' -%}
                   {%- endcase -%}
                   <li class="pdp_highlights_item">
                     <span class="pdp_highlights_item_icon" aria-hidden="true">
@@ -737,7 +751,11 @@
                     {{- 'icon-plus.svg' | inline_asset_content -}}
                   </span>
                 {%- endunless -%}
-                <article class="pdp-mini" data-pair-item data-variant-id="{{ item.selected_or_first_available_variant.id }}">
+                <article
+                  class="pdp-mini"
+                  data-pair-item
+                  data-variant-id="{{ item.selected_or_first_available_variant.id }}"
+                >
                   <a href="{{ item.url }}" class="pdp-mini_media">
                     {%- if item.featured_image -%}
                       {{
