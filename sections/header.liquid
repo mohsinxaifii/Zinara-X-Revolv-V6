@@ -1,5 +1,4 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
-{{ 'search-suggest.css' | asset_url | stylesheet_tag }}
 
 <header-component class="header full-width" data-drawer-open="false">
   <div class="header_wrapper">
@@ -27,7 +26,20 @@
       </a>
     </div>
 
-    {%- render 'search-suggest' -%}
+    <form action="{{ routes.search_url }}" method="get" role="search" class="header_wrapper_search">
+      <button type="submit" class="header_wrapper_search_icon" aria-label="{{ 'accessibility.search' | t }}">
+        {{ 'icon-search.svg' | inline_asset_content }}
+      </button>
+      <input
+        type="search"
+        name="q"
+        class="header_wrapper_search_input"
+        placeholder="{{ 'search.placeholder_short' | t }}"
+        autocomplete="off"
+        value="{{ search.terms | escape }}"
+      >
+      <input type="hidden" name="type" value="product">
+    </form>
 
     <div class="header_wrapper_actions">
       <a
@@ -103,7 +115,6 @@
 </header-component>
 
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'search-suggest.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

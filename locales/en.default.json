@@ -31,9 +31,7 @@
     "close": "Close",
     "review": "Review",
     "follow_us": "Follow us on",
-    "breadcrumb": "Breadcrumb",
-    "previous": "Previous",
-    "next": "Next"
+    "breadcrumb": "Breadcrumb"
   },
   "404": {
     "title": "404",
@@ -69,10 +67,7 @@
     "sold_out": "Sold out",
     "size_guide": "Size guide",
     "select_variant": "Select variant",
-    "done": "Done",
-    "price_drop": "Price drop",
-    "open_image": "Open image {{ index }} full screen",
-    "show_image": "Show image {{ index }}"
+    "done": "Done"
   },
   "collection": {
     "filters": "Filters",

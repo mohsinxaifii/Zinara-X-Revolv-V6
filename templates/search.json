@@ -11,65 +11,8 @@
   "sections": {
     "main": {
       "type": "search",
-      "blocks": {
-        "chip-1": {
-          "type": "category",
-          "settings": {
-            "label": "All",
-            "url": "/collections/all-products"
-          }
-        },
-        "chip-2": {
-          "type": "category",
-          "settings": {
-            "label": "Rings",
-            "url": "/collections/all-rings"
-          }
-        },
-        "chip-3": {
-          "type": "category",
-          "settings": {
-            "label": "Earrings",
-            "url": "/collections/all-earrings"
-          }
-        },
-        "chip-4": {
-          "type": "category",
-          "settings": {
-            "label": "Pendants",
-            "url": "/collections/all-pendants"
-          }
-        },
-        "chip-5": {
-          "type": "category",
-          "settings": {
-            "label": "Engagement rings",
-            "url": "/collections/engagement-rings"
-          }
-        },
-        "chip-6": {
-          "type": "category",
-          "settings": {
-            "label": "Bestsellers",
-            "url": "/collections/bestsellers"
-          }
-        }
-      },
-      "block_order": [
-        "chip-1",
-        "chip-2",
-        "chip-3",
-        "chip-4",
-        "chip-5",
-        "chip-6"
-      ],
-      "settings": {
-        "heading": "Search results",
-        "results_per_page": 24
-      }
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
