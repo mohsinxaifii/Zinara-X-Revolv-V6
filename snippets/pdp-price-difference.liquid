@@ -18,7 +18,8 @@
   assign has_mined = false
   if mined_price.amount > 0
     assign has_mined = true
-    assign saved = mined_price.amount | times: 100 | minus: current_variant.price
+    assign mined_cents = mined_price.amount | times: 100
+    assign saved = mined_cents | minus: current_variant.price
   endif
 -%}
 
@@ -50,7 +51,7 @@
             <div class="pdp-diff_compare_cell">
               <span class="pdp-diff_compare_cell_label">Mined diamond</span>
               <span class="pdp-diff_compare_cell_price">
-                {%- render 'money', amount: mined_price.amount | times: 100 -%}
+                {%- render 'money', amount: mined_cents -%}
               </span>
             </div>
             <span class="pdp-diff_compare_arrow" aria-hidden="true">&rarr;</span>

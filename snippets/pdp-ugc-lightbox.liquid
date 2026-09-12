@@ -6,7 +6,7 @@
   opening the lightbox doesn't start three video downloads at once.
 
   @param {object} product - a Shopify product object
-  @param {array} videos - files from `custom.pdp_ugc_videos`
+  @param {object} videos - files from `custom.pdp_ugc_videos`
 {%- enddoc -%}
 
 <dialog class="pdp-ugc-box" data-sheet="ugc" scroll-lock aria-label="Customer videos">
@@ -61,7 +61,8 @@
   </div>
 
   {%- liquid
-    assign shoppable = product.metafields['shopify--discovery--product_recommendation'].complementary_products.value
+    assign shopify_recs = product.metafields['shopify--discovery--product_recommendation']
+    assign shoppable = product.metafields.custom.pdp_pair_products.value | default: shopify_recs.complementary_products.value
     assign shop_the_look = product
   -%}
   <div class="pdp-ugc-box_shop">

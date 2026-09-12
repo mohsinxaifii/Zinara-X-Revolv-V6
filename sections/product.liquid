@@ -40,8 +40,9 @@
   assign size_chart = product.metafields.custom.pdp_size_chart.value | default: product.metafields.custom.size_chart.value
   assign detail_lists = product.metafields.custom.pdp_detail_lists.value | default: product.metafields.content.product_details_list.value
 
-  assign pair_products = product.metafields['shopify--discovery--product_recommendation'].complementary_products.value
-  assign related_products = product.metafields['shopify--discovery--product_recommendation'].related_products.value
+  assign shopify_recs = product.metafields['shopify--discovery--product_recommendation']
+  assign pair_products = product.metafields.custom.pdp_pair_products.value | default: shopify_recs.complementary_products.value
+  assign related_products = product.metafields.custom.pdp_related.value | default: shopify_recs.related_products.value
 
   comment
     Offers are a shop-level list and each entry may pin itself to particular
@@ -873,7 +874,6 @@
   {%- render 'pdp-size-guide', product: product, whatsapp_url: section.settings.whatsapp_url -%}
   {%- render 'pdp-offers-sheet', offer_handles: offer_handles -%}
   {%- render 'pdp-addons-sheet',
-    product: product,
     addons: addons,
     hero: section.settings.addons_image,
     whatsapp_url: section.settings.whatsapp_url
