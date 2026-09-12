@@ -26,6 +26,8 @@
   class="collection search full-width"
   data-collection-url="{{ routes.search_url }}"
 >
+    {%- render 'search-skeleton' -%}
+
   <div class="search_head">
     <h1 class="search_head_title">{{ section.settings.heading }}</h1>
     {%- if search.performed and terms != blank -%}
@@ -200,8 +202,6 @@
         {%- endpaginate -%}
       </div>
     </form>
-
-    {%- render 'search-skeleton' -%}
   {%- endif -%}
 </collection-page>
 
