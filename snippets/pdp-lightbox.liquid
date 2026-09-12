@@ -31,7 +31,6 @@
     <figure class="pdp-lightbox_body_stage">
       <div class="pdp-lightbox_body_stage_frame">
         {%- for media in product.media -%}
-          {%- assign media_alt = media.alt | default: product.title -%}
           <div
             class="pdp-lightbox_body_stage_frame_slide{% if forloop.first %} is-active{% endif %}"
             data-lightbox-slide
@@ -45,7 +44,7 @@
               {{
                 media
                 | image_url: width: 1252
-                | image_tag: loading: 'lazy', widths: '626,939,1252', sizes: '626px', alt: media_alt
+                | image_tag: loading: 'lazy', widths: '626,939,1252', sizes: '626px', alt: media.alt | default: product.title
               }}
             {%- endif -%}
           </div>
