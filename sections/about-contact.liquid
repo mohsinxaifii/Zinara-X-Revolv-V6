@@ -22,6 +22,9 @@
             <a
               href="{{ block.settings.url | default: '#' }}"
               class="about-contact_wrapper_body_channels_card"
+              {% if block.settings.copy_on_click %}
+                data-copy="{{ block.settings.value | escape }}"
+              {% endif %}
               {{ block.shopify_attributes }}
             >
               <span class="about-contact_wrapper_body_channels_card_icon" aria-hidden="true">
@@ -34,11 +37,19 @@
                     {{ 'icon-whatsapp.svg' | inline_asset_content }}
                 {%- endcase -%}
               </span>
+              {%- if block.settings.label != blank -%}
+                <span class="about-contact_wrapper_body_channels_card_label">{{ block.settings.label }}</span>
+              {%- endif -%}
+
               <span
                 class="about-contact_wrapper_body_channels_card_value{% if block.settings.icon == 'email' %} about-contact_wrapper_body_channels_card_value--underlined{% endif %}"
               >
                 {{- block.settings.value -}}
               </span>
+
+              {%- if block.settings.copy_on_click -%}
+                <span class="about-contact_wrapper_body_channels_card_copied" data-copied aria-live="polite"></span>
+              {%- endif -%}
             </a>
           {%- endfor -%}
         </div>
@@ -46,6 +57,8 @@
     </div>
   </div>
 </section>
+
+<script src="{{ 'contact-channels.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
@@ -78,8 +91,16 @@
           ],
           "default": "phone"
         },
+        { "type": "text", "id": "label", "label": "Label", "info": "Optional line above the value." },
         { "type": "text", "id": "value", "label": "Value", "default": "+91-8851812814" },
-        { "type": "url", "id": "url", "label": "Link" }
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "checkbox",
+          "id": "copy_on_click",
+          "label": "Copy value on click",
+          "info": "Copies the value to the clipboard instead of following the link.",
+          "default": false
+        }
       ]
     }
   ],

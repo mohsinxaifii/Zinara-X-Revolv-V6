@@ -82,6 +82,7 @@
         {% endcomment %}
         wishlistCount: {{ 'wishlist.item_count' | t: count: '__COUNT__' | json }},
         wishlistCountOne: {{ 'wishlist.item_count_one' | t | json }},
+        contactCopied: {{ 'contact.copied' | t | json }},
       };
     </script>
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>

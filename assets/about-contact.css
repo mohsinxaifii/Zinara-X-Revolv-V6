@@ -104,3 +104,28 @@
     flex-direction: column;
   }
 }
+
+/* The contact page's cards carry a label line above the value; the About page's
+   do not, so the value keeps its place either way. Figma: Contact us
+   7930:94717 > Frame 1116601772. */
+.about-contact_wrapper_body_channels_card_label {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #808080;
+}
+
+/* Reserves no space until there is something to say, so the card does not
+   change height when the number is copied. */
+.about-contact_wrapper_body_channels_card_copied {
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-accent, #f0166e);
+}
+
+.about-contact_wrapper_body_channels_card.is-copied {
+  border-color: var(--color-accent, #f0166e);
+}
