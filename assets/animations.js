@@ -126,8 +126,7 @@
 
       // A sidesheet slides in from the edge it is pinned to; anything centred
       // scales up from just under full size.
-      const panel =
-        dialog.querySelector('.pdp-sheet_panel, .variant-drawer_panel') || null;
+      const panel = dialog.querySelector('.pdp-sheet_panel, .variant-drawer_panel') || null;
       const centred =
         dialog.querySelector('.pdp-modal_panel, .pdp-lightbox_body, .pdp-ugc-box_reel') || null;
       const target = panel || centred || dialog.firstElementChild;
@@ -145,7 +144,14 @@
         gsap.fromTo(
           target,
           { opacity: 0, ...enter },
-          { opacity: 1, x: 0, scale: 1, duration: 0.34, ease: 'power3.out', clearProps: 'transform' },
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.34,
+            ease: 'power3.out',
+            clearProps: 'transform',
+          },
         );
       };
 
@@ -185,73 +191,71 @@
     if (!hasGsap() || reduced.matches) return;
     const { gsap } = window;
 
-    root
-      .querySelectorAll('details:not([data-motion-bound])')
-      .forEach((details) => {
-        const summary = details.querySelector('summary');
-        const body = summary?.nextElementSibling;
-        if (!summary || !body) return;
-        details.setAttribute('data-motion-bound', '');
+    root.querySelectorAll('details:not([data-motion-bound])').forEach((details) => {
+      const summary = details.querySelector('summary');
+      const body = summary?.nextElementSibling;
+      if (!summary || !body) return;
+      details.setAttribute('data-motion-bound', '');
 
-        summary.addEventListener('click', (event) => {
-          event.preventDefault();
-          if (details.dataset.motionBusy === 'true') return;
-          details.dataset.motionBusy = 'true';
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (details.dataset.motionBusy === 'true') return;
+        details.dataset.motionBusy = 'true';
 
-          if (!details.open) {
-            // A named <details> is an exclusive group: opening one closes its
-            // siblings. The browser does that instantly, so they are collapsed
-            // here on the same curve instead of snapping shut underneath.
-            if (details.name) {
-              details.parentElement
-                ?.querySelectorAll(`details[name="${CSS.escape(details.name)}"][open]`)
-                .forEach((sibling) => {
-                  if (sibling === details) return;
-                  const siblingBody = sibling.querySelector('summary')?.nextElementSibling;
-                  if (!siblingBody) return;
-                  gsap.to(siblingBody, {
-                    height: 0,
-                    opacity: 0,
-                    duration: 0.28,
-                    ease: 'power2.in',
-                    onComplete: () => {
-                      sibling.open = false;
-                      gsap.set(siblingBody, { clearProps: 'height,opacity,overflow' });
-                    },
-                  });
+        if (!details.open) {
+          // A named <details> is an exclusive group: opening one closes its
+          // siblings. The browser does that instantly, so they are collapsed
+          // here on the same curve instead of snapping shut underneath.
+          if (details.name) {
+            details.parentElement
+              ?.querySelectorAll(`details[name="${CSS.escape(details.name)}"][open]`)
+              .forEach((sibling) => {
+                if (sibling === details) return;
+                const siblingBody = sibling.querySelector('summary')?.nextElementSibling;
+                if (!siblingBody) return;
+                gsap.to(siblingBody, {
+                  height: 0,
+                  opacity: 0,
+                  duration: 0.28,
+                  ease: 'power2.in',
+                  onComplete: () => {
+                    sibling.open = false;
+                    gsap.set(siblingBody, { clearProps: 'height,opacity,overflow' });
+                  },
                 });
-            }
+              });
+          }
 
-            details.open = true;
-            gsap.fromTo(
-              body,
-              { height: 0, opacity: 0 },
-              {
-                height: 'auto',
-                opacity: 1,
-                duration: 0.36,
-                ease: 'power2.out',
-                onComplete: () => {
-                  gsap.set(body, { clearProps: 'height,opacity,overflow' });
-                  details.dataset.motionBusy = 'false';
-                },
-              },
-            );
-          } else {
-            gsap.to(body, {
-              height: 0,
-              opacity: 0,
-              duration: 0.28,
-              ease: 'power2.in',
+          details.open = true;
+          gsap.fromTo(
+            body,
+            { height: 0, opacity: 0 },
+            {
+              height: 'auto',
+              opacity: 1,
+              duration: 0.36,
+              ease: 'power2.out',
               onComplete: () => {
-                details.open = false;
                 gsap.set(body, { clearProps: 'height,opacity,overflow' });
                 details.dataset.motionBusy = 'false';
               },
-            });
-          }
-        });
+            },
+          );
+        } else {
+          gsap.to(body, {
+            height: 0,
+            opacity: 0,
+            duration: 0.28,
+            ease: 'power2.in',
+            onComplete: () => {
+              details.open = false;
+              gsap.set(body, { clearProps: 'height,opacity,overflow' });
+              details.dataset.motionBusy = 'false';
+            },
+          });
+        }
       });
+    });
   }
 
   /* -------------------------------------------------------------- boot */

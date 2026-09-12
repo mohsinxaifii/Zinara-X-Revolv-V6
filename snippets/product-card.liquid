@@ -54,7 +54,14 @@
   endif
 -%}
 
-<a href="{{ product.url }}" class="product-card{% if is_grid %} product-card--grid{% endif %}">
+<a
+  href="{{ product.url }}"
+  class="product-card{% if is_grid %} product-card--grid{% endif %}"
+  {% if is_grid %}
+    data-animate
+    data-animate-distance="20"
+  {% endif %}
+>
   <span class="product-card_media">
     {%- if product.featured_image -%}
       {{
