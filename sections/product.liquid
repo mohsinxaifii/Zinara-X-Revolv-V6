@@ -40,6 +40,17 @@
   assign rating_text = rating_whole | append: '.' | append: rating_frac
 
   assign material_name = product.metafields.custom.pdp_material_name.value | default: 'Gold Vermeil'
+  comment
+    The explainer accordion and the link that opens it both disappear when a
+    product carries none of the content they would show.
+  endcomment
+  assign has_explainer = false
+  if product.metafields.custom.pdp_material_callouts.value != blank
+    assign has_explainer = true
+  endif
+  if product.metafields.custom.pdp_stone_compare_labels.value != blank
+    assign has_explainer = true
+  endif
   assign material_tags = product.metafields.custom.pdp_material_tags.value
   assign media_badges = product.metafields.custom.pdp_media_badges.value
   assign highlights = product.metafields.custom.pdp_highlights.value
@@ -631,7 +642,14 @@
           {%- endif -%}
         {%- endfor -%}
 
-        <details class="pdp_accordion pdp_accordion--flush" id="pdp-know-jewellery" open>
+        <details
+          class="pdp_accordion pdp_accordion--flush"
+          id="pdp-know-jewellery"
+          open
+          {% unless has_explainer %}
+            hidden
+          {% endunless %}
+        >
           <summary class="pdp_accordion_summary">
             <span>Know your jewellery</span>
             <span class="pdp_accordion_summary_sign" aria-hidden="true">

@@ -87,7 +87,9 @@
     "base_metal": "Base metal",
     "plating": "Plating",
     "certification": "Certification",
-    "pricing": "Pricing"
+    "pricing": "Pricing",
+    "size_chart": "Size chart",
+    "what_is": "What is {{ material }}?"
   },
   "collection": {
     "filters": "Filters",
