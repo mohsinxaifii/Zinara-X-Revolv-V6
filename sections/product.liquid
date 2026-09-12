@@ -39,6 +39,18 @@
   assign rating_frac = rating_frac | prepend: '00' | slice: -2, 2
   assign rating_text = rating_whole | append: '.' | append: rating_frac
 
+  assign material_name = product.metafields.custom.pdp_material_name.value | default: 'Gold Vermeil'
+  comment
+    The explainer accordion and the link that opens it both disappear when a
+    product carries none of the content they would show.
+  endcomment
+  assign has_explainer = false
+  if product.metafields.custom.pdp_material_callouts.value != blank
+    assign has_explainer = true
+  endif
+  if product.metafields.custom.pdp_stone_compare_labels.value != blank
+    assign has_explainer = true
+  endif
   assign material_tags = product.metafields.custom.pdp_material_tags.value
   assign media_badges = product.metafields.custom.pdp_media_badges.value
   assign highlights = product.metafields.custom.pdp_highlights.value
@@ -100,7 +112,7 @@
 
   <div class="pdp_layout">
     {%- comment -%} ---------------------------------------------- gallery {%- endcomment -%}
-    <div class="pdp_gallery">
+    <div class="pdp_gallery" data-animate data-animate-from="left">
       <product-gallery class="pdp_gallery_inner">
         <div class="pdp_gallery_stage">
           {%- for media in product.media -%}
@@ -217,7 +229,7 @@
     </div>
 
     {%- comment -%} ------------------------------------------------- info {%- endcomment -%}
-    <div class="pdp_info">
+    <div class="pdp_info" data-animate data-animate-from="right">
       {%- form 'product', product, class: 'pdp_info_form', novalidate: 'novalidate' -%}
         <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
 
@@ -388,10 +400,19 @@
           </div>
         {%- endif -%}
 
-        {%- comment -%} Vermeil explainer link - Figma 7930:96109 {%- endcomment -%}
-        <button type="button" class="pdp_explainer" data-open="know-jewellery">
+        {%- comment -%} Material explainer link - Figma 7930:96109 {%- endcomment -%}
+        <button
+          type="button"
+          class="pdp_explainer"
+          data-open="know-jewellery"
+          {% unless has_explainer %}
+            hidden
+          {% endunless %}
+        >
           <span class="pdp_explainer_dot" aria-hidden="true"></span>
-          <span class="pdp_explainer_text">What is Gold Vermeil?</span>
+          <span class="pdp_explainer_text">
+            {{- 'products.what_is' | t: material: material_name -}}
+          </span>
           {{ 'icon-caret-right.svg' | inline_asset_content }}
         </button>
 
@@ -437,7 +458,7 @@
       {%- comment -%} Shop with confidence - Figma 7930:96120 {%- endcomment -%}
       {%- assign trust_blocks = section.blocks | where: 'type', 'trust' -%}
       {%- if trust_blocks.size > 0 -%}
-        <section class="pdp_trust">
+        <section class="pdp_trust" data-animate>
           <h2 class="pdp_section_title">{{ section.settings.trust_heading }}</h2>
           <ul class="pdp_trust_grid">
             {%- for block in trust_blocks -%}
@@ -467,7 +488,7 @@
       {%- endif -%}
 
       {%- comment -%} Delivery estimate - Figma 7930:96136 {%- endcomment -%}
-      <section class="pdp_delivery">
+      <section class="pdp_delivery" data-animate>
         <h2 class="pdp_section_title">Delivery Estimate</h2>
         <div class="pdp_delivery_row">
           <input
@@ -510,7 +531,7 @@
       {%- endif -%}
 
       {%- comment -%} Need help choosing? - Figma 7930:96150 {%- endcomment -%}
-      <section class="pdp_help">
+      <section class="pdp_help" data-animate>
         <div class="pdp_help_copy">
           <h2 class="pdp_section_title">{{ section.settings.help_heading }}</h2>
           <p class="pdp_help_copy_body">{{ section.settings.help_body }}</p>
@@ -546,7 +567,7 @@
       </section>
 
       {%- comment -%} Accordions - Figma 7930:96179 / 7930:96225-96229 / 7930:96276 {%- endcomment -%}
-      <div class="pdp_accordions">
+      <div class="pdp_accordions" data-animate>
         {%- if highlights != blank -%}
           <details class="pdp_accordion" open>
             <summary class="pdp_accordion_summary">
@@ -621,7 +642,14 @@
           {%- endif -%}
         {%- endfor -%}
 
-        <details class="pdp_accordion pdp_accordion--flush" id="pdp-know-jewellery" open>
+        <details
+          class="pdp_accordion pdp_accordion--flush"
+          id="pdp-know-jewellery"
+          open
+          {% unless has_explainer %}
+            hidden
+          {% endunless %}
+        >
           <summary class="pdp_accordion_summary">
             <span>Know your jewellery</span>
             <span class="pdp_accordion_summary_sign" aria-hidden="true">
@@ -640,7 +668,7 @@
       </div>
 
       {%- comment -%} You may also like / Recently viewed - Figma 7930:96277 {%- endcomment -%}
-      <section class="pdp_related" data-related>
+      <section class="pdp_related" data-related data-animate>
         <div class="pdp_related_tabs" role="tablist">
           <button
             type="button"
@@ -663,7 +691,7 @@
         </div>
 
         <scroll-carousel class="pdp_related_panel" data-panel="also-like">
-          <div class="pdp_related_panel_track" data-track>
+          <div class="pdp_related_panel_track" data-track data-animate-group data-animate-stagger="0.06">
             {%- if related_products != blank -%}
               {%- for item in related_products limit: 12 -%}
                 {%- render 'product-card', product: item, variant: 'grid' -%}
@@ -699,7 +727,7 @@
           | replace: '[', '<span class="pdp_difference_title_accent">'
           | replace: ']', '</span>'
         -%}
-        <section class="pdp_difference">
+        <section class="pdp_difference" data-animate data-animate-from="scale">
           <h2 class="pdp_difference_title">{{ heading_html }}</h2>
           <table class="pdp_difference_table">
             <thead>
@@ -735,7 +763,7 @@
 
       {%- comment -%} Pair beautifully with - Figma 7930:96345 {%- endcomment -%}
       {%- if pair_products != blank -%}
-        <section class="pdp_pair" data-pair>
+        <section class="pdp_pair" data-pair data-animate>
           <div class="pdp_pair_card">
             <h2 class="pdp_pair_card_title">
               <span class="pdp_pair_card_title_icon" aria-hidden="true">
@@ -801,7 +829,7 @@
 
       {%- comment -%} Curated trends (UGC) - Figma 7930:96394 {%- endcomment -%}
       {%- if ugc_videos != blank -%}
-        <section class="pdp_ugc">
+        <section class="pdp_ugc" data-animate>
           <h2 class="pdp_section_title pdp_section_title--lg">{{ section.settings.ugc_heading }}</h2>
           <scroll-carousel class="pdp_ugc_carousel">
             <div class="pdp_ugc_carousel_track" data-track>
@@ -832,7 +860,7 @@
       {%- endif -%}
 
       {%- comment -%} Customer reviews - Figma 7930:96415 {%- endcomment -%}
-      <section class="pdp_reviews" id="pdp-reviews">
+      <section class="pdp_reviews" id="pdp-reviews" data-animate>
         <div class="pdp_reviews_head">
           <h2 class="pdp_section_title">Customer reviews</h2>
           <a

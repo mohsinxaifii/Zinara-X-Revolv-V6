@@ -502,7 +502,11 @@
   align-items: stretch;
   padding-bottom: 4px;
   overflow-x: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.pdp_offers_rail::-webkit-scrollbar {
+  display: none;
 }
 
 .pdp_offers_rail .pdp-offer {

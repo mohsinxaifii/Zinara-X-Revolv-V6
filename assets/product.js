@@ -472,15 +472,13 @@
     initCart() {
       this.form?.addEventListener('submit', (event) => {
         event.preventDefault();
-        this.addToCart(this.buildItems());
+        this.addToCart(this.buildItems(), { trigger: this.querySelector('[data-add-to-cart]') });
       });
 
-      this.querySelector('[data-buy-now]')?.addEventListener('click', async () => {
-        const ok = await this.addToCart(this.buildItems(), { silent: true });
-        if (ok)
-          window.location.href = window.Shopify?.routes?.root
-            ? `${window.Shopify.routes.root}checkout`
-            : '/checkout';
+      const buyNow = this.querySelector('[data-buy-now]');
+      buyNow?.addEventListener('click', async () => {
+        const ok = await this.addToCart(this.buildItems(), { trigger: buyNow });
+        if (ok) window.location.href = `${window.Shopify?.routes?.root || '/'}checkout`;
       });
 
       // Add-ons and paired products are selections, not immediate adds, so the
@@ -498,7 +496,8 @@
         this.sheets.get('addons')?.close();
       });
 
-      this.querySelector('[data-pair-add]')?.addEventListener('click', () => {
+      const pairAdd = this.querySelector('[data-pair-add]');
+      pairAdd?.addEventListener('click', () => {
         const items = Array.from(
           this.querySelectorAll('[data-pair-toggle][aria-pressed="true"]'),
         ).map((button) => ({
@@ -510,25 +509,23 @@
           id: Number(item.dataset.variantId),
           quantity: 1,
         }));
-        this.addToCart(items.length > 0 ? items : all);
+        this.addToCart(items.length > 0 ? items : all, { trigger: pairAdd });
       });
 
-      this.querySelector('[data-diff-add]')?.addEventListener('click', () => {
-        this.addToCart(this.buildItems());
-        this.sheets.get('price-difference')?.close();
+      const diffAdd = this.querySelector('[data-diff-add]');
+      diffAdd?.addEventListener('click', async () => {
+        // Close only once the line is in, so the drawer cannot open behind a
+        // sheet that is still on screen.
+        const ok = await this.addToCart(this.buildItems(), { trigger: diffAdd });
+        if (ok) this.sheets.get('price-difference')?.close();
       });
 
       this.addEventListener('click', (event) => {
         const button = event.target.closest('[data-add-single]');
         if (!button) return;
-        this.addToCart([{ id: Number(button.dataset.variantId), quantity: 1 }]);
-        const label = button.querySelector('[data-add-single-label]');
-        if (!label) return;
-        const original = label.textContent;
-        label.textContent = button.dataset.addedLabel || 'Added';
-        setTimeout(() => {
-          label.textContent = original;
-        }, 1600);
+        this.addToCart([{ id: Number(button.dataset.variantId), quantity: 1 }], {
+          trigger: button,
+        });
       });
     }
 
@@ -545,55 +542,13 @@
       return items.filter((item) => Number.isFinite(item.id) && item.id > 0);
     }
 
-    async addToCart(items, { silent = false } = {}) {
-      if (items.length === 0) return false;
-
-      const button = this.querySelector('[data-add-to-cart]');
-      const label = this.querySelector('[data-add-label]');
-      const original = label?.textContent;
-      if (button) button.disabled = true;
-
-      try {
-        const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ items }),
-        });
-        if (!response.ok) throw new Error(await response.text());
-
-        await this.refreshCartCount();
-        if (!silent && label) {
-          label.textContent = 'Added to cart';
-          setTimeout(() => {
-            label.textContent = original;
-          }, 1600);
-        }
-        return true;
-      } catch (error) {
-        if (label) {
-          label.textContent = 'Could not add';
-          setTimeout(() => {
-            label.textContent = original;
-          }, 2000);
-        }
-        return false;
-      } finally {
-        if (button) button.disabled = false;
-      }
-    }
-
-    async refreshCartCount() {
-      try {
-        const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`);
-        const cart = await response.json();
-        const badge = document.querySelector('.header_wrapper_actions_cart_badge');
-        if (badge) {
-          badge.textContent = cart.item_count;
-          badge.hidden = cart.item_count === 0;
-        }
-      } catch (error) {
-        /* the count is cosmetic - the add already succeeded */
-      }
+    /**
+     * Thin wrapper over the shared cart, so the PDP's several buy paths get the
+     * same pending -> added -> drawer sequence as every other add in the theme.
+     */
+    async addToCart(items, { trigger } = {}) {
+      if (!window.zinaraCart) return false;
+      return window.zinaraCart.add(items, trigger || this.querySelector('[data-add-to-cart]'));
     }
   }
 

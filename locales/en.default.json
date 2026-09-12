@@ -53,7 +53,18 @@
     "checkout": "Checkout",
     "title": "Cart",
     "update": "Update",
-    "remove": "Remove"
+    "remove": "Remove",
+    "drawer_title": "Your cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue shopping",
+    "subtotal": "Subtotal",
+    "taxes_note": "Taxes and shipping calculated at checkout",
+    "adding": "Adding…",
+    "added": "Added to cart",
+    "failed": "Could not add",
+    "quantity": "Quantity",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity"
   },
   "customers": {
     "login": {
@@ -72,7 +83,13 @@
     "done": "Done",
     "price_drop": "Price drop",
     "open_image": "Open image {{ index }} full screen",
-    "show_image": "Show image {{ index }}"
+    "show_image": "Show image {{ index }}",
+    "base_metal": "Base metal",
+    "plating": "Plating",
+    "certification": "Certification",
+    "pricing": "Pricing",
+    "size_chart": "Size chart",
+    "what_is": "What is {{ material }}?"
   },
   "collection": {
     "filters": "Filters",

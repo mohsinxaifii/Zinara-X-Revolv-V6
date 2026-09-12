@@ -27,7 +27,7 @@
     {%- comment -%} Keep the chosen sort with the filter params on submit. {%- endcomment -%}
     <input type="hidden" name="sort_by" value="{{ sort_by }}" data-sort-input>
 
-    <aside class="collection_wrapper_filters" data-filters>
+    <aside class="collection_wrapper_filters" data-filters data-animate data-animate-from="left">
       <div class="collection_wrapper_filters_head">
         <h2 class="collection_wrapper_filters_head_title">{{ 'collection.filters' | t }}</h2>
         <a href="{{ collection.url }}?sort_by={{ sort_by }}" class="collection_wrapper_filters_head_clear">
@@ -139,7 +139,7 @@
       {%- endif -%}
 
       {%- paginate collection.products by section.settings.products_per_page -%}
-        <div class="collection_wrapper_main_grid" data-grid>
+        <div class="collection_wrapper_main_grid" data-grid data-animate-group data-animate-stagger="0.05">
           {%- for product in collection.products -%}
             {%- render 'product-card', product: product, variant: 'grid' -%}
           {%- else -%}
