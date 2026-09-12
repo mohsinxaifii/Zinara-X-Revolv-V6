@@ -14,11 +14,15 @@
 {%- enddoc -%}
 
 {%- liquid
-  assign mined_price = product.metafields.custom.pdp_mined_price.value
+  comment
+    A `money` metafield hands its amount back as a string, so it is coerced
+    before either comparing it or scaling it into the cents that `money` expects.
+  endcomment
+  assign mined_amount = product.metafields.custom.pdp_mined_price.value.amount | plus: 0
   assign has_mined = false
-  if mined_price.amount > 0
+  if mined_amount > 0
     assign has_mined = true
-    assign mined_cents = mined_price.amount | times: 100
+    assign mined_cents = mined_amount | times: 100
     assign saved = mined_cents | minus: current_variant.price
   endif
 -%}
