@@ -54,7 +54,7 @@
       "type": "header",
       "settings": {
         "menu": "main-menu",
-        "wishlist_url": ""
+        "wishlist_url": "/pages/wishlist"
       }
     },
     "category-nav": {
