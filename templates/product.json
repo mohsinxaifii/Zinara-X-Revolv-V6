@@ -9,10 +9,190 @@
  */
 {
   "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "home_label": "Home",
+        "current_label": ""
+      }
+    },
     "main": {
       "type": "product",
-      "settings": {}
+      "blocks": {
+        "trust-1": {
+          "type": "trust",
+          "settings": {
+            "icon": "icon-return",
+            "label": "7 days free return",
+            "action": "none"
+          }
+        },
+        "trust-2": {
+          "type": "trust",
+          "settings": {
+            "icon": "icon-certificate",
+            "label": "SGL certified diamonds",
+            "action": "sgl"
+          }
+        },
+        "trust-3": {
+          "type": "trust",
+          "settings": {
+            "icon": "icon-handshake",
+            "label": "Lifetime buyback & exchange",
+            "action": "none"
+          }
+        },
+        "trust-4": {
+          "type": "trust",
+          "settings": {
+            "icon": "icon-diamond-outline",
+            "label": "Lifetime free replating service",
+            "action": "none"
+          }
+        },
+        "diff-1": {
+          "type": "difference",
+          "settings": { "label": "Gold Vermeil", "show_sgl": false }
+        },
+        "diff-2": {
+          "type": "difference",
+          "settings": { "label": "Lab-Grown Diamonds", "show_sgl": true }
+        },
+        "diff-3": {
+          "type": "difference",
+          "settings": { "label": "925 Sterling Silver", "show_sgl": false }
+        },
+        "diff-4": {
+          "type": "difference",
+          "settings": { "label": "Transparent Pricing", "show_sgl": false }
+        },
+        "diff-5": {
+          "type": "difference",
+          "settings": { "label": "Lifetime Buyback", "show_sgl": false }
+        },
+        "diff-6": {
+          "type": "difference",
+          "settings": { "label": "Insured Shipping", "show_sgl": false }
+        },
+        "diff-7": {
+          "type": "difference",
+          "settings": { "label": "Certificate of Authenticity", "show_sgl": false }
+        }
+      },
+      "block_order": [
+        "trust-1",
+        "trust-2",
+        "trust-3",
+        "trust-4",
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7"
+      ],
+      "settings": {
+        "tax_note": "Price inclusive of all taxes",
+        "show_savings_calculator": true,
+        "trust_heading": "Shop with confidence",
+        "help_heading": "Need help choosing?",
+        "help_body": "Our experts can help you understand materials, sizing, care, and anything else before you make your choice.",
+        "whatsapp_url": "https://wa.me/919999999999",
+        "video_call_url": "https://wa.me/919999999999",
+        "gift_label": "Add a gift sleeve",
+        "addons_image": "shopify://shop_images/zinara-pdp-addons-hero.png",
+        "vermeil_image": "shopify://shop_images/zinara-kyj-gold-vermeil.png",
+        "diamond_image": "shopify://shop_images/zinara-kyj-diamond-icon.png",
+        "certificate_image": "shopify://shop_images/zinara-pdp-sgl-certificate.png",
+        "sgl_logo": "shopify://shop_images/zinara-pdp-sgl-logo.png",
+        "difference_heading": "The [Zinara] Difference",
+        "pair_heading": "Pair beautifully with",
+        "ugc_heading": "Curated trends for you",
+        "reviews_shown": 3
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are lab grown diamonds real?",
+            "answer": "Lab grown diamonds appear identical to natural diamonds and can't be distinguished by the naked eye and with standard microscopic tools. Trained jewellers and experts can't also tell the difference between them. They can only be distinguished from natural diamonds using specialized equipment that can detect the specific growth patterns and inclusions characteristic of their origin."
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can you tell the difference between lab grown diamonds and natural diamonds?",
+            "answer": ""
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are ZINARA lab grown diamonds graded and certified?",
+            "answer": ""
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver pan India?",
+            "answer": ""
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Is ID proof required for delivery?",
+            "answer": ""
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What payment options are available?",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
+    },
+    "featured-in": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo-1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-1.png"
+          }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-2.png"
+          }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-3.png"
+          }
+        }
+      },
+      "block_order": ["logo-1", "logo-2", "logo-3"],
+      "settings": {
+        "heading": "Featured in",
+        "background_color": "#fef4e2",
+        "speed": 25
+      }
     }
   },
-  "order": ["main"]
+  "order": ["breadcrumb", "main", "faq", "featured-in"]
 }
