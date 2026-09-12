@@ -20,12 +20,18 @@
 {%- liquid
   assign per_page = section.settings.articles_per_page
   assign featured_count = section.settings.featured_count
+
+  comment
+    Read through `default` so the section placed outside a blog template - which
+    its preset allows - falls to the empty state instead of paginating nil.
+  endcomment
+  assign article_count = blog.articles_count | default: 0
 -%}
 
 <blog-list class="blog full-width skeleton-host" data-blog>
   {%- render 'blog-skeleton', featured_count: featured_count -%}
 
-  {%- if blog.articles_count == 0 -%}
+  {%- if article_count == 0 -%}
     <div class="blog_empty">
       <p class="blog_empty_text">{{ 'blog.empty' | t }}</p>
     </div>

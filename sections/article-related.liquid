@@ -12,9 +12,17 @@
 {{ 'article-related.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  comment
+    The count is read through `default` rather than compared straight: placed
+    outside an article with no fallback blog chosen, `blogs[blank]` hands back a
+    string, and `string.articles_count > 1` is a Liquid error rather than a
+    quiet false.
+  endcomment
   assign source = blog
-  if source == blank or source.articles_count == 0
+  assign source_count = source.articles_count | default: 0
+  if source_count == 0
     assign source = blogs[section.settings.blog]
+    assign source_count = source.articles_count | default: 0
   endif
 
   comment
@@ -24,7 +32,7 @@
   assign fetch_limit = wanted | plus: 1
 -%}
 
-{%- if source.articles_count > 1 -%}
+{%- if source_count > 1 -%}
   <section class="article-related full-width">
     <div class="article-related_wrapper">
       <div class="article-related_wrapper_head">
