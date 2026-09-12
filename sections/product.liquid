@@ -39,6 +39,7 @@
   assign rating_frac = rating_frac | prepend: '00' | slice: -2, 2
   assign rating_text = rating_whole | append: '.' | append: rating_frac
 
+  assign material_name = product.metafields.custom.pdp_material_name.value | default: 'Gold Vermeil'
   assign material_tags = product.metafields.custom.pdp_material_tags.value
   assign media_badges = product.metafields.custom.pdp_media_badges.value
   assign highlights = product.metafields.custom.pdp_highlights.value
@@ -388,10 +389,19 @@
           </div>
         {%- endif -%}
 
-        {%- comment -%} Vermeil explainer link - Figma 7930:96109 {%- endcomment -%}
-        <button type="button" class="pdp_explainer" data-open="know-jewellery">
+        {%- comment -%} Material explainer link - Figma 7930:96109 {%- endcomment -%}
+        <button
+          type="button"
+          class="pdp_explainer"
+          data-open="know-jewellery"
+          {% unless has_explainer %}
+            hidden
+          {% endunless %}
+        >
           <span class="pdp_explainer_dot" aria-hidden="true"></span>
-          <span class="pdp_explainer_text">What is Gold Vermeil?</span>
+          <span class="pdp_explainer_text">
+            {{- 'products.what_is' | t: material: material_name -}}
+          </span>
           {{ 'icon-caret-right.svg' | inline_asset_content }}
         </button>
 

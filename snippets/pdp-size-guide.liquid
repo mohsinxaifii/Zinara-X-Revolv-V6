@@ -10,6 +10,11 @@
 {%- enddoc -%}
 
 {%- liquid
+  comment
+    The heading names the thing being measured, so it has to follow the product
+    rather than the template - it read "ring size" on pendants before this.
+  endcomment
+  assign guide_heading = product.metafields.custom.pdp_size_guide_heading.value
   assign rows = product.metafields.custom.pdp_size_chart.value | default: product.metafields.custom.size_chart.value
   assign headings = product.metafields.custom.pdp_size_chart_headings.value | default: product.metafields.custom.size_chart_headings.value
   assign guide_video = product.metafields.custom.pdp_size_guide_video.value | default: product.metafields.custom.size_chart_video.value
@@ -32,7 +37,9 @@
     <div class="pdp-sheet_panel_body">
       {%- if guide_video != blank -%}
         <div class="pdp-sheet_panel_body_group">
-          <p class="pdp-sheet_panel_body_group_label">How to measure your ring size</p>
+          {%- if guide_heading != blank -%}
+            <p class="pdp-sheet_panel_body_group_label">{{ guide_heading }}</p>
+          {%- endif -%}
           <video
             class="pdp-sheet_panel_body_video"
             src="{{ guide_video | file_url }}"
@@ -48,7 +55,7 @@
 
       {%- if rows != blank -%}
         <div class="pdp-sheet_panel_body_group">
-          <p class="pdp-sheet_panel_body_group_label">Size chart</p>
+          <p class="pdp-sheet_panel_body_group_label">{{ 'products.size_chart' | t }}</p>
           <div class="pdp-sheet_panel_body_table">
             <table class="pdp-table">
               <thead>
