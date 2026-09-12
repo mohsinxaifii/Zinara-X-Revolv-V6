@@ -4,6 +4,9 @@
   thick/thin contrast of a serif like Libre Baskerville and reads far heavier
   than a real SemiBold, and faux italic just slants the upright glyphs.
 
+  Libre Baskerville is a variable family (wght 400-700), so the 600 the designs
+  use is a real instance - worth asking for rather than settling for 700.
+
   font_modify returns nil when a family has no such variant, and passing nil to
   font_face writes a Liquid error straight into the stylesheet - so each one is
   resolved to a variable first and only emitted if it exists.
@@ -24,8 +27,10 @@
   assign secondary_italic = secondary | font_modify: 'style', 'italic'
   assign secondary_regular_italic = secondary_regular | font_modify: 'style', 'italic'
 
+  assign tertiary_semibold = tertiary | font_modify: 'weight', 600
   assign tertiary_bold = tertiary | font_modify: 'weight', 'bold'
   assign tertiary_italic = tertiary | font_modify: 'style', 'italic'
+  assign tertiary_semibold_italic = tertiary_semibold | font_modify: 'style', 'italic'
   assign tertiary_bold_italic = tertiary_bold | font_modify: 'style', 'italic'
 -%}
 
@@ -44,8 +49,10 @@
   {%- if secondary_regular_italic %}{{ secondary_regular_italic | font_face: font_display: 'swap' }}{% endif -%}
 
   {{ tertiary | font_face: font_display: 'swap' }}
+  {%- if tertiary_semibold %}{{ tertiary_semibold | font_face: font_display: 'swap' }}{% endif -%}
   {%- if tertiary_bold %}{{ tertiary_bold | font_face: font_display: 'swap' }}{% endif -%}
   {%- if tertiary_italic %}{{ tertiary_italic | font_face: font_display: 'swap' }}{% endif -%}
+  {%- if tertiary_semibold_italic %}{{ tertiary_semibold_italic | font_face: font_display: 'swap' }}{% endif -%}
   {%- if tertiary_bold_italic %}{{ tertiary_bold_italic | font_face: font_display: 'swap' }}{% endif -%}
 
   :root {
