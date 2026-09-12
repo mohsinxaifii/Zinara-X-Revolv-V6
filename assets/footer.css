@@ -145,9 +145,9 @@
   color: var(--color-brand, #712242);
 }
 
+/* Figma 7930:104760 runs the address on one line across the full width. */
 .footer_wrapper_legal_address {
   margin: 0;
-  max-width: 60ch;
   font-family: var(--font-secondary--family);
   font-weight: 500;
   font-size: 14px;
