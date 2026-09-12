@@ -61,7 +61,10 @@
       button.dataset.addLabel = button.getAttribute('aria-label') || '';
     }
     const removeLabel = window.themeStrings?.wishlistRemove;
-    button.setAttribute('aria-label', isActive && removeLabel ? removeLabel : button.dataset.addLabel);
+    button.setAttribute(
+      'aria-label',
+      isActive && removeLabel ? removeLabel : button.dataset.addLabel,
+    );
   }
 
   function toggle(button) {
@@ -147,7 +150,7 @@
           } catch (error) {
             return null;
           }
-        })
+        }),
       );
 
       /* A handle that no longer resolves - product deleted or unpublished - is
@@ -217,7 +220,8 @@
       const el = this.querySelector('[data-wishlist-count]');
       if (!el) return;
 
-      const template = count === 1 ? window.themeStrings?.wishlistCountOne : window.themeStrings?.wishlistCount;
+      const template =
+        count === 1 ? window.themeStrings?.wishlistCountOne : window.themeStrings?.wishlistCount;
       if (!template) {
         el.hidden = true;
         return;
