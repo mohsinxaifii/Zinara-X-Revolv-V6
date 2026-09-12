@@ -39,39 +39,12 @@
   assign related_products = product.metafields['shopify--discovery--product_recommendation'].related_products.value
 
   comment
-    Offers are a shop-level list; each entry may pin itself to specific products
-    or collections, so anything scoped elsewhere is dropped here rather than in
-    the markup below.
+    Offers are a shop-level list and each entry may pin itself to particular
+    products or collections, so anything scoped elsewhere is dropped here.
+    Liquid's `concat` only joins arrays, so the matches are gathered as a handle
+    string and resolved back to metaobjects at render time.
   endcomment
   assign all_offers = shop.metafields.custom.pdp_offers.value
-  assign offers = '' | split: ''
-  for offer in all_offers
-    assign is_match = false
-    if offer.products == blank and offer.collections == blank
-      assign is_match = true
-    endif
-    for pinned in offer.products.value
-      if pinned.id == product.id
-        assign is_match = true
-      endif
-    endfor
-    for pinned in offer.collections.value
-      if product.collections contains pinned
-        assign is_match = true
-      endif
-    endfor
-    if is_match
-      assign offers = offers | concat: offer_single
-    endif
-  endfor
-
-  comment
-    `concat` needs arrays on both sides, so the matching offers are collected as
-    a handle list first and resolved back to metaobjects when rendering.
-  endcomment
--%}
-
-{%- liquid
   assign offer_handles = ''
   for offer in all_offers
     assign is_match = false
@@ -660,8 +633,18 @@
       {%- comment -%} The Zinara Difference - Figma 7930:96294 {%- endcomment -%}
       {%- assign difference_rows = section.blocks | where: 'type', 'difference' -%}
       {%- if difference_rows.size > 0 -%}
+        {%- comment -%}
+          The heading mixes two colours mid-sentence ("The *Zinara* Difference"),
+          so the accented run is marked with [brackets] in the setting and swapped
+          for a span here - a second text setting would let the two halves drift
+          apart in the editor.
+        {%- endcomment -%}
+        {%- assign heading_html = section.settings.difference_heading
+          | replace: '[', '<span class="pdp_difference_title_accent">'
+          | replace: ']', '</span>'
+        -%}
         <section class="pdp_difference">
-          <h2 class="pdp_difference_title">{{ section.settings.difference_heading }}</h2>
+          <h2 class="pdp_difference_title">{{ heading_html }}</h2>
           <table class="pdp_difference_table">
             <thead>
               <tr>
@@ -913,9 +896,10 @@
   </script>
 </product-page>
 
-<script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'scroll-carousel.js' | asset_url }}" defer="defer"></script>
+{% # carousel-scroll defines window.carouselScroll, which scroll-carousel calls %}
 <script src="{{ 'carousel-scroll.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'scroll-carousel.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
