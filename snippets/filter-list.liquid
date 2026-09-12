@@ -17,8 +17,12 @@
           class="filter-list_item_label_input"
           name="{{ value.param_name }}"
           value="{{ value.value }}"
-          {% if value.active %}checked{% endif %}
-          {% if value.count == 0 and value.active == false %}disabled{% endif %}
+          {% if value.active %}
+            checked
+          {% endif %}
+          {% if value.count == 0 and value.active == false %}
+            disabled
+          {% endif %}
         >
         <span class="filter-list_item_label_box" aria-hidden="true">
           {{- 'icon-check.svg' | inline_asset_content -}}
