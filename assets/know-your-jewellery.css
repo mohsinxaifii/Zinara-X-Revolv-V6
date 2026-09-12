@@ -312,12 +312,15 @@
   color: var(--color-text-secondary, #494949);
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--mined .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label,
-.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--lab .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label {
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--mined
+  .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label,
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--lab
+  .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label {
   margin-top: 8px;
 }
 
-.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--accent .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label {
+.know-your-jewellery_wrapper_grid_diamonds_compare_row_stat--accent
+  .know-your-jewellery_wrapper_grid_diamonds_compare_row_stat_label {
   margin-top: 4px;
   font-weight: 500;
 }
