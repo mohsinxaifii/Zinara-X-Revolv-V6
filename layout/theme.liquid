@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-    <!-- ZDBG family=[{{ settings.type_tertiary_font.family }}] json={{ settings.type_tertiary_font | json }} eq={% if settings.type_tertiary_font.family == 'Libre Baskerville' %}YES{% else %}NO{% endif %} -->
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
@@ -27,7 +26,7 @@
       serif in theme settings and this drops out, leaving Shopify's own faces
       (emitted by css-variables) to take over.
     {% endcomment %}
-    {% if settings.type_tertiary_font.family == 'Libre Baskerville' %}
+    {% if settings.type_tertiary_font.family contains 'Libre Baskerville' %}
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link
