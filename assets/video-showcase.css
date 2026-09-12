@@ -62,7 +62,7 @@
 @supports (container-type: inline-size) {
   .video-showcase_wrapper_track {
     --video-showcase-step: calc(100cqw / var(--video-showcase-visible));
-    --video-showcase-gap: calc(var(--video-showcase-step) * 0.14545);
+    --video-showcase-gap: calc(var(--video-showcase-step) * 0.1455);
     --video-showcase-card-width: calc(var(--video-showcase-step) - var(--video-showcase-gap));
   }
 }
