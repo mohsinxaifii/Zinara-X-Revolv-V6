@@ -21,11 +21,6 @@
 
 {%- liquid
   assign card_variant = variant | default: 'grid'
-  assign is_featured = false
-  if card_variant == 'featured'
-    assign is_featured = true
-  endif
-
   assign card_image_alt = article.image.alt | default: article.title
   assign pill = tag_label | default: article.tags.first
 -%}
