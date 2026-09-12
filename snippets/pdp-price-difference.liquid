@@ -15,14 +15,14 @@
 
 {%- liquid
   comment
-    A `money` metafield hands its amount back as a string, so it is coerced
-    before either comparing it or scaling it into the cents that `money` expects.
+    A `money` metafield resolves in Liquid to the amount already in cents - the
+    same unit `variant.price` uses - so it needs no scaling. `.amount` is nil
+    here, which is why the guard reads the value itself.
   endcomment
-  assign mined_amount = product.metafields.custom.pdp_mined_price.value.amount | plus: 0
+  assign mined_cents = product.metafields.custom.pdp_mined_price.value
   assign has_mined = false
-  if mined_amount > 0
+  if mined_cents > 0
     assign has_mined = true
-    assign mined_cents = mined_amount | times: 100
     assign saved = mined_cents | minus: current_variant.price
   endif
 -%}
