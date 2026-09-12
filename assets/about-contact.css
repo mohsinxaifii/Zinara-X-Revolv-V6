@@ -129,3 +129,32 @@
 .about-contact_wrapper_body_channels_card.is-copied {
   border-color: var(--color-accent, #f0166e);
 }
+
+/* ---------------------------------------------------------------- skeleton --
+   Figma "Contact us skeleton" 7930:94604. Same 16px stack and 24px card gutter
+   as the band above, so nothing shifts when the cover lifts. */
+.contact-skeleton_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+}
+
+.contact-skeleton_wrapper_cards {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.contact-skeleton_wrapper_cards_item {
+  height: 110px;
+}
+
+@media screen and (max-width: 749px) {
+  .contact-skeleton_wrapper_cards {
+    flex-direction: column;
+  }
+}

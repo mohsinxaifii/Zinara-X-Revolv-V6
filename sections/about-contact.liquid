@@ -1,6 +1,8 @@
 {{ 'about-contact.css' | asset_url | stylesheet_tag }}
 
-<section class="about-contact full-width">
+<section class="about-contact full-width skeleton-host">
+  {%- render 'contact-skeleton', cards: section.blocks.size -%}
+
   <div class="about-contact_wrapper">
     {%- if section.settings.heading != blank -%}
       <h2 class="about-contact_wrapper_heading" data-animate>{{ section.settings.heading }}</h2>
