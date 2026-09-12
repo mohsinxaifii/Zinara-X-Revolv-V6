@@ -23,8 +23,12 @@
     assign saving_percent = saving | divided_by: current_variant.compare_at_price | round
   endif
 
-  assign average_rating = product.metafields.reviews.rating.value.rating
-  assign rating_count = product.metafields.reviews.rating_count.value
+  comment
+    A `rating` metafield hands back its value as a string, and comparing that to
+    0 raises "comparison of String with 0 failed" - so it is coerced first.
+  endcomment
+  assign average_rating = product.metafields.reviews.rating.value.rating | plus: 0
+  assign rating_count = product.metafields.reviews.rating_count.value | plus: 0
 
   assign material_tags = product.metafields.custom.pdp_material_tags.value
   assign media_badges = product.metafields.custom.pdp_media_badges.value
