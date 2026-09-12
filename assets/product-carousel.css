@@ -121,6 +121,7 @@
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   padding-bottom: 2px;
+
   /* Figma runs the row to the edge of the page, so the next card breaks the
      margin instead of stopping at it. The track spans the full width and pads
      its own content back in, which keeps the first card on the content edge. */
