@@ -201,3 +201,28 @@
     right: 12px;
   }
 }
+
+/* ---------------------------------------------------------------- skeleton --
+   Figma "Home page skeleton" 7930:103276. Matches the band's own aspect ratio
+   so the page does not resize when the cover lifts. */
+.hero-skeleton {
+  padding: 0;
+}
+
+hero-banner-slideshow:defined .hero-skeleton {
+  display: none;
+}
+
+.hero-skeleton_stage {
+  aspect-ratio: 1280 / 576;
+  max-height: 576px;
+  height: 100%;
+  border-radius: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .hero-skeleton_stage {
+    aspect-ratio: 3 / 4;
+    max-height: none;
+  }
+}

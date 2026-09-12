@@ -98,3 +98,17 @@
     font-size: 24px;
   }
 }
+
+/* ---------------------------------------------------------------- skeleton --
+   Figma "About us skeleton" 7930:95738. The card's own 323px, inside the band's
+   own padding, so nothing shifts when the cover lifts. */
+.about-hero-skeleton_wrapper {
+  box-sizing: border-box;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+}
+
+.about-hero-skeleton_wrapper_card {
+  height: 323px;
+}
