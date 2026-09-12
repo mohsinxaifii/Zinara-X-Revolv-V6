@@ -9,10 +9,118 @@
  */
 {
   "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "home_label": "Home",
+        "current_label": ""
+      }
+    },
     "main": {
-      "type": "page",
-      "settings": {}
+      "type": "blog",
+      "settings": {
+        "featured_heading": "Featured",
+        "featured_count": 3,
+        "grid_heading": "More articles",
+        "articles_per_page": 12
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Are lab grown diamonds real?",
+            "answer": "Lab grown diamonds appear identical to natural diamonds and can't be distinguished by the naked eye and with standard microscopic tools. Trained jewellers and experts can't also tell the difference between them. They can only be distinguished from natural diamonds using specialized equipment that can detect the specific growth patterns and inclusions characteristic of their origin."
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can you tell the difference between lab grown diamonds and natural diamonds?",
+            "answer": ""
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are ZINARA lab grown diamonds graded and certified?",
+            "answer": ""
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver pan India?",
+            "answer": ""
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Is ID proof required for delivery?",
+            "answer": ""
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What payment options are available?",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
+    },
+    "featured-in": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo-1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-1.png"
+          }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-2.png"
+          }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/zinara-press-logo-3.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo-1",
+        "logo-2",
+        "logo-3"
+      ],
+      "settings": {
+        "heading": "Featured in",
+        "background_color": "#fef4e2",
+        "speed": 25
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "breadcrumb",
+    "main",
+    "faq",
+    "featured-in"
+  ]
 }
