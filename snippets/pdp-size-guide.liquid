@@ -62,12 +62,8 @@
                 {%- for row in rows -%}
                   <tr>
                     <td>{{ row.column_1 }}</td>
-                    {%- if headings.size > 1 -%}
-                      <td>{{ row.column_2 }}</td>
-                    {%- endif -%}
-                    {%- if headings.size > 2 -%}
-                      <td>{{ row.column_3 }}</td>
-                    {%- endif -%}
+                    {%- if headings.size > 1 -%}<td>{{ row.column_2 }}</td>{%- endif -%}
+                    {%- if headings.size > 2 -%}<td>{{ row.column_3 }}</td>{%- endif -%}
                   </tr>
                 {%- endfor -%}
               </tbody>
