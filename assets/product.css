@@ -37,6 +37,17 @@
   --pdp-swatch-platinum: var(--pdp-swatch-silver);
 }
 
+/* Several blocks below are toggled with the `hidden` attribute, and every one of
+   them also carries a `display` rule here - which would otherwise win against the
+   user-agent's `[hidden] { display: none }` and leave them on screen. */
+.pdp [hidden],
+.pdp-sheet [hidden],
+.pdp-modal [hidden],
+.pdp-lightbox [hidden],
+.pdp-ugc-box [hidden] {
+  display: none !important;
+}
+
 .pdp {
   position: relative;
   display: block;
@@ -397,14 +408,21 @@
 
 .pdp_headline_tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
   margin: 0;
   padding: 8px 0;
   list-style: none;
 }
 
+.pdp_headline_tags::-webkit-scrollbar {
+  display: none;
+}
+
 .pdp_headline_tags_item {
+  flex: 0 0 auto;
   padding: 4px 8px;
   border-radius: 999px;
   background-color: var(--pdp-yellow-300);
@@ -2286,20 +2304,24 @@ button.pdp_trust_grid_item_inner {
 }
 
 .pdp-lightbox_body_stage {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   gap: 16px;
-  align-items: center;
+  justify-items: center;
   height: 100%;
+  max-width: 100%;
   margin: 0;
-  min-width: 0;
+
+  /* 626 image + 16 gap + 24 counter. Sizing the ratio here rather than on the
+     frame is what gives the frame a width at all: an aspect-ratio box resolves
+     its width from a definite height, and only the stage has one. */
+  aspect-ratio: 630 / 666;
 }
 
 .pdp-lightbox_body_stage_frame {
   position: relative;
-  flex: 1 1 auto;
-  min-height: 0;
-  aspect-ratio: 630 / 626;
+  width: 100%;
+  height: 100%;
 }
 
 .pdp-lightbox_body_stage_frame_slide {
@@ -2370,6 +2392,12 @@ button.pdp_trust_grid_item_inner {
 .pdp-ugc-box_reel_stage_slide.is-active,
 .pdp-ugc-box_reel_stage_slide.is-near {
   display: block;
+}
+
+/* The reel wraps, so the clip on the left can be the last one in the document.
+   `order` puts it back on the correct side without reordering the markup. */
+.pdp-ugc-box_reel_stage_slide.is-prev {
+  order: -1;
 }
 
 .pdp-ugc-box_reel_stage_slide.is-active {
