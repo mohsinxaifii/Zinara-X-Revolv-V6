@@ -12,6 +12,9 @@
     assign current = product.title
   endif
   if current == blank
+    assign current = article.title
+  endif
+  if current == blank
     assign current = blog.title
   endif
 
