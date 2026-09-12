@@ -99,7 +99,12 @@
   color: var(--color-brand, #712242);
 }
 
+/* Menu titles arrive in whatever case the merchant typed; Figma sets them in
+   sentence case. `inline-block` is load-bearing - ::first-letter only applies to
+   block containers, so on a plain inline <a> the rule below is silently ignored
+   and every link renders lowercase. */
 .footer_wrapper_top_columns_col_list_link:not(.footer_wrapper_top_columns_col_list_link--icon) {
+  display: inline-block;
   text-transform: lowercase;
 }
 
