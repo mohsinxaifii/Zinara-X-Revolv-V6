@@ -97,9 +97,9 @@
 
 .occasion-showcase_wrapper_track_item_label {
   font-family: var(--font-secondary--family);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.219;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
   color: #000;
   text-align: center;
 }
