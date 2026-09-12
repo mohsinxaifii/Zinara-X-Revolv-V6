@@ -12,6 +12,18 @@
 
 {{ 'custom-design.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  comment
+    Resolved up here rather than as `| default: 'key' | t`: that chain hands the
+    label itself to `t`, which then looks it up as a translation key and
+    reports it missing.
+  endcomment
+  assign cta_label = section.settings.cta_label
+  if cta_label == blank
+    assign cta_label = 'custom_design.start' | t
+  endif
+-%}
+
 <section class="custom-design-steps full-width skeleton-host">
   {%- render 'custom-design-skeleton', cards: section.blocks.size -%}
 
@@ -31,7 +43,7 @@
           <span class="custom-design-steps_wrapper_head_cta_icon" aria-hidden="true">
             {{- 'icon-whatsapp.svg' | inline_asset_content -}}
           </span>
-          {{ section.settings.cta_label | default: 'custom_design.start' | t }}
+          {{ cta_label }}
         </a>
       {%- endif -%}
     </div>
