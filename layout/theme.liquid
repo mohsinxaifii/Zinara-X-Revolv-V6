@@ -17,6 +17,24 @@
       {{ settings.type_primary_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
     {% endunless %}
 
+    {% comment %}
+      Libre Baskerville is a variable family (wght 400-700) but Shopify's library
+      only carries static 400 and 700 instances. The designs set every display
+      serif at 600, which against those two can only resolve to 700 - visibly
+      heavier than the artwork. Google serves the real 600, so the serif is
+      loaded from there for as long as it stays Libre Baskerville; pick any other
+      serif in theme settings and this drops out, leaving Shopify's own faces
+      (emitted by css-variables) to take over.
+    {% endcomment %}
+    {% if settings.type_tertiary_font.family == 'Libre Baskerville' %}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap"
+      >
+    {% endif %}
+
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
 

@@ -48,12 +48,20 @@
   {%- if secondary_italic %}{{ secondary_italic | font_face: font_display: 'swap' }}{% endif -%}
   {%- if secondary_regular_italic %}{{ secondary_regular_italic | font_face: font_display: 'swap' }}{% endif -%}
 
-  {{ tertiary | font_face: font_display: 'swap' }}
-  {%- if tertiary_semibold %}{{ tertiary_semibold | font_face: font_display: 'swap' }}{% endif -%}
-  {%- if tertiary_bold %}{{ tertiary_bold | font_face: font_display: 'swap' }}{% endif -%}
-  {%- if tertiary_italic %}{{ tertiary_italic | font_face: font_display: 'swap' }}{% endif -%}
-  {%- if tertiary_semibold_italic %}{{ tertiary_semibold_italic | font_face: font_display: 'swap' }}{% endif -%}
-  {%- if tertiary_bold_italic %}{{ tertiary_bold_italic | font_face: font_display: 'swap' }}{% endif -%}
+  {%- comment -%}
+    Skipped for Libre Baskerville: the layout loads that one from Google as a
+    variable face so the 600 the designs use is a real instance. Declaring
+    Shopify's static 400/700 under the same family name as well would leave two
+    sources competing, and the static pair would win back the weights it has.
+  {%- endcomment -%}
+  {%- unless tertiary.family == 'Libre Baskerville' -%}
+    {{ tertiary | font_face: font_display: 'swap' }}
+    {%- if tertiary_semibold %}{{ tertiary_semibold | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if tertiary_bold %}{{ tertiary_bold | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if tertiary_italic %}{{ tertiary_italic | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if tertiary_semibold_italic %}{{ tertiary_semibold_italic | font_face: font_display: 'swap' }}{% endif -%}
+    {%- if tertiary_bold_italic %}{{ tertiary_bold_italic | font_face: font_display: 'swap' }}{% endif -%}
+  {%- endunless -%}
 
   :root {
     --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
