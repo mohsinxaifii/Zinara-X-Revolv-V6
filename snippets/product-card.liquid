@@ -1,10 +1,23 @@
 {%- doc -%}
-  Renders one product card (image, badge, wishlist, rating, price, title).
+  Renders one product card.
+
+  Two shapes, from the same data:
+  - carousel (default) - square media, wishlist pinned in the media corner, and
+    a compact price/title block. Used by the product carousels on the home page.
+  - grid - the PLP card (Figma 7930:101972). Same media, but the wishlist moves
+    down beside the price and an add-to-cart button closes the card.
 
   @param {object} product - a Shopify product object
+  @param {string} [variant] - 'carousel' (default) or 'grid'
 {%- enddoc -%}
 
 {%- liquid
+  assign card_variant = variant | default: 'carousel'
+  assign is_grid = false
+  if card_variant == 'grid'
+    assign is_grid = true
+  endif
+
   assign feature_badge = product.metafields.content['product-features-badges'].first
   assign is_price_drop = false
   assign is_ready_to_ship = false
@@ -17,18 +30,26 @@
 
   assign card_image_alt = product.featured_image.alt | default: product.title
   assign average_rating = product.metafields.reviews.rating.value
+
+  if is_grid
+    assign media_sizes = '266px'
+    assign media_widths = '266,399,532'
+  else
+    assign media_sizes = '240px'
+    assign media_widths = '240,360,480'
+  endif
 -%}
 
-<a href="{{ product.url }}" class="product-card">
+<a href="{{ product.url }}" class="product-card{% if is_grid %} product-card--grid{% endif %}">
   <span class="product-card_media">
     {%- if product.featured_image -%}
       {{
         product.featured_image
-        | image_url: width: 480
+        | image_url: width: 540
         | image_tag:
           loading: 'lazy',
-          widths: '240,360,480',
-          sizes: '240px',
+          widths: media_widths,
+          sizes: media_sizes,
           alt: card_image_alt,
           class: 'product-card_media_image'
       }}
@@ -45,16 +66,18 @@
         <span></span>
       {%- endif -%}
 
-      <button
-        type="button"
-        class="product-card_media_top_wishlist"
-        data-wishlist-toggle
-        data-product-id="{{ product.id }}"
-        aria-label="{{ 'accessibility.wishlist_add' | t }}"
-        aria-pressed="false"
-      >
-        {{ 'icon-heart.svg' | inline_asset_content }}
-      </button>
+      {%- unless is_grid -%}
+        <button
+          type="button"
+          class="product-card_media_top_wishlist"
+          data-wishlist-toggle
+          data-product-id="{{ product.id }}"
+          aria-label="{{ 'accessibility.wishlist_add' | t }}"
+          aria-pressed="false"
+        >
+          {{ 'icon-heart.svg' | inline_asset_content }}
+        </button>
+      {%- endunless -%}
     </span>
 
     {%- if average_rating > 0 -%}
@@ -73,7 +96,45 @@
           {{- product.compare_at_price | money_without_trailing_zeros -}}
         </span>
       {%- endif -%}
+
+      {%- if is_grid -%}
+        <button
+          type="button"
+          class="product-card_info_price_wishlist"
+          data-wishlist-toggle
+          data-product-id="{{ product.id }}"
+          aria-label="{{ 'accessibility.wishlist_add' | t }}"
+          aria-pressed="false"
+        >
+          {{ 'icon-heart.svg' | inline_asset_content }}
+        </button>
+      {%- endif -%}
     </span>
     <span class="product-card_info_title">{{ product.title }}</span>
+
+    {%- if is_grid -%}
+      {%- liquid
+        assign card_variant_id = product.selected_or_first_available_variant.id
+        assign can_add = product.available
+      -%}
+      {%- if can_add -%}
+        <button
+          type="button"
+          class="product-card_info_add"
+          data-add-to-cart
+          data-variant-id="{{ card_variant_id }}"
+          data-product-id="{{ product.id }}"
+        >
+          <span class="product-card_info_add_icon" aria-hidden="true">
+            {{- 'icon-check.svg' | inline_asset_content -}}
+          </span>
+          <span class="product-card_info_add_label" data-add-label>{{ 'products.add_to_cart' | t }}</span>
+        </button>
+      {%- else -%}
+        <span class="product-card_info_add product-card_info_add--disabled">
+          <span class="product-card_info_add_label">{{ 'products.sold_out' | t }}</span>
+        </span>
+      {%- endif -%}
+    {%- endif -%}
   </span>
 </a>
