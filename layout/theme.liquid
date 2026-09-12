@@ -75,7 +75,12 @@
         added: {{ 'cart.added' | t | json }},
         failed: {{ 'cart.failed' | t | json }},
         wishlistRemove: {{ 'accessibility.wishlist_remove' | t | json }},
-        wishlistCount: {{ 'wishlist.item_count' | t: count: '{{ count }}' | json }},
+        {% comment %}
+          A sentinel rather than the locale's own {{ count }} placeholder:
+          nested output tags do not survive the Liquid lexer, and the count is
+          only known once wishlist.js has read the store.
+        {% endcomment %}
+        wishlistCount: {{ 'wishlist.item_count' | t: count: '__COUNT__' | json }},
         wishlistCountOne: {{ 'wishlist.item_count_one' | t | json }},
       };
     </script>

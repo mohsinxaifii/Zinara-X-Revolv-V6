@@ -223,7 +223,7 @@
         return;
       }
 
-      el.textContent = template.replace('{{ count }}', String(count));
+      el.textContent = template.replace('__COUNT__', String(count));
       el.hidden = count === 0;
     }
   }
