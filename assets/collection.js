@@ -221,27 +221,14 @@ class CollectionPage extends HTMLElement {
     drawer.open(productUrl, button);
   }
 
+  /* Single-variant cards add straight from the grid; anything with options goes
+     through the variant drawer first. Either way the shared cart runs the
+     request and the feedback. */
   async addToCart(button) {
-    if (button.dataset.busy === 'true') return;
-    button.dataset.busy = 'true';
-
-    const label = button.querySelector('[data-add-label]');
-    try {
-      const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ items: [{ id: Number(button.dataset.variantId), quantity: 1 }] }),
-      });
-      if (!response.ok) throw new Error(`${response.status}`);
-
-      button.classList.add('is-added');
-      if (label) label.textContent = button.dataset.addedLabel || 'Added to cart';
-      document.dispatchEvent(new CustomEvent('cart:updated', { bubbles: true }));
-    } catch (error) {
-      console.error('[collection] could not add to cart', error);
-    } finally {
-      button.dataset.busy = 'false';
-    }
+    await window.zinaraCart?.add(
+      [{ id: Number(button.dataset.variantId), quantity: 1 }],
+      button,
+    );
   }
 }
 

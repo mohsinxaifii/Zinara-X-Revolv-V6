@@ -121,25 +121,17 @@
     async confirm() {
       if (!this.variant) return;
       this.done.disabled = true;
-      try {
-        const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ items: [{ id: this.variant.id, quantity: 1 }] }),
-        });
-        if (!response.ok) throw new Error(`${response.status}`);
 
-        if (this.trigger) {
-          this.trigger.classList.add('is-added');
-          const label = this.trigger.querySelector('[data-add-label]');
-          if (label) label.textContent = this.trigger.dataset.addedLabel || 'Added to cart';
-        }
-        document.dispatchEvent(new CustomEvent('cart:updated', { bubbles: true }));
-        this.close();
-      } catch (error) {
-        console.error('[variant-drawer] could not add to cart', error);
-        this.done.disabled = false;
-      }
+      // The shared cart owns the request, the button's pending/added states, the
+      // header count and opening the drawer; this only has to close itself once
+      // the line is actually in.
+      const added = await window.zinaraCart?.add(
+        [{ id: this.variant.id, quantity: 1 }],
+        this.trigger,
+      );
+
+      if (added) this.close();
+      else this.done.disabled = false;
     }
   }
 
