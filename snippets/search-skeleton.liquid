@@ -2,30 +2,37 @@
   Loading placeholder for the results page. Figma "Search results skeleton"
   7930:106276.
 
-  Hidden by CSS the moment `collection-page` upgrades (`:defined`), so it needs
-  no script of its own and can never outlive the grid it stands in for.
+  The grid underneath is already server-rendered, so this covers it rather than
+  standing in for it - what it hides is the gap before collection.js upgrades
+  <collection-page> and the filters, sort and paging become live. It clears on
+  `:defined`, with a CSS timeout behind that so a blocked script can never
+  strand the page behind a grey screen.
 {%- enddoc -%}
 
 <div class="search-skeleton" aria-hidden="true">
-  <div class="search-skeleton_filters">
-    {%- for i in (1..6) -%}
-      <span class="search-skeleton_tile" style="height: 20px; width: 60%"></span>
-      {%- for j in (1..4) -%}
-        <span class="search-skeleton_tile" style="height: 14px; width: {{ 90 | minus: forloop.index0 | times: 1 }}%"></span>
-      {%- endfor -%}
-    {%- endfor -%}
-  </div>
+  <span class="search-skeleton_tile search-skeleton_tile--heading"></span>
 
-  <div class="search-skeleton_main">
-    <div class="search-skeleton_main_chips">
-      {%- for i in (1..6) -%}
-        <span class="search-skeleton_tile" style="height: 38px; width: 88px"></span>
+  <div class="search-skeleton_body">
+    <div class="search-skeleton_body_filters">
+      {%- for group in (1..5) -%}
+        <span class="search-skeleton_tile" style="height: 20px; width: 55%"></span>
+        {%- for row in (1..4) -%}
+          <span class="search-skeleton_tile" style="height: 14px; width: 85%"></span>
+        {%- endfor -%}
       {%- endfor -%}
     </div>
-    <div class="search-skeleton_main_grid">
-      {%- for i in (1..9) -%}
-        <span class="search-skeleton_tile search-skeleton_tile--card"></span>
-      {%- endfor -%}
+
+    <div class="search-skeleton_body_main">
+      <div class="search-skeleton_body_main_chips">
+        {%- for chip in (1..6) -%}
+          <span class="search-skeleton_tile" style="height: 38px; width: 88px"></span>
+        {%- endfor -%}
+      </div>
+      <div class="search-skeleton_body_main_grid">
+        {%- for card in (1..9) -%}
+          <span class="search-skeleton_tile search-skeleton_tile--card"></span>
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </div>
