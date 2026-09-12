@@ -52,7 +52,7 @@
 .press-carousel_wrapper_track {
   display: flex;
   gap: var(--press-gap);
-  width: 100%;
+  width: calc(100% + var(--page-margin) * 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
