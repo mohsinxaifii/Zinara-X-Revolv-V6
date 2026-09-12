@@ -426,6 +426,11 @@
   filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.1));
 }
 
+/* The rule above sets display, which outranks the UA sheet's [hidden]. */
+.collection_wrapper_main_toolbar_sort_menu[hidden] {
+  display: none;
+}
+
 .collection_wrapper_main_toolbar_sort_menu_item {
   padding: 0;
   border: 0;

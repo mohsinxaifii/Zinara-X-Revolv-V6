@@ -1,3 +1,4 @@
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
 {{ 'collection.css' | asset_url | stylesheet_tag }}
 
 {%- comment -%}
@@ -103,9 +104,17 @@
         <nav class="collection_wrapper_main_chips" aria-label="{{ 'collection.filters' | t }}">
           {%- for block in category_blocks -%}
             {%- liquid
-              assign chip_url = block.settings.url | default: collection.url
+              assign chip_url = block.settings.url
               assign is_active = false
-              if chip_url == request.path
+              if chip_url == blank
+                comment
+                  The catch-all chip: current whenever no other chip's path is.
+                endcomment
+                assign chip_url = collection.url
+                if request.path == collection.url
+                  assign is_active = true
+                endif
+              elsif chip_url == request.path
                 assign is_active = true
               endif
             -%}
