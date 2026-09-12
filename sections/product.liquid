@@ -84,6 +84,7 @@
   data-product-handle="{{ product.handle }}"
   data-delivery-days="{{ product.metafields.custom.pdp_delivery_days.value | default: 5 }}"
 >
+  {%- render 'zz-debug' -%}
   {%- render 'pdp-skeleton' -%}
 
   <div class="pdp_layout">
