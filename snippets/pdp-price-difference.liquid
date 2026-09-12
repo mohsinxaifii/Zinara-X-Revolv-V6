@@ -106,7 +106,9 @@
                 | image_tag: loading: 'lazy', widths: '328,656', sizes: '328px', alt: 'Sample SGL diamond certificate'
               }}
             </span>
-            {%- if product.metafields.custom.pdp_certificate.value != blank and certificate != product.metafields.custom.pdp_certificate.value -%}
+            {%- if product.metafields.custom.pdp_certificate.value != blank
+              and certificate != product.metafields.custom.pdp_certificate.value
+            -%}
               <span class="pdp-diff_certs_track_item">
                 {{
                   product.metafields.custom.pdp_certificate.value
