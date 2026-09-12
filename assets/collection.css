@@ -2,6 +2,8 @@
    A 266 filter rail and an 846 product column, 24 apart, on the 1136 content
    width; 32 above, 32 below. */
 .collection {
+  /* Anchors the loading placeholder, which covers the whole listing. */
+  position: relative;
   display: block;
   width: 100%;
   background-color: #fff;
@@ -567,5 +569,84 @@
 @media screen and (max-width: 599px) {
   .collection_wrapper_main_grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------- skeleton --
+   Figma "PLP skeleton" 7930:102108 and "Search results skeleton" 7930:106276 -
+   one layout, so one placeholder, shared with the search page which reuses this
+   whole stylesheet. The cover and the shimmering tiles come from skeleton.css;
+   only the arrangement is here. */
+.plp-skeleton {
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: 32px var(--page-margin);
+}
+
+/* <collection-page> upgrades as soon as collection.js runs, which is also when
+   the filters, sort and paging become live - so nothing else has to clear it. */
+collection-page:defined .plp-skeleton {
+  display: none;
+}
+
+.plp-skeleton_heading {
+  width: 174px;
+  height: 29px;
+  margin-inline: auto;
+}
+
+.plp-skeleton_body {
+  display: grid;
+  grid-template-columns: 266px 846fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.plp-skeleton_body_filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plp-skeleton_body_main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.plp-skeleton_body_main_chips {
+  display: flex;
+  gap: 12px;
+}
+
+.plp-skeleton_body_main_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.plp-skeleton_body_main_grid_card {
+  height: 386px;
+}
+
+@media screen and (max-width: 989px) {
+  .plp-skeleton_body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plp-skeleton_body_filters {
+    display: none;
+  }
+
+  .plp-skeleton_body_main_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .plp-skeleton_body_main_grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
