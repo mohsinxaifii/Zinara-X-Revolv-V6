@@ -93,9 +93,7 @@
   text-transform: lowercase;
 }
 
-.footer_wrapper_top_columns_col_list_link:not(
-    .footer_wrapper_top_columns_col_list_link--icon
-  )::first-letter {
+.footer_wrapper_top_columns_col_list_link:not(.footer_wrapper_top_columns_col_list_link--icon)::first-letter {
   text-transform: uppercase;
 }
 

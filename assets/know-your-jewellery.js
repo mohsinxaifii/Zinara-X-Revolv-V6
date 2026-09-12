@@ -45,9 +45,7 @@ class CardStack extends HTMLElement {
     this.updateDepths();
 
     if (this.dotsContainer) {
-      Array.from(this.dotsContainer.children).forEach((dot, i) =>
-        dot.classList.toggle('is-active', i === next),
-      );
+      Array.from(this.dotsContainer.children).forEach((dot, i) => dot.classList.toggle('is-active', i === next));
     }
   }
 
