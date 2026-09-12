@@ -23,7 +23,7 @@
           "type": "category",
           "settings": {
             "label": "Rings",
-            "url": "/collections/rings"
+            "url": "/collections/all-rings"
           }
         },
         "chip-3": {
@@ -43,8 +43,8 @@
         "chip-5": {
           "type": "category",
           "settings": {
-            "label": "Bracelets",
-            "url": "/collections/all-bracelets"
+            "label": "Engagement rings",
+            "url": "/collections/engagement-rings"
           }
         },
         "chip-6": {
