@@ -11,6 +11,166 @@ left. Tick a box only when the file is written *and* the page renders.
 
 ---
 
+## 0. Status for review — 2026-09-13
+
+Written for a section-by-section review before any further work. Nothing below
+has been fixed yet; the "Pending" items are waiting on that review.
+
+**Status key**
+- **Verified**: built and checked in the browser (and against Figma where noted)
+- **Built**: built, renders without errors, but not re-checked against Figma
+- **Broken**: renders the wrong thing or 404s today
+- **Needs admin**: the theme is ready; the missing piece is Shopify admin or theme-editor data
+- **No design**: still stock Shopify boilerplate, and the Figma file has no Zinara design for it
+
+Every route below was loaded on the dev server at 1280px on 2026-09-12/13:
+all return 200 (except where noted), with 0 Liquid errors, 0 JS errors, no
+horizontal overflow, no broken images, and no loading placeholder left covering
+content. `theme check` is at 0 errors.
+
+### Every page (header, footer, shared behaviour)
+
+| Part | Status | Notes |
+| --- | --- | --- |
+| Announcement bar, header, footer | Built | |
+| Header search + suggestion dropdown (Figma 7930:105606 / 106038 / 106256) | Verified | Search active, results found and no-results states all checked |
+| Header category menu (`category-nav`) | **Needs admin** | All 9 menu links are empty, so they go to `#` on every page. Fill the URLs in the theme editor (header group). |
+| Header wishlist icon | **Broken** | Links to `/pages/wishlist`, which 404s (see Wishlist) |
+| Cart drawer | Verified | Add → loading state → "Added to cart" → header count updates → drawer opens. Quantity and remove work. The header cart icon opens the drawer and never goes to `/cart`. |
+| Motion layer (`motion.css`, `animations.js`) | Verified | Checked on 5 page types with GSAP working, GSAP blocked and JS off: no content ever stuck invisible. Drawers slide in and out. |
+| Loading skeletons | Built | None left covering content with JS on (14 routes). JS-off 2.5s timeout checked only for PDP, search and the home hero. |
+
+### Home — `templates/index.json` (Figma 7930:104246)
+
+| Section | Status | Notes |
+| --- | --- | --- |
+| `hero-banner` | Verified | No longer crops: height follows the image ratio (checked 390–2560px; exactly 1280×576 at 1280). **Decision needed:** on phones the text baked into the image is very small; fixing that needs a separate mobile image field. |
+| `shop-by-category` | **Needs admin** | 1 of 4 tile links is empty |
+| `usp-strip` | Built | |
+| `product-carousel` (×2) | Built | |
+| `know-your-jewellery` | Built | Not Prettier-formatted (left untouched) |
+| `video-showcase` | Built | |
+| `usp-grid` | Built | |
+| `zinara-collections` | **Needs admin** | All 5 card links and "View all" are empty |
+| `testimonial-carousel` | Built | |
+| `occasion-showcase` | **Needs admin** | All 5 card links are empty |
+| `split-promo` | **Needs admin** | Both button links are empty |
+| `press-carousel` ("As seen on") | **Needs admin** | All 5 links are empty |
+| `instagram-feed` | Built | |
+| `journal` | Built | Check it: it reads the blog, and the store's blog has 0 articles |
+| `faq`, `logo-marquee` | Built | |
+
+Whole page renders 7906px against Figma 8206px; not re-measured section by section.
+
+### About — `templates/page.about-us.json` (Figma 7930:95474)
+
+`breadcrumb`, `about-hero` (+ skeleton), `about-intro`, `about-stats`,
+`about-belief`, `zinara-collections`, `about-story`, `about-founder`,
+`about-contact`, `faq`: **Built**. `zinara-collections` has the same empty
+links as on Home (**Needs admin**). Page renders 4753px against Figma 4550px.
+
+### PLP — `templates/collection.json` (Figma 7930:101927)
+
+`breadcrumb`, `collection` (filters, sort, category chips, grid, load more,
+variant drawer, `plp-skeleton`), `faq`, `logo-marquee`: **Built**. Adding to cart
+from a card now opens the cart drawer (**Verified**).
+
+### PDP — `templates/product.json` (Figma 7930:95967 + 7 overlay states)
+
+| Part | Status | Notes |
+| --- | --- | --- |
+| Gallery, title/price, offers, options, buy buttons, trust, delivery, help, accordions, related, Zinara difference, pair with, UGC, reviews | Verified | Every block within ~2% of its Figma artboard height; layout 1136px with a 556px gallery column |
+| 7 overlays: image lightbox, size guide, all offers, UGC reel, SGL certificate, add-ons, price difference | Verified | |
+| Skeleton | Verified | |
+| Content | Verified | Driven by `custom.pdp_*` product metafields, falling back to the Figma copy. All 34 fields the theme reads are pinned in admin. `radiant-essence-solitaire-pendant` is fully filled in as the reference product. |
+| Gift sleeve row | **Needs admin** | No "Gift sleeve" product exists, so the row is hidden. Create the product, then pick it in the section settings. |
+| Add-ons | **Needs admin** | Seeded with existing studs/rings as stand-ins; there are no charm products |
+| Rating / review count | **Needs admin** | `reviews.rating` / `reviews.rating_count` belong to Judge.me (5.0 from 1). Figma shows 4.5 from 25. |
+| Other products | **Needs admin** | Fill their `custom.pdp_*` metafields using the reference product as the template |
+
+### Search — `templates/search.json` (Figma 7930:105422 + skeleton 7930:106276)
+
+**Verified**: filter rail 266px, results 846px and heading 61px all as drawn;
+reuses the PLP grid and scripts.
+
+### Blog listing — `templates/blog.json` (Figma 7930:93788)
+
+**Broken (data)**: the section renders, but the store's only blog (`news`) has
+**0 articles**, so the page is empty. Not compared against Figma.
+
+### Blog article — `templates/article.json` (Figma 7930:93922)
+
+**Broken (data)**: with no articles the page cannot be opened, so it has never
+been seen rendering. **Needs admin**: the article metafield definitions
+`custom.aside_image` and `custom.shop_products` are still missing (confirmed
+2026-09-13). The page falls back to its section settings without them.
+
+### All collections — `templates/list-collections.json` (Figma 7930:94873)
+
+**Built**. The page renders 5103px against Figma 1921px because the store has far
+more collections than the design shows. It needs a section-level comparison,
+not a whole-page one.
+
+### Wishlist — `templates/page.wishlist.json` (Figma 7930:94300)
+
+**Broken**: `/pages/wishlist` is a 404 because no page with the handle
+`wishlist` exists. **Needs admin**: create the page and give it the template
+`wishlist`.
+
+### Contact — `templates/page.contact.json` (Figma 7930:94717)
+
+**Built**. Bound to the existing `contact` page (template `contact`), so it
+renders. Phase 5 and §5 below say `contact-us`; the real handle and file are
+`contact`. Renders 2116px against Figma 1942px (+9%); not measured section by
+section.
+
+### Get your own design — `templates/page.get-your-own-design.json` (Figma 7930:95121)
+
+**Broken**: the `get-your-own-design` page exists, but its template in admin is
+`page`, so it shows the generic page template (currently an empty blog, see
+below) instead of this design. **Needs admin**: set its template to
+`get-your-own-design`.
+
+### Generic and policy pages — `templates/page.json`
+
+**Broken**: the main section of `page.json` is `blog`. It was changed by three
+Shopify-bot commits on 09-12 between 18:26 and 18:27, which looks like previewing
+new sections through this template. As a result shipping, returns, privacy,
+terms, buyback, FAQs, try-at-home and video-trial all show an empty blog instead
+of their text. Most of those pages also point at template suffixes that don't
+exist in the theme (`our_policy`, `tnc`, `exchange-and-buyback`,
+`frequent_questions`), so they fall back to `page.json` anyway.
+`sections/page.liquid` is still stock boilerplate. **No design**: the Figma
+"Legal" frame belongs to a different (skincare) brand and is 1440px wide;
+"POLICY" and "FAQ" are only section banners.
+
+### Cart page, 404, password — **No design**
+
+Still stock Shopify boilerplate. Figma has no Zinara version (the 404, cart and
+login frames in "FINAL UI" sit alongside unrelated skincare work). The cart page
+matters least, because the cart icon opens the drawer.
+
+### Not started
+
+- Mobile layouts (everything above is desktop)
+
+### Repo housekeeping (2026-09-13)
+
+- Removed as junk: `.check-tmp.js` (scratch checker), and
+  `assets/icon-corners-out.svg` + `assets/icon-speaker.svg`, which were downloaded
+  but never used. The icons were deleted from both the repo and the Shopify dev theme.
+- Kept although unused: `sections/custom-section.liquid` and
+  `blocks/group.liquid`. Both come from Shopify's base theme and can be added in
+  the theme editor.
+- The Shopify dev theme's file list matches the repo exactly.
+- Prettier: 3 older files are unformatted (`assets/know-your-jewellery.js`,
+  `sections/know-your-jewellery.liquid`, `snippets/stat-value.liquid`).
+- Pushing to GitHub needs your credentials; this environment has none.
+- Shopify's GitHub integration commits every upload to the dev theme straight to
+  `origin/main`, so `main` drifts whenever `theme dev` is running.
+
+---
+
 ## 1. Audit — state at the time of writing
 
 ### Already built to the designs
@@ -381,17 +541,22 @@ wiring. Everything below paints as it lands. The About hero's photo is a CSS
 background and fires no load event, so it has no `:defined` hook and relies on
 `skeleton.js` clearing at `complete`, which is after background images.
 
-### Phase 8 — verification
-- [ ] `npx shopify theme check` clean (or no new offences)
-- [ ] `npx prettier --check` on everything touched
-- [ ] Dev server up and every new route loads: `/blogs/news`, an article,
-      `/collections`, `/pages/wishlist`, `/pages/contact-us`,
-      `/pages/get-your-own-design`
+### Phase 8 — verification  (status as of 2026-09-13; see §0)
+- [x] `npx shopify theme check` clean: 0 errors, 5 warnings, all of them the
+      existing remote CDN assets in `layout/theme.liquid`
+- [ ] `npx prettier --check` on everything touched: every file this plan touched
+      passes; 3 older home-page files do not (listed in §0)
+- [ ] Dev server up and every new route loads: `/collections` and `/pages/contact`
+      load; `/blogs/news` loads but is empty (0 articles); an article cannot be
+      opened; `/pages/wishlist` 404s; `/pages/get-your-own-design` shows the
+      wrong template
 - [ ] Measure rendered section heights against the Figma frame heights with the
       Playwright harness rather than eyeballing (see the Figma-parity note in
-      memory); the per-page target heights are in the node table above
-- [ ] Every skeleton clears — with JS on, and with JS blocked (the 2.5s timeout)
-- [ ] Mobile width check at ~390px
+      memory); the per-page target heights are in the node table above.
+      Not done for blog, article, wishlist, contact, all collections or custom design.
+- [ ] Every skeleton clears, with JS on and with JS blocked (the 2.5s timeout).
+      JS on: verified on 14 routes. JS blocked: not checked for the new pages.
+- [ ] Mobile width check at ~390px: not started
 
 ---
 
@@ -399,6 +564,12 @@ background and fires no load event, so it has no `:defined` hook and relies on
 
 The theme cannot create these on its own. Templates named `page.<handle>.json`
 only bind once a page with that handle exists.
+
+> Correction (2026-09-13): a page picks its template by its **template suffix**
+> in admin, not by its handle. State found: `contact` exists with the suffix
+> `contact` (works); `get-your-own-design` exists with the suffix `page` (wrong,
+> needs `get-your-own-design`); there is no `wishlist` page; blog `news` has 0
+> articles; the article metafield definitions are still missing.
 
 - [ ] Create pages in admin: **Wishlist** (`wishlist`), **Contact us**
       (`contact-us`), **Get your own design** (`get-your-own-design`), and
