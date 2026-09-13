@@ -1,8 +1,32 @@
 {{ 'hero-banner.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  comment
+    The band takes its shape from the slides rather than a fixed 1280/576 box,
+    so no image is ever cropped. With several slides it uses the tallest one
+    (the smallest width/height ratio): every other slide then fits inside that
+    box with object-fit: contain, instead of being trimmed to match it.
+  endcomment
+  assign hero_ratio = 0
+  for block in section.blocks
+    if block.settings.image
+      assign slide_ratio = block.settings.image.aspect_ratio | plus: 0
+      if slide_ratio > 0
+        if hero_ratio == 0 or slide_ratio < hero_ratio
+          assign hero_ratio = slide_ratio
+        endif
+      endif
+    endif
+  endfor
+  if hero_ratio == 0
+    assign hero_ratio = 2.2222
+  endif
+-%}
+
 {%- if section.blocks.size > 0 -%}
   <hero-banner-slideshow
     class="hero-banner full-width skeleton-host"
+    style="--hero-ratio: {{ hero_ratio }};"
     data-autoplay="{{ section.settings.autoplay }}"
     data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
   >
