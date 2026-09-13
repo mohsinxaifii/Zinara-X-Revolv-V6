@@ -200,8 +200,11 @@
 }
 
 /* ---------------------------------------------------------------- skeleton --
-   Figma "Home page skeleton" 7930:103276. Matches the band's own aspect ratio
-   so the page does not resize when the cover lifts. */
+   Figma "Home page skeleton" 7930:103276. The cover is absolutely positioned
+   over the band (skeleton.css), so it is already exactly the band's size; the
+   tile just fills it. Restating a ratio or a max-height here would let the
+   placeholder and the real band disagree the moment --hero-ratio changes, and
+   the page would jump when the cover lifts. */
 .hero-skeleton {
   padding: 0;
 }
@@ -211,15 +214,6 @@ hero-banner-slideshow:defined .hero-skeleton {
 }
 
 .hero-skeleton_stage {
-  aspect-ratio: 1280 / 576;
-  max-height: 576px;
   height: 100%;
   border-radius: 0;
-}
-
-@media screen and (max-width: 749px) {
-  .hero-skeleton_stage {
-    aspect-ratio: 3 / 4;
-    max-height: none;
-  }
 }
