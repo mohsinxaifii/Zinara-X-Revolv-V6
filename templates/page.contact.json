@@ -97,7 +97,10 @@
         "cell-3",
         "cell-4"
       ],
-      "settings": {}
+      "settings": {
+        "padding_top": 24,
+        "padding_bottom": 48
+      }
     },
     "instagram": {
       "type": "instagram-feed",
@@ -140,8 +143,9 @@
       "settings": {
         "heading": "Join our Instagram community",
         "background_color": "#fef4e2",
-        "instagram_url": "https://instagram.com/zinara",
-        "handle": "@zinara"
+        "instagram_url": "https://www.instagram.com/heyzinara/",
+        "handle": "@zinara",
+        "layout": "fill"
       }
     }
   },

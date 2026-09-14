@@ -14,24 +14,45 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "app-1": { "type": "app_badge", "settings": { "image": "shopify://shop_images/zinara-app-badge-1.png" } },
-        "app-2": { "type": "app_badge", "settings": { "image": "shopify://shop_images/zinara-app-badge-2.png" } },
-        "app-3": { "type": "app_badge", "settings": { "image": "shopify://shop_images/zinara-app-badge-3.png" } }
+        "app-1": {
+          "type": "app_badge",
+          "settings": {
+            "image": "shopify://shop_images/zinara-app-badge-1.png"
+          }
+        },
+        "app-2": {
+          "type": "app_badge",
+          "settings": {
+            "image": "shopify://shop_images/zinara-app-badge-2.png"
+          }
+        },
+        "app-3": {
+          "type": "app_badge",
+          "settings": {
+            "image": "shopify://shop_images/zinara-app-badge-3.png"
+          }
+        }
       },
-      "block_order": ["app-1", "app-2", "app-3"],
+      "block_order": [
+        "app-1",
+        "app-2",
+        "app-3"
+      ],
       "settings": {
         "tagline": "Jewellery you'll never take off.",
-        "quick_links": "main-menu",
+        "quick_links": "header_menu_3",
         "policy_links": "footer-policies",
         "phone": "+91 88518 12814",
         "email": "admin@zinara.in",
-        "instagram_url": "https://instagram.com/zinara",
-        "facebook_url": "",
+        "instagram_url": "https://www.instagram.com/heyzinara/",
+        "facebook_url": "https://www.facebook.com/profile.php?id=61565232117218",
         "company_name": "Indriten Technologies Pvt. Ltd.",
         "company_address": "A-277-278, 2nd floor, Dhaka Johar, G.T.B. Nagar, North West Delhi, Delhi - 110009",
         "show_payment_icons": true
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }
