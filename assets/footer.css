@@ -85,6 +85,13 @@
   padding: 0;
 }
 
+/* A block <li> wraps the inline-block link in its own 16px line box and comes
+   out 23px tall; as a flex item it is exactly the link's 22px, giving Figma's
+   34px row pitch (7930:104732). */
+.footer_wrapper_top_columns_col_list > li {
+  display: flex;
+}
+
 .footer_wrapper_top_columns_col_list_link {
   font-family: var(--font-secondary--family);
   font-weight: 600;
