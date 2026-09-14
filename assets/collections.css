@@ -99,9 +99,11 @@
   text-align: center;
 }
 
-/* The serif, at the one weight the layout loads from Google as a real 600. */
+/* The serif italic, at the one weight the layout loads from Google as a real
+   600. Figma 7930:94891: Libre Baskerville SemiBold Italic. */
 .collections-page_wrapper_grid_item_body_title {
   font-family: var(--font-tertiary--family);
+  font-style: italic;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.25;
