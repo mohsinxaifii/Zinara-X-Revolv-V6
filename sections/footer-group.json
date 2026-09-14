@@ -17,26 +17,85 @@
         "app-1": {
           "type": "app_badge",
           "settings": {
-            "image": "shopify://shop_images/zinara-app-badge-1.png"
+            "image": "shopify://shop_images/zinara-badge-amazon.png",
+            "height": 20
           }
         },
         "app-2": {
           "type": "app_badge",
           "settings": {
-            "image": "shopify://shop_images/zinara-app-badge-2.png"
+            "image": "shopify://shop_images/zinara-badge-flipkart.png",
+            "height": 42
           }
         },
         "app-3": {
           "type": "app_badge",
           "settings": {
-            "image": "shopify://shop_images/zinara-app-badge-3.png"
+            "image": "shopify://shop_images/zinara-badge-eternz.png",
+            "height": 33
+          }
+        },
+        "pay-upi": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-upi.png",
+            "height": 21
+          }
+        },
+        "pay-mastercard": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-mastercard.png",
+            "height": 35
+          }
+        },
+        "pay-visa": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-visa.png",
+            "height": 29
+          }
+        },
+        "pay-rupay": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-rupay.png",
+            "height": 30
+          }
+        },
+        "pay-netbanking": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-netbanking.png",
+            "height": 35
+          }
+        },
+        "pay-diners": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-diners.png",
+            "height": 29
+          }
+        },
+        "pay-cod": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/zinara-pay-cod.png",
+            "height": 24
           }
         }
       },
       "block_order": [
         "app-1",
         "app-2",
-        "app-3"
+        "app-3",
+        "pay-upi",
+        "pay-mastercard",
+        "pay-visa",
+        "pay-rupay",
+        "pay-netbanking",
+        "pay-diners",
+        "pay-cod"
       ],
       "settings": {
         "tagline": "Jewellery you'll never take off.",

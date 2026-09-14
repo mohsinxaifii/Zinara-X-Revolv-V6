@@ -108,28 +108,28 @@
         "post-1": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-1.png",
+            "image": "shopify://shop_images/zinara-insta-post-1.png",
             "link": ""
           }
         },
         "post-2": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-1.png",
+            "image": "shopify://shop_images/zinara-insta-post-2.png",
             "link": ""
           }
         },
         "post-3": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-1.png",
+            "image": "shopify://shop_images/zinara-insta-post-3.png",
             "link": ""
           }
         },
         "post-4": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-2.png",
+            "image": "shopify://shop_images/zinara-insta-post-4.png",
             "link": ""
           }
         }

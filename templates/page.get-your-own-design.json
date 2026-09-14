@@ -23,21 +23,24 @@
           "type": "step",
           "settings": {
             "title": "Conceptualise",
-            "text": "Share your inspiration, and we’ll craft unique designs tailored to your vision."
+            "text": "Share your inspiration, and we’ll craft unique designs tailored to your vision.",
+            "image": "shopify://shop_images/zinara-gyod-step-1.png"
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
             "title": "Design approval",
-            "text": "Our team transforms your vision into a realistic product image for your approval before we begin crafting."
+            "text": "Our team transforms your vision into a realistic product image for your approval before we begin crafting.",
+            "image": "shopify://shop_images/zinara-gyod-step-2.png"
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
             "title": "Ready to wear",
-            "text": "Once approved, your custom jewellery is crafted and carefully prepared, ready to be worn and cherished."
+            "text": "Once approved, your custom jewellery is crafted and carefully prepared, ready to be worn and cherished.",
+            "image": "shopify://shop_images/zinara-gyod-step-3.png"
           }
         }
       },
@@ -58,19 +61,22 @@
         "option-1": {
           "type": "option",
           "settings": {
-            "label": "Diamond carat"
+            "label": "Diamond carat",
+            "image": "shopify://shop_images/zinara-gyod-option-carat.png"
           }
         },
         "option-2": {
           "type": "option",
           "settings": {
-            "label": "Metal"
+            "label": "Metal",
+            "image": "shopify://shop_images/zinara-gyod-option-metal.png"
           }
         },
         "option-3": {
           "type": "option",
           "settings": {
-            "label": "Colour"
+            "label": "Colour",
+            "image": "shopify://shop_images/zinara-gyod-option-colour.png"
           }
         }
       },
@@ -91,35 +97,40 @@
           "type": "design",
           "settings": {
             "title": "Ring",
-            "customer": "Anita Sharma, Jaipur"
+            "customer": "Anita Sharma, Jaipur",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-2": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-3": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-4": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-5": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         }
       },

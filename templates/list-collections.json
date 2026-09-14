@@ -88,19 +88,22 @@
         "logo-1": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/zinara-press-logo-1.png"
+            "image": "shopify://shop_images/zinara-press-a.png",
+            "height": 35
           }
         },
         "logo-2": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/zinara-press-logo-2.png"
+            "image": "shopify://shop_images/zinara-press-b.png",
+            "height": 23
           }
         },
         "logo-3": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/zinara-press-logo-3.png"
+            "image": "shopify://shop_images/zinara-press-c.png",
+            "height": 29
           }
         }
       },
