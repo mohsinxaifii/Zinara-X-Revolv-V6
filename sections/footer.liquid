@@ -93,10 +93,11 @@
               <a
                 href="{{ block.settings.link | default: '#' }}"
                 class="footer_wrapper_apps_badges_badge"
+                style="--footer-mark-height: {{ block.settings.height }}px;"
                 {{ block.shopify_attributes }}
               >
                 {%- if block.settings.image -%}
-                  {{ block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+                  {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}
                 {%- endif -%}
               </a>
             {%- endif -%}
@@ -112,9 +113,13 @@
           {%- assign payment_blocks = section.blocks | where: 'type', 'payment_icon' -%}
           {%- if payment_blocks.size > 0 -%}
             {%- for block in payment_blocks -%}
-              <span class="footer_wrapper_payment_icons_icon" {{ block.shopify_attributes }}>
+              <span
+                class="footer_wrapper_payment_icons_icon"
+                style="--footer-mark-height: {{ block.settings.height }}px;"
+                {{ block.shopify_attributes }}
+              >
                 {%- if block.settings.image -%}
-                  {{ block.settings.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+                  {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '' }}
                 {%- endif -%}
               </span>
             {%- endfor -%}
@@ -169,13 +174,35 @@
       "name": "App badge",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Badge image" },
-        { "type": "url", "id": "link", "label": "Link" }
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Height",
+          "min": 12,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 42
+        }
       ]
     },
     {
       "type": "payment_icon",
       "name": "Payment icon",
-      "settings": [{ "type": "image_picker", "id": "image", "label": "Icon image" }]
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Icon image" },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Height",
+          "min": 12,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 30
+        }
+      ]
     }
   ]
 }

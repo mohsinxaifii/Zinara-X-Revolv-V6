@@ -41,18 +41,19 @@
   animation: logo-marquee-scroll var(--logo-marquee-speed, 25s) linear infinite;
 }
 
+/* Figma 7930:104690 draws each press mark at its own height (103x35, 87x23,
+   226x29), so the height comes from the block rather than one shared cap. */
 .logo-marquee_wrapper_track_set_logo {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-height: 35px;
+  height: 35px;
 }
 
 .logo-marquee_wrapper_track_set_logo img {
   display: block;
   width: auto;
-  max-height: 35px;
-  object-fit: contain;
+  height: var(--logo-marquee-logo-height, 35px);
 }
 
 @keyframes logo-marquee-scroll {
