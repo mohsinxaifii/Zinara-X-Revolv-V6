@@ -26,9 +26,10 @@
   padding: 0;
   border: 0;
   background: none;
-  color: var(--announcement-bar-text, #000);
+
+  /* Figma draws the carets black while the message is brand-coloured. */
+  color: #000;
   cursor: pointer;
-  opacity: 0.7;
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
