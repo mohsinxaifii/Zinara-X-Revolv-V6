@@ -2,8 +2,8 @@
   "How It Works". Figma: Desktop / Get your own design 7930:95112 >
   Get your own design (7930:95121) > Frame 1116601466.
 
-  A white 32/72 band: the heading with the WhatsApp call-to-action pushed to the
-  far side of the row, then three bordered cards laid out sideways - a 108px
+  A white 32/72 band: the heading with the call-to-action (a plain text button,
+  no icon, in the design) pushed to the far side of the row, then three bordered cards laid out sideways - a 108px
   image beside a numbered title and a paragraph.
 
   The step number comes from the block's position, so reordering the blocks in
@@ -40,10 +40,7 @@
           target="_blank"
           rel="noopener"
         >
-          <span class="custom-design-steps_wrapper_head_cta_icon" aria-hidden="true">
-            {{- 'icon-whatsapp.svg' | inline_asset_content -}}
-          </span>
-          {{ cta_label }}
+          {{- cta_label -}}
         </a>
       {%- endif -%}
     </div>
