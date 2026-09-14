@@ -116,6 +116,12 @@
   color: #808080;
 }
 
+/* Under a label the value turns brand-coloured; the About cards have no label
+   and keep the grey value. Figma: Contact us 7930:94739 / 94743 / 94747. */
+.about-contact_wrapper_body_channels_card_label + .about-contact_wrapper_body_channels_card_value {
+  color: var(--color-brand, #712242);
+}
+
 /* Reserves no space until there is something to say, so the card does not
    change height when the number is copied. */
 .about-contact_wrapper_body_channels_card_copied {

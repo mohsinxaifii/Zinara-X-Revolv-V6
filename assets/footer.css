@@ -210,13 +210,12 @@
 }
 
 /* Each mark is drawn at its own size in Figma (66x19.8, 108x42.12, 86x33 and a
-   payment row from 20.7 to 35.2 tall), so cap the height rather than set it -
+   payment row from 20.7 to 35.2 tall), so every block carries its own height -
    a single height would stretch every logo to the same band. */
 .footer_wrapper_apps_badges_badge img {
   display: block;
   width: auto;
-  max-height: 42px;
-  object-fit: contain;
+  height: var(--footer-mark-height, 42px);
 }
 
 .footer_wrapper_payment_icons_icon {
@@ -227,8 +226,7 @@
 .footer_wrapper_payment_icons_icon img {
   display: block;
   width: auto;
-  max-height: 36px;
-  object-fit: contain;
+  height: var(--footer-mark-height, 30px);
 }
 
 .footer_wrapper_payment_icons_fallback {

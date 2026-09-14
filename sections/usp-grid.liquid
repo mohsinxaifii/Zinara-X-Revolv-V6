@@ -1,5 +1,12 @@
 {{ 'usp-grid.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  #shopify-section-{{ section.id }} .usp-grid {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
 {%- if section.blocks.size > 0 -%}
   <section class="usp-grid full-width">
     <div class="usp-grid_wrapper" data-animate>
@@ -24,7 +31,29 @@
   "name": "USP grid",
   "tag": "section",
   "class": "shopify-section--usp-grid",
-  "settings": [],
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "info": "32px on the home page, 48px on the contact page.",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    }
+  ],
   "blocks": [
     {
       "type": "cell",
