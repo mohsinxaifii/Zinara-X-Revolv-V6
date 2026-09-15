@@ -218,13 +218,14 @@
 
   .product-carousel_wrapper_controls {
     flex-wrap: nowrap;
+    align-self: stretch;
     justify-content: flex-start;
     gap: 12px;
+    width: auto;
     margin-inline: calc(var(--page-margin) * -1);
     padding-inline: var(--page-margin);
     overflow-x: auto;
     scrollbar-width: none;
-    box-sizing: content-box;
   }
 
   .product-carousel_wrapper_controls::-webkit-scrollbar {
