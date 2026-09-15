@@ -116,13 +116,29 @@ a.announcement-bar_wrapper_track_slide_text:hover {
   text-decoration: underline;
 }
 
+/* Figma Mobile 7930:106694: a 38px strip - 8/16 padding, no carets, 12px
+   Montserrat Medium on a 22px line with the offer in SemiBold. */
 @media screen and (max-width: 749px) {
   .announcement-bar_wrapper {
-    padding: 10px 12px;
+    padding: 8px var(--page-margin);
+  }
+
+  .announcement-bar_wrapper_prev,
+  .announcement-bar_wrapper_next {
+    display: none;
+  }
+
+  .announcement-bar_wrapper_track {
+    min-height: 22px;
   }
 
   .announcement-bar_wrapper_track_slide_text {
-    font-size: 13px;
-    white-space: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .announcement-bar_wrapper_track_slide_text strong {
+    font-weight: 600;
   }
 }
