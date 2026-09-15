@@ -160,27 +160,42 @@
   }
 }
 
+/* Figma Mobile All collections 7930:119276: 12/24 padding, a 20px heading, and two
+   237px-tall cards to a row on a 20px gutter with 16px bold-italic titles. */
 @media screen and (max-width: 749px) {
   .collections-page_wrapper,
   .collections-skeleton_wrapper {
-    padding-block: 24px;
+    padding-block: 12px 24px;
   }
 
   .collections-page_wrapper_heading {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: normal;
   }
 
   .collections-page_wrapper_grid,
   .collections-skeleton_wrapper_grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 20px;
+  }
+
+  .collections-page_wrapper_grid_item_image,
+  .collections-skeleton_wrapper_grid_item_media {
+    aspect-ratio: 170.5 / 237;
+  }
+
+  .collections-page_wrapper_grid_item_body {
+    gap: 4px;
   }
 
   .collections-page_wrapper_grid_item_body_title {
+    font-weight: 700;
     font-size: 16px;
+    line-height: normal;
   }
 
   .collections-page_wrapper_grid_item_body_count {
     font-size: 14px;
+    line-height: 22px;
   }
 }
