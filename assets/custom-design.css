@@ -377,35 +377,112 @@
   }
 }
 
+/* Figma Mobile Get your own design 7930:119557.
+   Steps (119598): 12/24 padding, the button stays beside a 20px heading, and the
+   cards stack 16px apart with 140px photos. Options (119627): three portrait
+   tiles share one row. Gallery (119641): 170x237 cards on a 12px gap run off the
+   right edge. */
 @media screen and (max-width: 749px) {
   .custom-design-steps_wrapper,
-  .custom-design-options_wrapper,
-  .custom-design-gallery_wrapper,
   .custom-design-skeleton_wrapper {
+    gap: 16px;
+    padding-block: 12px 24px;
+  }
+
+  .custom-design-options_wrapper,
+  .custom-design-gallery_wrapper {
+    gap: 16px;
     padding-block: 24px;
-  }
-
-  .custom-design-steps_wrapper_head,
-  .custom-design-skeleton_wrapper_head {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .custom-design-steps_wrapper_head_cta {
-    justify-content: center;
   }
 
   .custom-design-steps_wrapper_head_heading,
   .custom-design-options_wrapper_heading,
   .custom-design-gallery_wrapper_heading {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .custom-design-options_wrapper_heading {
+    color: var(--color-text-secondary, #494949);
+  }
+
+  .custom-design-steps_wrapper_head_cta {
+    padding: 12px 16px;
+    font-size: 12px;
+    line-height: normal;
   }
 
   .custom-design-steps_wrapper_grid,
-  .custom-design-options_wrapper_body_grid,
   .custom-design-skeleton_wrapper_grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .custom-design-steps_wrapper_grid_item {
+    align-items: center;
+  }
+
+  .custom-design-steps_wrapper_grid_item_image {
+    flex-basis: 140px;
+    width: 140px;
+    height: 140px;
+  }
+
+  .custom-design-steps_wrapper_grid_item_body_head_title {
+    line-height: 24px;
+  }
+
+  .custom-design-steps_wrapper_grid_item_body_text {
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .custom-design-options_wrapper_body_subheading {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .custom-design-options_wrapper_body_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .custom-design-options_wrapper_body_grid_item_image {
+    aspect-ratio: 168 / 237;
+  }
+
+  .custom-design-options_wrapper_body_grid_item_label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .custom-design-gallery_wrapper_stage_track {
+    gap: 12px;
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .custom-design-gallery_wrapper_stage_track_item {
+    flex-basis: 170px;
+    width: 170px;
+    gap: 8px;
+  }
+
+  .custom-design-gallery_wrapper_stage_track_item_image {
+    aspect-ratio: 170 / 237;
+  }
+
+  .custom-design-gallery_wrapper_stage_track_item_caption {
+    gap: 1px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .custom-design-gallery_wrapper_stage_track_item_caption_title {
+    font-weight: 600;
   }
 
   .custom-design-gallery_wrapper_stage_arrow {
