@@ -13,7 +13,7 @@
       "type": "breadcrumb",
       "settings": {
         "home_label": "Home",
-        "current_label": ""
+        "current_label": "All collections"
       }
     },
     "main": {
