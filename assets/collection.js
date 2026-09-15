@@ -21,6 +21,16 @@ class CollectionPage extends HTMLElement {
     });
 
     this.addEventListener('click', (event) => {
+      // Phones: the Sort | Filters bar and the two sheets it opens.
+      if (event.target.closest('[data-mobile-sort]')) return this.toggleSort();
+      if (event.target.closest('[data-mobile-filters]')) return this.setFiltersOpen(true);
+      if (event.target.closest('[data-filters-close]')) return this.setFiltersOpen(false);
+      if (event.target.closest('[data-sort-close]')) return this.closeSort();
+      if (event.target.closest('[data-sheet-scrim]')) {
+        this.setFiltersOpen(false);
+        return this.closeSort();
+      }
+
       const preset = event.target.closest('[data-price-preset]');
       if (preset) return this.applyPreset(preset);
 
@@ -65,14 +75,37 @@ class CollectionPage extends HTMLElement {
     menu.hidden = open;
   }
 
+  closeSort() {
+    this.querySelector('[data-sort-trigger]')?.setAttribute('aria-expanded', 'false');
+    const menu = this.querySelector('[data-sort-menu]');
+    if (menu) menu.hidden = true;
+  }
+
   closeSortOnOutsideClick = (event) => {
     const sort = this.querySelector('[data-sort]');
-    if (!sort || sort.contains(event.target)) return;
-    const trigger = this.querySelector('[data-sort-trigger]');
-    const menu = this.querySelector('[data-sort-menu]');
-    if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    if (menu) menu.hidden = true;
+    // The phone bar's Sort button lives outside the menu but opens it.
+    if (!sort || sort.contains(event.target) || event.target.closest('[data-mobile-sort]')) return;
+    this.closeSort();
   };
+
+  /* ---------------------------------------------------------- filter sheet */
+
+  /* Phones only: the rail opens as a sheet. It is revealed by hand because the
+     scroll-reveal never sees it while it is hidden, and motion.css holds every
+     unrevealed [data-animate] element at zero opacity. */
+  setFiltersOpen(open) {
+    this.toggleAttribute('data-filters-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) this.revealFilters();
+  }
+
+  revealFilters() {
+    const rail = this.querySelector('[data-filters]');
+    if (!rail) return;
+    rail.classList.add('is-visible');
+    rail.style.removeProperty('opacity');
+    rail.style.removeProperty('transform');
+  }
 
   applySort(option) {
     if (this.sortInput) this.sortInput.value = option.value;
@@ -161,12 +194,13 @@ class CollectionPage extends HTMLElement {
       const fresh = doc.querySelector('collection-page');
       if (!fresh) throw new Error('no collection-page in response');
 
-      ['[data-grid]', '[data-filters]', '[data-more]'].forEach((selector) => {
+      ['[data-grid]', '[data-filters]', '[data-more]', '[data-mobile-bar]'].forEach((selector) => {
         const next = fresh.querySelector(selector);
         const current = this.querySelector(selector);
         if (next && current) current.replaceWith(next);
         else if (!next && current) current.remove();
       });
+      if (this.hasAttribute('data-filters-open')) this.revealFilters();
 
       const count = fresh.querySelector('.collection_wrapper_main_toolbar_count');
       const currentCount = this.querySelector('.collection_wrapper_main_toolbar_count');
