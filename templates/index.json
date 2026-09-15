@@ -19,7 +19,8 @@
             "heading": "",
             "subheading": "",
             "button_label": "",
-            "button_url": ""
+            "button_url": "",
+            "mobile_image": "shopify://shop_images/zinara-hero-mobile-rakhi.png"
           }
         },
         "slide_mkRNm4": {
@@ -29,7 +30,8 @@
             "heading": "",
             "subheading": "",
             "button_label": "",
-            "button_url": ""
+            "button_url": "",
+            "mobile_image": "shopify://shop_images/zinara-hero-mobile-rakhi.png"
           }
         },
         "slide_BEYVhA": {
@@ -39,7 +41,8 @@
             "heading": "",
             "subheading": "",
             "button_label": "",
-            "button_url": ""
+            "button_url": "",
+            "mobile_image": "shopify://shop_images/zinara-hero-mobile-rakhi.png"
           }
         },
         "slide_4KCA4Q": {
@@ -49,7 +52,8 @@
             "heading": "",
             "subheading": "",
             "button_label": "",
-            "button_url": ""
+            "button_url": "",
+            "mobile_image": "shopify://shop_images/zinara-hero-mobile-rakhi.png"
           }
         }
       },
@@ -586,7 +590,8 @@
         "right_image_2": "shopify://shop_images/zinara-video-thumb-generic.jpg",
         "right_heading": "Made to be worn.\nMade to be yours.",
         "right_button_label": "Get to know us",
-        "right_button_url": "/pages/about-us"
+        "right_button_url": "/pages/about-us",
+        "right_image_mobile": "shopify://shop_images/zinara-split-promo-mobile.png"
       }
     },
     "as-seen-on": {
