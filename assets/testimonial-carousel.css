@@ -330,7 +330,59 @@
   color: var(--color-text-secondary, #494949);
 }
 
+/* Figma Mobile 7930:106851: 24/16 padding, a 20px heading, and fixed 332px cards
+   (126px photo beside the text) on a 16px gap running off both screen edges. */
 @media screen and (max-width: 749px) {
+  .testimonial-carousel_wrapper {
+    padding-block: 24px;
+  }
+
+  .testimonial-carousel_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .testimonial-carousel_wrapper_stage {
+    --testimonial-card: 332px;
+    --testimonial-gap: 16px;
+  }
+
+  .testimonial-carousel_wrapper_track {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .testimonial-carousel_wrapper_track_card {
+    border-radius: 16px;
+  }
+
+  .testimonial-carousel_wrapper_track_card_row {
+    gap: 12px;
+  }
+
+  .testimonial-carousel_wrapper_track_card_row_image {
+    flex: 0 0 126px;
+  }
+
+  .testimonial-carousel_wrapper_track_card_row_content_name {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .testimonial-carousel_wrapper_track_card_row_content_quote_text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .testimonial-carousel_wrapper_track_card_row_content_product {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
   .testimonial-carousel_wrapper_stage_prev,
   .testimonial-carousel_wrapper_stage_next {
     display: none;
