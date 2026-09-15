@@ -139,8 +139,41 @@
   text-align: center;
 }
 
+/* Figma Mobile 7930:120082 + 7930:120086: 20px #494949 headings, the quote at
+   32/44, 14px copy, and 129px cards on a 12px gap. The card row starts its own
+   24/24 band in the design, hence the extra space above it. */
 @media screen and (max-width: 749px) {
+  .about-story_wrapper {
+    gap: 16px;
+    padding-block: 24px;
+  }
+
+  .about-story_wrapper_heading,
+  .about-story_wrapper_block_heading {
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
+  }
+
   .about-story_wrapper_quote {
-    font-size: 24px;
+    line-height: 44px;
+  }
+
+  .about-story_wrapper_body {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-story_wrapper_block {
+    --about-story-card: 129px;
+    --about-story-gap: 12px;
+
+    margin-top: 32px;
+  }
+
+  .about-story_wrapper_block_track_item_label {
+    font-size: 14px;
+    line-height: normal;
   }
 }

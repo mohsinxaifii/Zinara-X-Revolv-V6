@@ -44,6 +44,7 @@
     connectedCallback() {
       this.slides = Array.from(this.querySelectorAll('[data-stage-slide]'));
       this.thumbs = Array.from(this.querySelectorAll('[data-thumb]'));
+      this.dots = Array.from(this.querySelectorAll('[data-gallery-dot]'));
       this.index = 0;
 
       this.thumbs.forEach((thumb) => {
@@ -52,11 +53,47 @@
 
       this.slides.forEach((slide) => {
         slide.addEventListener('click', () => {
+          // A swipe ends in a click too; it should turn the page, not open the lightbox.
+          if (this.swiped) return;
           this.dispatchEvent(
             new CustomEvent('gallery:open', { bubbles: true, detail: { index: this.index } }),
           );
         });
       });
+
+      this.setupSwipe();
+    }
+
+    /* Phones have dots instead of thumbnails, so the image itself has to page. */
+    setupSwipe() {
+      const stage = this.querySelector('.pdp_gallery_stage');
+      if (!stage || this.slides.length < 2) return;
+      let startX = 0;
+      let startY = 0;
+      stage.addEventListener(
+        'touchstart',
+        (event) => {
+          startX = event.touches[0].clientX;
+          startY = event.touches[0].clientY;
+          this.swiped = false;
+        },
+        { passive: true },
+      );
+      stage.addEventListener(
+        'touchend',
+        (event) => {
+          const dx = event.changedTouches[0].clientX - startX;
+          const dy = event.changedTouches[0].clientY - startY;
+          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+          this.swiped = true;
+          const last = this.slides.length - 1;
+          this.show(dx < 0 ? Math.min(this.index + 1, last) : Math.max(this.index - 1, 0));
+          window.setTimeout(() => {
+            this.swiped = false;
+          }, 400);
+        },
+        { passive: true },
+      );
     }
 
     show(index) {
@@ -64,6 +101,7 @@
       this.index = index;
       this.slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
       this.thumbs.forEach((thumb, i) => thumb.classList.toggle('is-active', i === index));
+      this.dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
       this.thumbs[index]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
   }

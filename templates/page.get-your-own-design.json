@@ -23,21 +23,24 @@
           "type": "step",
           "settings": {
             "title": "Conceptualise",
-            "text": "Share your inspiration, and we’ll craft unique designs tailored to your vision."
+            "text": "Share your inspiration, and we’ll craft unique designs tailored to your vision.",
+            "image": "shopify://shop_images/zinara-gyod-step-1.png"
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
             "title": "Design approval",
-            "text": "Our team transforms your vision into a realistic product image for your approval before we begin crafting."
+            "text": "Our team transforms your vision into a realistic product image for your approval before we begin crafting.",
+            "image": "shopify://shop_images/zinara-gyod-step-2.png"
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
             "title": "Ready to wear",
-            "text": "Once approved, your custom jewellery is crafted and carefully prepared, ready to be worn and cherished."
+            "text": "Once approved, your custom jewellery is crafted and carefully prepared, ready to be worn and cherished.",
+            "image": "shopify://shop_images/zinara-gyod-step-3.png"
           }
         }
       },
@@ -58,19 +61,22 @@
         "option-1": {
           "type": "option",
           "settings": {
-            "label": "Diamond carat"
+            "label": "Diamond carat",
+            "image": "shopify://shop_images/zinara-gyod-option-carat.png"
           }
         },
         "option-2": {
           "type": "option",
           "settings": {
-            "label": "Metal"
+            "label": "Metal",
+            "image": "shopify://shop_images/zinara-gyod-option-metal.png"
           }
         },
         "option-3": {
           "type": "option",
           "settings": {
-            "label": "Colour"
+            "label": "Colour",
+            "image": "shopify://shop_images/zinara-gyod-option-colour.png"
           }
         }
       },
@@ -91,35 +97,40 @@
           "type": "design",
           "settings": {
             "title": "Ring",
-            "customer": "Anita Sharma, Jaipur"
+            "customer": "Anita Sharma, Jaipur",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-2": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-3": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-4": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         },
         "design-5": {
           "type": "design",
           "settings": {
             "title": "Pendant",
-            "customer": "Anita Sharma, Bengaluru"
+            "customer": "Anita Sharma, Bengaluru",
+            "image": "shopify://shop_images/zinara-gyod-gallery.png"
           }
         }
       },
@@ -149,35 +160,35 @@
           "type": "question",
           "settings": {
             "question": "Can you tell the difference between lab grown diamonds and natural diamonds?",
-            "answer": ""
+            "answer": "Lab grown diamonds appear identical to natural diamonds and can’t be distinguished by the naked eye and with standard microscopic tools. Trained jewellers and experts can’t also tell the difference between them. They can only be distinguished from natural diamonds using specialized equipment that can detect the specific growth patterns and inclusions characteristic of their origin."
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "question": "Are ZINARA lab grown diamonds graded and certified?",
-            "answer": ""
+            "answer": "Yes, lab grown diamonds are graded and certified by the same gemological laboratories that evaluate natural diamonds. Renowned organizations like GIA, IGI, and SGL provide these certifications. The grading process for lab grown diamonds is identical to that for natural diamonds, ensuring transparency and quality assurance. All lab grown diamonds used in jewellery offered by ZINARA are graded and certified by these laboratory organizations."
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "question": "Do you deliver pan India?",
-            "answer": ""
+            "answer": "Yes we deliver PAN India to 19000+ pincodes. To check if we deliver to your area, please enter your pincode or city on the product page."
           }
         },
         "q5": {
           "type": "question",
           "settings": {
             "question": "Is ID proof required for delivery?",
-            "answer": ""
+            "answer": "Some logistics partners may request ID proof, especially for high-value shipments, to ensure secure delivery."
           }
         },
         "q6": {
           "type": "question",
           "settings": {
             "question": "What payment options are available?",
-            "answer": ""
+            "answer": "Payment methods include credit cards, debit cards, net banking, international cards, and cash on delivery. Cash on delivery is available upto INR 35000"
           }
         }
       },

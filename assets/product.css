@@ -2844,3 +2844,151 @@ button.pdp_trust_grid_item_inner {
     width: auto;
   }
 }
+
+.pdp_gallery_dots {
+  display: none;
+}
+
+/* ---------------------------------------------------------------- mobile --
+   Figma Mobile PDP 7930:112221. The gallery runs edge to edge on a cream band
+   with dots in place of thumbnails, the price card joins that band, the trust
+   tiles stay two-up, and Add to cart / Buy now pin to a white bar along the
+   bottom of the screen (7930:112804). */
+@media screen and (max-width: 749px) {
+  .pdp_layout {
+    gap: 0;
+    padding-block: 0 24px;
+  }
+
+  .pdp_gallery {
+    margin-inline: calc(var(--page-margin) * -1);
+    background-color: var(--pdp-yellow-50);
+  }
+
+  .pdp_gallery_inner {
+    gap: 12px;
+  }
+
+  .pdp_gallery_stage {
+    border-radius: 0;
+  }
+
+  .pdp_gallery_stage_top_badge,
+  .pdp_gallery_stage_bottom_pill {
+    padding: 2px 6px;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 16px;
+  }
+
+  .pdp_gallery_stage_top_wishlist {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    border-width: 0.75px;
+    border-radius: 6px;
+  }
+
+  .pdp_gallery_thumbs {
+    display: none;
+  }
+
+  .pdp_gallery_dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .pdp_gallery_dots_dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background-color: #c4c4c4;
+    transition: width 0.25s ease;
+  }
+
+  .pdp_gallery_dots_dot.is-active {
+    width: 18px;
+    background-color: var(--pdp-brand);
+  }
+
+  /* The cream band carries on under the price card, which loses its own frame. */
+  .pdp_headline {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding: 12px var(--page-margin);
+    border-radius: 0;
+  }
+
+  .pdp_headline_top_title {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .pdp_headline_price_compare {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .pdp_headline_price_save {
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .pdp_headline_tax {
+    font-size: 12px;
+    line-height: normal;
+  }
+
+  .pdp_headline_tags_item {
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+
+  .pdp_trust_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pdp_trust_grid_item_inner_label {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .pdp_help_copy_body {
+    font-size: 12px;
+  }
+
+  .pdp_help_actions {
+    flex-wrap: nowrap;
+  }
+
+  .pdp_help_actions .pdp_button {
+    padding-inline: 8px;
+    white-space: nowrap;
+  }
+
+  .pdp_highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pdp_highlights_item_text {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .pdp_buy {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 30;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 12px var(--page-margin) 20px;
+    background-color: #fff;
+    box-shadow: 0 -1px 0 var(--pdp-border);
+  }
+
+  /* Room at the foot of the page so the pinned bar never covers the footer. */
+  .pdp {
+    padding-bottom: 76px;
+  }
+}

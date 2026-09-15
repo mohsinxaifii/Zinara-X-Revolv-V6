@@ -108,7 +108,10 @@
     "selected_price_range": "Selected price range",
     "load_more": "Load more",
     "loading": "Loading",
-    "empty": "No products match these filters."
+    "empty": "No products match these filters.",
+    "sort": "Sort",
+    "apply": "Apply",
+    "sort_by_heading": "Sort by"
   },
   "collections": {
     "title": "Collections",

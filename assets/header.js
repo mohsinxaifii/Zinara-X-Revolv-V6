@@ -4,8 +4,10 @@ class HeaderComponent extends HTMLElement {
     this.closeButton = this.querySelector('.header_drawer_header_close');
     this.overlay = this.querySelector('.header_drawer_overlay');
     this.drawer = this.querySelector('.header_drawer');
+    this.searchToggle = this.querySelector('.header_wrapper_actions_search-toggle');
     this.isOpen = false;
 
+    this.searchToggle?.addEventListener('click', () => this.toggleSearch());
     this.menuToggle?.addEventListener('click', () => this.open());
     this.closeButton?.addEventListener('click', () => this.close());
     this.overlay?.addEventListener('click', () => this.close());
@@ -13,6 +15,14 @@ class HeaderComponent extends HTMLElement {
       if (event.key === 'Escape' && this.isOpen) this.close();
       if (event.key === 'Tab' && this.isOpen) this.trapFocus(event);
     });
+  }
+
+  /* Mobile only: the search icon reveals the header's search field under the bar. */
+  toggleSearch() {
+    const open = this.getAttribute('data-search-open') !== 'true';
+    this.setAttribute('data-search-open', String(open));
+    this.searchToggle.setAttribute('aria-expanded', String(open));
+    if (open) this.querySelector('[data-suggest-input]')?.focus();
   }
 
   open() {

@@ -86,16 +86,24 @@
   color: #fff;
 }
 
+/* Figma Mobile 7930:120002: a 16px band around the same 323px card; the eyebrow
+   turns SemiBold and the quote keeps 32px on a 40px line. */
 @media screen and (max-width: 749px) {
-  .about-hero_wrapper_card {
-    height: auto;
-    min-height: 260px;
-    gap: 32px;
-    padding: 32px 20px;
+  .about-hero_wrapper {
+    padding: 16px var(--page-margin);
+  }
+
+  .about-hero_wrapper_card_text {
+    gap: 12px;
+  }
+
+  .about-hero_wrapper_card_text_eyebrow {
+    font-weight: 600;
+    line-height: normal;
   }
 
   .about-hero_wrapper_card_text_quote {
-    font-size: 24px;
+    line-height: 40px;
   }
 }
 
@@ -111,4 +119,10 @@
 
 .about-hero-skeleton_wrapper_card {
   height: 323px;
+}
+
+@media screen and (max-width: 749px) {
+  .about-hero-skeleton_wrapper {
+    padding-block: 16px;
+  }
 }

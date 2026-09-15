@@ -71,15 +71,39 @@
   color: var(--color-text-secondary, #494949);
 }
 
+/* Figma Mobile 7930:120040: the three stats stay in one row on white, 8px apart
+   with no rules - 24px marks, 24px values and 12px labels. */
 @media screen and (max-width: 749px) {
+  .about-stats {
+    background-color: #fff;
+  }
+
   .about-stats_wrapper {
-    flex-direction: column;
-    gap: 32px;
+    gap: 8px;
+    padding-block: 24px;
+  }
+
+  .about-stats_wrapper_stat {
+    flex: 1 1 0;
+    gap: 4px;
   }
 
   .about-stats_wrapper_stat + .about-stats_wrapper_stat::before {
-    inset: -16px 0 auto;
-    width: auto;
-    height: 1px;
+    display: none;
+  }
+
+  .about-stats_wrapper_stat_icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .about-stats_wrapper_stat_value {
+    font-size: 24px;
+    line-height: normal;
+  }
+
+  .about-stats_wrapper_stat_label {
+    font-size: 12px;
+    line-height: 20px;
   }
 }

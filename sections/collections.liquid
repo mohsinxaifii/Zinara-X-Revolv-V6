@@ -16,9 +16,16 @@
 {{ 'collections.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  comment
+    Figma shows a hand-picked set, so a curated list wins when one is chosen;
+    otherwise every collection is listed in the chosen order.
+  endcomment
   assign shown = collections
   if section.settings.sort_by == 'products_high'
     assign shown = collections | sort: 'all_products_count' | reverse
+  endif
+  if section.settings.collection_list != blank
+    assign shown = section.settings.collection_list
   endif
 -%}
 
@@ -82,6 +89,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "All collections"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collections to show",
+      "info": "Leave empty to list every collection."
     },
     {
       "type": "select",

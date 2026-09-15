@@ -50,20 +50,14 @@
   }
 }
 
+/* Figma 7930:104536 clips the row at the content edge: the last card is cut at
+   1208px, not at the viewport. */
 .occasion-showcase_wrapper_track {
   display: flex;
   gap: var(--occasion-gap);
-  width: calc(100% + var(--page-margin) * 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-
-  /* Figma runs the row to the edge of the page, so the next card breaks the
-     margin instead of stopping at it. The track spans the full width and pads
-     its own content back in, which keeps the first card on the content edge. */
-  margin-inline: calc(var(--page-margin) * -1);
-  padding-inline: var(--page-margin);
-  scroll-padding-inline-start: var(--page-margin);
 }
 
 .occasion-showcase_wrapper_track::-webkit-scrollbar {
@@ -129,7 +123,38 @@
   right: -20px;
 }
 
+/* Figma Mobile 7930:106862: 24/16 padding, a 20px heading, 168x237 cards on a
+   16px gap running off both screen edges, 12px labels on a 20px line. */
 @media screen and (max-width: 749px) {
+  .occasion-showcase_wrapper {
+    padding-block: 24px;
+  }
+
+  .occasion-showcase_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .occasion-showcase_wrapper_stage {
+    --occasion-card: 168px;
+    --occasion-gap: 16px;
+  }
+
+  .occasion-showcase_wrapper_track {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .occasion-showcase_wrapper_track_item_image {
+    aspect-ratio: 168 / 237;
+  }
+
+  .occasion-showcase_wrapper_track_item_label {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
   .occasion-showcase_wrapper_stage_prev,
   .occasion-showcase_wrapper_stage_next {
     display: none;

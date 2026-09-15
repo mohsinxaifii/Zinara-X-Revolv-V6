@@ -62,17 +62,35 @@
   color: var(--color-brand, #712242);
 }
 
+.usp-grid_heading {
+  display: none;
+}
+
+/* Figma Mobile 7930:106815 keeps the 2x2 grid: 64px cells with 12px padding,
+   20px icons and 12px labels wrapping on a 20px line. Contact us 7930:118959
+   puts a 20px heading 16px above it. */
 @media screen and (max-width: 749px) {
-  .usp-grid_wrapper {
-    grid-template-columns: 1fr;
-    width: 100%;
+  .usp-grid_heading {
+    display: block;
+    margin: 0 0 16px;
+    font-family: var(--font-secondary--family);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
   }
 
   .usp-grid_wrapper_cell {
-    border-left: 0;
+    padding-inline: 12px;
   }
 
-  .usp-grid_wrapper_cell:nth-child(2) {
-    border-top: 1px solid #d38a0d;
+  .usp-grid_wrapper_cell_icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .usp-grid_wrapper_cell_text {
+    font-size: 12px;
+    line-height: 20px;
   }
 }

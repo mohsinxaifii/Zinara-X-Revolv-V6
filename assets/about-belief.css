@@ -133,3 +133,61 @@
     aspect-ratio: 281 / 381;
   }
 }
+
+/* Figma Mobile 7930:120053: heading and lead first, then the overlapping pair
+   (186x249 lapping 63px over 238x323 on the 361px row, kept as proportions),
+   then the body. The text column dissolves so the media can sit between its
+   parts. */
+@media screen and (max-width: 749px) {
+  .about-belief_wrapper {
+    padding-block: 24px;
+  }
+
+  .about-belief_wrapper_row {
+    gap: 16px;
+  }
+
+  .about-belief_wrapper_row_text {
+    display: contents;
+  }
+
+  .about-belief_wrapper_row_text_heading {
+    order: 1;
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
+  }
+
+  .about-belief_wrapper_row_text_lead {
+    order: 2;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-belief_wrapper_row_media {
+    order: 3;
+    align-self: stretch;
+    justify-content: flex-start;
+    height: auto;
+  }
+
+  .about-belief_wrapper_row_media_front {
+    width: 51.52%;
+    height: auto;
+    aspect-ratio: 186 / 249;
+    margin-right: -17.45%;
+  }
+
+  .about-belief_wrapper_row_media_back {
+    width: 65.93%;
+    height: auto;
+    aspect-ratio: 238 / 323;
+  }
+
+  .about-belief_wrapper_row_text_body {
+    order: 4;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

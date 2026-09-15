@@ -49,20 +49,14 @@
   }
 }
 
+/* Figma 7930:104601 clips the row at the content edge: the last card is cut at
+   1208px, not at the viewport. */
 .press-carousel_wrapper_track {
   display: flex;
   gap: var(--press-gap);
-  width: calc(100% + var(--page-margin) * 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-
-  /* Figma runs the row to the edge of the page, so the next card breaks the
-     margin instead of stopping at it. The track spans the full width and pads
-     its own content back in, which keeps the first card on the content edge. */
-  margin-inline: calc(var(--page-margin) * -1);
-  padding-inline: var(--page-margin);
-  scroll-padding-inline-start: var(--page-margin);
 }
 
 .press-carousel_wrapper_track::-webkit-scrollbar {
@@ -138,7 +132,49 @@
   right: -20px;
 }
 
+/* Figma Mobile 7930:106911: 24/16 padding on a 16px stack, a 20px heading, and
+   168x237 photos (8px corners) on a 16px gap running off both screen edges, with
+   14px captions on a 22px line. */
 @media screen and (max-width: 749px) {
+  .press-carousel_wrapper {
+    gap: 16px;
+    padding-block: 24px;
+  }
+
+  .press-carousel_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .press-carousel_wrapper_stage {
+    --press-card: 168px;
+    --press-gap: 16px;
+  }
+
+  .press-carousel_wrapper_track {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .press-carousel_wrapper_track_item_image {
+    aspect-ratio: 168 / 237;
+    border-radius: 8px;
+  }
+
+  .press-carousel_wrapper_track_item_caption_by,
+  .press-carousel_wrapper_track_item_caption_title {
+    line-height: 22px;
+  }
+
+  .press-carousel_wrapper_track_item_caption_title {
+    max-width: 158px;
+    overflow: hidden;
+    text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   .press-carousel_wrapper_stage_prev,
   .press-carousel_wrapper_stage_next {
     display: none;

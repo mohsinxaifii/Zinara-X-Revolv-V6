@@ -4,16 +4,14 @@
   background-color: var(--announcement-bar-bg, #f9d79f);
 }
 
-/* The root now bleeds to the viewport edges, so the bar's own content takes
-   over the page-width cap the other sections' wrappers apply. */
+/* Figma 7930:104248: the carets sit 16px from the viewport edges, outside the
+   72px page gutter the other sections use, so the bar takes no page-width cap. */
 .announcement-bar_wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2px;
-  max-width: var(--page-width);
-  margin-inline: auto;
-  padding: 12px var(--page-margin);
+  padding: 12px 16px;
   box-sizing: border-box;
 }
 
@@ -28,9 +26,10 @@
   padding: 0;
   border: 0;
   background: none;
-  color: var(--announcement-bar-text, #000);
+
+  /* Figma draws the carets black while the message is brand-coloured. */
+  color: #000;
   cursor: pointer;
-  opacity: 0.7;
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
@@ -109,17 +108,37 @@
   text-overflow: ellipsis;
 }
 
+.announcement-bar_wrapper_track_slide_text strong {
+  font-weight: 700;
+}
+
 a.announcement-bar_wrapper_track_slide_text:hover {
   text-decoration: underline;
 }
 
+/* Figma Mobile 7930:106694: a 38px strip - 8/16 padding, no carets, 12px
+   Montserrat Medium on a 22px line with the offer in SemiBold. */
 @media screen and (max-width: 749px) {
   .announcement-bar_wrapper {
-    padding: 10px 12px;
+    padding: 8px var(--page-margin);
+  }
+
+  .announcement-bar_wrapper_prev,
+  .announcement-bar_wrapper_next {
+    display: none;
+  }
+
+  .announcement-bar_wrapper_track {
+    min-height: 22px;
   }
 
   .announcement-bar_wrapper_track_slide_text {
-    font-size: 13px;
-    white-space: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .announcement-bar_wrapper_track_slide_text strong {
+    font-weight: 600;
   }
 }

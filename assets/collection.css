@@ -650,3 +650,236 @@ collection-page:defined .plp-skeleton {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ------------------------------------------------------------ mobile sheets --
+   Figma Mobile PLP 7930:116781, its bottom bar 7930:117035, Sort by 7930:117649
+   and Filters 7930:118227. On phones the rail and the sort menu leave the page:
+   a sticky Sort | Filters bar opens each as a bottom sheet over a scrim, and the
+   grid goes two-up on an 8px gutter. Search reuses all of it. */
+.plp-mobile-bar,
+.plp-sheet-scrim,
+.collection_wrapper_filters_head_close,
+.collection_wrapper_filters_footer,
+.collection_wrapper_main_toolbar_sort_menu_head {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .collection_wrapper {
+    padding-block: 12px 24px;
+  }
+
+  .collection_wrapper_filters {
+    display: none;
+  }
+
+  collection-page[data-filters-open] .collection_wrapper_filters {
+    position: fixed;
+    inset: 56px 0 0;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px 12px 0 0;
+    background-color: #fff;
+    overflow: hidden;
+  }
+
+  .collection_wrapper_filters_head {
+    padding: 16px var(--page-margin);
+  }
+
+  .collection_wrapper_filters_head_clear {
+    display: none;
+  }
+
+  .collection_wrapper_filters_head_close,
+  .collection_wrapper_main_toolbar_sort_menu_head_close {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .collection_wrapper_filters_head_close svg,
+  .collection_wrapper_main_toolbar_sort_menu_head_close svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .collection_wrapper_filters_groups {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding-inline: var(--page-margin);
+  }
+
+  .collection_wrapper_filters_footer {
+    display: flex;
+    gap: 12px;
+    padding: 12px var(--page-margin) 20px;
+    border-top: 1px solid #f2f2f2;
+  }
+
+  .collection_wrapper_filters_footer_clear,
+  .collection_wrapper_filters_footer_apply {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 1px solid var(--color-brand, #712242);
+    border-radius: 8px;
+    font-family: var(--font-secondary--family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: normal;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .collection_wrapper_filters_footer_clear {
+    background-color: #fff;
+    color: var(--color-brand, #712242);
+  }
+
+  .collection_wrapper_filters_footer_apply {
+    background-color: var(--color-brand, #712242);
+    color: #fff;
+  }
+
+  .plp-sheet-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  collection-page[data-filters-open] .plp-sheet-scrim,
+  collection-page:has([data-sort-menu]:not([hidden])) .plp-sheet-scrim {
+    display: block;
+  }
+
+  /* Only the sort menu survives from the toolbar, as a sheet of its own. */
+  .collection_wrapper_main_toolbar {
+    min-height: 0;
+  }
+
+  .collection_wrapper_main_toolbar_count,
+  .collection_wrapper_main_toolbar_sort_trigger {
+    display: none;
+  }
+
+  .collection_wrapper_main_toolbar_sort_menu {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 101;
+    gap: 16px;
+    min-width: 0;
+    padding: 16px var(--page-margin) 24px;
+    border: 0;
+    border-radius: 12px 12px 0 0;
+    filter: none;
+  }
+
+  .collection_wrapper_main_toolbar_sort_menu_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: var(--font-secondary--family);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .collection_wrapper_main_toolbar_sort_menu_item {
+    line-height: 22px;
+  }
+
+  .collection_wrapper_main_chips {
+    flex-wrap: nowrap;
+    margin: 0 calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .collection_wrapper_main_chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection_wrapper_main_chips_chip {
+    flex: 0 0 auto;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .collection_wrapper_main_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .collection_wrapper_main_more {
+    margin-top: 16px;
+  }
+
+  .collection_wrapper_main_more_button {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--color-brand, #712242);
+    text-decoration: underline;
+  }
+
+  .plp-mobile-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px var(--page-margin);
+    background-color: #fff;
+    box-shadow: 0 -1px 0 #e0e0e0;
+  }
+
+  .plp-mobile-bar_button {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 16px;
+    border: 0;
+    background: none;
+    font-family: var(--font-secondary--family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4d4d4d;
+    cursor: pointer;
+  }
+
+  .plp-mobile-bar_button_icon {
+    display: flex;
+    width: 20px;
+    height: 20px;
+  }
+
+  .plp-mobile-bar_button_icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .plp-mobile-bar_divider {
+    align-self: stretch;
+    width: 1px;
+    background-color: #e0e0e0;
+  }
+}

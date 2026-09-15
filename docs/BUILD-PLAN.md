@@ -11,7 +11,129 @@ left. Tick a box only when the file is written *and* the page renders.
 
 ---
 
-## 0. Status for review — 2026-09-13
+## 0. Mobile pass — 2026-09-15
+
+Built against Figma Mobile `7930:106659` (393px frames), page by page, section by
+section, with side-by-side screenshots and rendered heights at 393px. The design
+has no tablet frames, so 750–989px keeps the desktop layout on a 32px gutter.
+Checked with no horizontal overflow and no JS errors on 10 routes at 360, 393,
+768 and 1024px. Desktop at 1280 is unchanged (same section heights as before).
+
+**Shared**
+- `--page-margin` drops to 32px (≤989px) and 16px (≤749px) in
+  `snippets/css-variables.liquid`, so every section's gutter follows.
+- Header: 57px bar with a search icon that reveals the search field under it.
+  The category strip is hidden on phones, as in the design.
+- Announcement bar: 38px, no carets, 12px text.
+- Footer: monogram + tagline on one line, contact rows, Quick links / Policies
+  two-up, 858px (Figma 858).
+- FAQ, Featured in (two marquee rows, the second reversed), breadcrumb (44px):
+  mobile type and spacing.
+- Carousel arrows are hidden on phones in `scroll-carousel.css`, because that
+  sheet loads after the sections' own CSS.
+- Product card: mobile tag, price and title sizes for both variants.
+
+**Home** (every section's height matches its Figma frame): hero uses the new
+per-slide `mobile_image` (the Figma Rakhi crop); all 4 category tiles in one row;
+USP strip side by side; product, collection, occasion, press and testimonial rows
+bleed to the screen edges at Figma card sizes; KYJ diagram re-laid for 361px;
+video cards 169×320; USP grid stays 2×2; split promo has the brand band first,
+with a new `right_image_mobile`; Instagram shows four 114px tiles.
+
+**About**: hero card with its own `mobile_image` crop; intro tiles in one row;
+stats one row on white; belief and founder put the photo between the heading and
+the copy; story cards 129px; contact cards one row.
+**Contact**: photo between intro and cards (new `mobile_image`), cards stacked,
+"The Zinara experience" heading on the USP grid (new optional `heading`, phones
+only). **Get your own design**: stacked step cards, three option tiles in a row,
+170px gallery. **All collections**: two-up, 20px gutter; breadcrumb label fixed
+("All collections"). **Wishlist**: 73px circles, two-up grid on 8px.
+
+**PLP and Search**: two-up grid, a sticky Sort | Filters bar
+(`snippets/plp-mobile-bar.liquid`), and both open as bottom sheets. The filter
+count and the rail are swapped on every filter request. Search swaps its heading
+for a search field holding the query.
+
+**PDP**: full-bleed gallery with swipe and dots instead of thumbnails, the price
+card on the same cream band, trust tiles two-up, "why you'll love it" three-up,
+and Add to cart / Buy now pinned to the bottom of the screen.
+
+**Admin**: uploaded `zinara-hero-mobile-rakhi`, `zinara-split-promo-mobile`,
+`zinara-about-hero-mobile` and `zinara-contact-mobile` to Files.
+
+**Not matched / still open**
+- PDP below the fold keeps its desktop order (reviews, similar products, pair
+  with and curated trends only restyled). The Figma mobile PDP moves the title
+  under the tags and adds an "Add-ons available" band on the image. Those need
+  markup changes that were not made.
+- PLP grid cards: Figma draws a 40px heart button beside Add to cart on some
+  cards. The theme keeps the heart in the price row.
+- Search breadcrumb has no "(126 products)" count; Figma's filter sheet uses
+  image category tiles, and those come from Search & Discovery data.
+- Side menu (`7930:108685`) still uses the existing drawer styling.
+- Blog and article mobile are unverified (0 articles), as on desktop.
+- Pre-existing: `sections/know-your-jewellery.liquid` is not Prettier-formatted
+  (it was not before this pass either).
+
+## 0a. Figma parity pass — 2026-09-14
+
+Every page was compared section by section against Figma `7930:93521`
+(side-by-side screenshots plus rendered heights at 1280px). Where this section
+and the 2026-09-13 status below disagree, this one is current.
+
+**Fixed in the theme**
+- Announcement bar: brand-coloured text with a bold "10% OFF" (the message is now
+  inline rich text), black carets 16px from the viewport edges.
+- Category nav: all 9 links filled.
+- Carousels (product carousels, Zinara collections, testimonials, occasion,
+  press): rows now clip at the content edge (1208px) instead of bleeding to the
+  viewport.
+- Featured in: the Figma press marks, with a per-logo height setting (35/23/29).
+- Footer: quick links use `header_menu_3` (Rings/Earrings/Pendants/Bracelets);
+  Facebook icon, with the URL taken from the live theme's settings; Figma app
+  badges and 7 payment icons with per-block heights; 34px link rows. 930px → 740px
+  (Figma 739).
+- FAQ: the five empty answers filled on every template, using the live theme's
+  own FAQ copy.
+- Instagram feed: the 4 Figma posts; profile URL is now instagram.com/heyzinara
+  (the live theme's). New `layout` setting: the contact page uses full-width tiles.
+- USP grid: padding settings; the contact page uses 24/48 (200px, as drawn).
+- About: hero, intro, belief, story and founder images from Figma.
+- Contact: channel values are brand-coloured under a label.
+- Get your own design: step, option and gallery images; plain CTA (no icon);
+  centred option labels and gallery captions.
+- All collections: italic card titles; optional curated `collection_list` setting.
+- Search: breadcrumb, FAQ and Featured-in bands added (Figma has them).
+- Home: Bracelets tile, both split-promo buttons and the Siesta cards linked.
+
+**Admin done (the live storefront is unaffected)**
+- 43 design images uploaded to Files as `zinara-*`.
+- The `get-your-own-design` page's template suffix is now `get-your-own-design`.
+  The live theme has no such template and falls back to `page.json`, as before.
+- `wishlist` page created **unpublished**, with template `wishlist`. Publish it at
+  launch; until then `/pages/wishlist` 404s. The template renders correctly at
+  `/pages/contact?view=wishlist`.
+- Article metafield definitions `custom.aside_image` and `custom.shop_products`
+  created.
+
+**Still open: content or decisions, not theme work**
+- Blog `news` has 0 articles, so Blogs, Article and the home Journal band are
+  empty and unverified. An unpublished article 404s in the preview, so these
+  templates can only be checked once a real article is published.
+- No collections exist for "New job, new era", "Festive edit" or "Monsoon edit"
+  (Zinara collections and occasion cards). The "Majestic Solitaire Ring" products
+  are drafts (press cards). The app-badge store URLs are unknown.
+- PLP/Search filters (colour, occasion, collection, shipping, sub-category image
+  tiles) come from Search & Discovery settings, which the live store shares, so
+  they were not changed.
+- Product-card rating badges only show where review data exists. PDP option names
+  ("Metal Color: Yellow" vs Figma "Color: Gold") and the gift-sleeve product are
+  product data.
+- A `test` collection shows on /collections. Pick collections in the section
+  setting or delete it.
+- Mobile layouts not reviewed.
+
+## 0b. Status for review — 2026-09-13
 
 Written for a section-by-section review before any further work. Nothing below
 has been fixed yet; the "Pending" items are waiting on that review.

@@ -75,20 +75,14 @@
   }
 }
 
+/* Figma 7930:104412 clips the row at the content edge: the last card is cut at
+   1208px, not at the viewport. */
 .zinara-collections_wrapper_track {
   display: flex;
   gap: var(--zinara-collections-gap);
-  width: calc(100% + var(--page-margin) * 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-
-  /* Figma runs the row to the edge of the page, so the next card breaks the
-     margin instead of stopping at it. The track spans the full width and pads
-     its own content back in, which keeps the first card on the content edge. */
-  margin-inline: calc(var(--page-margin) * -1);
-  padding-inline: var(--page-margin);
-  scroll-padding-inline-start: var(--page-margin);
 }
 
 .zinara-collections_wrapper_track::-webkit-scrollbar {
@@ -169,7 +163,42 @@
   text-decoration: underline;
 }
 
+/* Figma Mobile 7930:106829: 24/16 padding, a 20px heading, 168x237 cards on a
+   16px gap running off both screen edges, 16px serif labels on a 24px line. */
 @media screen and (max-width: 749px) {
+  .zinara-collections_wrapper {
+    padding-block: 24px;
+  }
+
+  .zinara-collections_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .zinara-collections_wrapper_stage {
+    --zinara-collections-card: 168px;
+    --zinara-collections-gap: 16px;
+  }
+
+  .zinara-collections_wrapper_track {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .zinara-collections_wrapper_track_item_image {
+    aspect-ratio: 168 / 237;
+  }
+
+  .zinara-collections_wrapper_track_item_label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .zinara-collections_wrapper_link {
+    font-size: 16px;
+  }
+
   .zinara-collections_wrapper_stage_prev,
   .zinara-collections_wrapper_stage_next {
     display: none;

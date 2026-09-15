@@ -31,6 +31,25 @@
 
   <div class="search_head">
     <h1 class="search_head_title">{{ section.settings.heading }}</h1>
+
+    {%- comment -%}
+      Figma Mobile Search page 7930:111746 swaps the heading for a search field
+      holding the current query; desktop keeps the heading.
+    {%- endcomment -%}
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search_head_form">
+      <input type="hidden" name="type" value="product">
+      <span class="search_head_form_icon" aria-hidden="true">{{ 'icon-search.svg' | inline_asset_content }}</span>
+      <label class="visually-hidden" for="SearchHeadInput">{{ 'search.placeholder' | t }}</label>
+      <input
+        type="search"
+        id="SearchHeadInput"
+        name="q"
+        class="search_head_form_input"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'search.placeholder' | t }}"
+        autocomplete="off"
+      >
+    </form>
   </div>
 
   {%- if search.performed == false -%}
@@ -77,6 +96,14 @@
           >
             {{- 'collection.clear_all' | t -}}
           </a>
+          <button
+            type="button"
+            class="collection_wrapper_filters_head_close"
+            data-filters-close
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </button>
         </div>
 
         <div class="collection_wrapper_filters_groups">
@@ -102,6 +129,18 @@
           {%- else -%}
             <p class="collection_wrapper_filters_groups_none">{{ 'collection.empty' | t }}</p>
           {%- endfor -%}
+        </div>
+
+        <div class="collection_wrapper_filters_footer">
+          <a
+            href="{{ routes.search_url }}?q={{ terms | url_encode }}&type=product&sort_by={{ sort_by }}"
+            class="collection_wrapper_filters_footer_clear"
+          >
+            {{- 'collection.clear_all' | t -}}
+          </a>
+          <button type="button" class="collection_wrapper_filters_footer_apply" data-filters-close>
+            {{- 'collection.apply' | t -}}
+          </button>
         </div>
       </aside>
 
@@ -133,6 +172,17 @@
               </button>
 
               <div class="collection_wrapper_main_toolbar_sort_menu" data-sort-menu hidden>
+                <div class="collection_wrapper_main_toolbar_sort_menu_head">
+                  {{- 'collection.sort_by_heading' | t -}}
+                  <button
+                    type="button"
+                    class="collection_wrapper_main_toolbar_sort_menu_head_close"
+                    data-sort-close
+                    aria-label="{{ 'accessibility.close' | t }}"
+                  >
+                    {{- 'icon-close.svg' | inline_asset_content -}}
+                  </button>
+                </div>
                 {%- for option in search.sort_options -%}
                   <button
                     type="button"
@@ -198,6 +248,8 @@
         {%- endpaginate -%}
       </div>
     </form>
+
+    {%- render 'plp-mobile-bar', filters: search.filters -%}
   {%- endif -%}
 </collection-page>
 

@@ -17,22 +17,50 @@
       <div class="logo-marquee_wrapper_track">
         <div class="logo-marquee_wrapper_track_set">
           {%- for block in section.blocks -%}
-            <span class="logo-marquee_wrapper_track_set_logo">
+            <span
+              class="logo-marquee_wrapper_track_set_logo"
+              style="--logo-marquee-logo-height: {{ block.settings.height }}px;"
+            >
               {%- if block.settings.image -%}
-                {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
               {%- endif -%}
             </span>
           {%- endfor -%}
         </div>
         <div class="logo-marquee_wrapper_track_set" aria-hidden="true">
           {%- for block in section.blocks -%}
-            <span class="logo-marquee_wrapper_track_set_logo">
+            <span
+              class="logo-marquee_wrapper_track_set_logo"
+              style="--logo-marquee-logo-height: {{ block.settings.height }}px;"
+            >
               {%- if block.settings.image -%}
-                {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
               {%- endif -%}
             </span>
           {%- endfor -%}
         </div>
+      </div>
+
+      {%- comment -%}
+        Figma Mobile 7930:106967 stacks a second row of the same marks in reverse
+        order. Hidden on desktop, where the single row already spans the page.
+      {%- endcomment -%}
+      <div class="logo-marquee_wrapper_track logo-marquee_wrapper_track--second" aria-hidden="true">
+        {%- assign reversed_blocks = section.blocks | reverse -%}
+        {%- for n in (1..2) -%}
+          <div class="logo-marquee_wrapper_track_set">
+            {%- for block in reversed_blocks -%}
+              <span
+                class="logo-marquee_wrapper_track_set_logo"
+                style="--logo-marquee-logo-height: {{ block.settings.height }}px;"
+              >
+                {%- if block.settings.image -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: '' }}
+                {%- endif -%}
+              </span>
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
       </div>
     </div>
   </section>
@@ -70,7 +98,20 @@
     {
       "type": "logo",
       "name": "Logo",
-      "settings": [{ "type": "image_picker", "id": "image", "label": "Logo" }]
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo" },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Logo height",
+          "info": "Each mark is drawn at its own height in the design (35, 23 and 29px).",
+          "min": 16,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 35
+        }
+      ]
     }
   ],
   "presets": [

@@ -21,12 +21,32 @@
   if hero_ratio == 0
     assign hero_ratio = 2.2222
   endif
+
+  comment
+    Phones use each slide's mobile image when it has one (Figma Mobile
+    7930:106698 is a 393x244 crop), so the band takes a second ratio from those.
+  endcomment
+  assign hero_ratio_mobile = 0
+  for block in section.blocks
+    assign slide_mobile_image = block.settings.mobile_image | default: block.settings.image
+    if slide_mobile_image
+      assign slide_ratio = slide_mobile_image.aspect_ratio | plus: 0
+      if slide_ratio > 0
+        if hero_ratio_mobile == 0 or slide_ratio < hero_ratio_mobile
+          assign hero_ratio_mobile = slide_ratio
+        endif
+      endif
+    endif
+  endfor
+  if hero_ratio_mobile == 0
+    assign hero_ratio_mobile = hero_ratio
+  endif
 -%}
 
 {%- if section.blocks.size > 0 -%}
   <hero-banner-slideshow
     class="hero-banner full-width skeleton-host"
-    style="--hero-ratio: {{ hero_ratio }};"
+    style="--hero-ratio: {{ hero_ratio }}; --hero-ratio-mobile: {{ hero_ratio_mobile }};"
     data-autoplay="{{ section.settings.autoplay }}"
     data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
   >
@@ -53,17 +73,30 @@
               assign slide_alt = slide_alt | default: shop.name
             -%}
             {%- if block.settings.image -%}
-              {{
-                block.settings.image
-                | image_url: width: 2000
-                | image_tag:
-                  loading: slide_loading,
-                  fetchpriority: slide_fetchpriority,
-                  widths: '750,1100,1500,2000',
-                  sizes: '100vw',
-                  class: 'hero-banner_wrapper_track_slide_image',
-                  alt: slide_alt
-              }}
+              <picture class="hero-banner_wrapper_track_slide_picture">
+                {%- if block.settings.mobile_image -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="
+                      {{ block.settings.mobile_image | image_url: width: 400 }} 400w,
+                      {{ block.settings.mobile_image | image_url: width: 800 }} 800w,
+                      {{ block.settings.mobile_image | image_url: width: 1200 }} 1200w
+                    "
+                    sizes="100vw"
+                  >
+                {%- endif -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 2000
+                  | image_tag:
+                    loading: slide_loading,
+                    fetchpriority: slide_fetchpriority,
+                    widths: '750,1100,1500,2000',
+                    sizes: '100vw',
+                    class: 'hero-banner_wrapper_track_slide_image',
+                    alt: slide_alt
+                }}
+              </picture>
             {%- endif -%}
 
             {%- if block.settings.heading != blank
@@ -150,6 +183,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Optional. Shown on phones instead of the image above."
         },
         {
           "type": "text",

@@ -40,6 +40,11 @@
    either way, and one that doesn't is shown whole instead of trimmed. The slow
    zoom that used to run here is gone for the same reason - scaling past 1
    pushes every edge of the image outside the band. */
+/* The <picture> only swaps the source on phones; the img keeps sizing itself. */
+.hero-banner_wrapper_track_slide_picture {
+  display: contents;
+}
+
 .hero-banner_wrapper_track_slide_image {
   display: block;
   width: 100%;
@@ -183,19 +188,16 @@
   }
 }
 
+/* Figma Mobile 7930:106698: the band takes the mobile images' ratio and drops the
+   side arrows; the dots stay as the only control. */
 @media screen and (max-width: 749px) {
+  .hero-banner_wrapper {
+    aspect-ratio: var(--hero-ratio-mobile, var(--hero-ratio, 1280 / 576));
+  }
+
   .hero-banner_wrapper_prev,
   .hero-banner_wrapper_next {
-    width: 32px;
-    height: 32px;
-  }
-
-  .hero-banner_wrapper_prev {
-    left: 12px;
-  }
-
-  .hero-banner_wrapper_next {
-    right: 12px;
+    display: none;
   }
 }
 

@@ -85,4 +85,19 @@
     --color-accent: {{ settings.accent_color }};
     --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
   }
+
+  /* The page margin setting is the desktop gutter (72px in Figma). Figma Mobile
+     (7930:106659) runs a 16px gutter on its 393px frames; tablets take a middle
+     value so a 72px gutter never eats a third of the screen. */
+  @media screen and (max-width: 989px) {
+    :root {
+      --page-margin: min({{ settings.min_page_margin }}px, 32px);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    :root {
+      --page-margin: min({{ settings.min_page_margin }}px, 16px);
+    }
+  }
 {% endstyle %}

@@ -499,16 +499,81 @@
   color: var(--color-icon, #666);
 }
 
+.know-your-jewellery_wrapper_grid_vermeil_diagram_lines--mobile {
+  display: none;
+}
+
+/* Figma Mobile 7930:106750: the panels stack edge to edge with no rounded frame
+   or divider, and the vermeil diagram is re-laid on its 361x238 mobile box -
+   photo, callouts and leader lines all move, so each gets its mobile position. */
 @media screen and (max-width: 749px) {
-  /* Stacked, the row can no longer hold the authored height, and the divider
-     moves to the seam between the two panels. */
+  .know-your-jewellery_wrapper {
+    padding: 24px 0;
+  }
+
+  .know-your-jewellery_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
   .know-your-jewellery_wrapper_grid {
     grid-template-columns: 1fr;
     height: auto;
+    border-radius: 0;
   }
 
   .know-your-jewellery_wrapper_grid_vermeil {
     border-right: 0;
-    border-bottom: 1px solid #f9d79f;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram {
+    aspect-ratio: 361 / 238;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_image {
+    left: 16.9%;
+    top: 8.07%;
+    width: 66.25%;
+    height: 92.14%;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_lines {
+    display: none;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_lines--mobile {
+    display: block;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_callout--1 {
+    left: 3.32%;
+    top: 4.94%;
+    width: 43.85%;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_callout--2 {
+    left: 51.95%;
+    top: 15.69%;
+    width: 48.05%;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_callout--3 {
+    left: 35.07%;
+    top: 89.46%;
+    width: 64.93%;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .know-your-jewellery_wrapper_grid_vermeil_diagram_callout_text {
+    font-size: 14px;
+    line-height: 13.25px;
+  }
+
+  .know-your-jewellery_wrapper_grid_diamonds_stack_arrow {
+    display: none;
   }
 }

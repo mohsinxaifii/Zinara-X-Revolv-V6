@@ -35,6 +35,14 @@
         <a href="{{ collection.url }}?sort_by={{ sort_by }}" class="collection_wrapper_filters_head_clear">
           {{- 'collection.clear_all' | t -}}
         </a>
+        <button
+          type="button"
+          class="collection_wrapper_filters_head_close"
+          data-filters-close
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </button>
       </div>
 
       <div class="collection_wrapper_filters_groups">
@@ -62,6 +70,19 @@
             {{- 'collection.empty' | t -}}
           </p>
         {%- endfor -%}
+      </div>
+
+      {%- comment -%}
+        Phones only (Figma Mobile Filters 7930:118227): the rail opens as a sheet
+        whose footer clears everything or closes it - filters already apply live.
+      {%- endcomment -%}
+      <div class="collection_wrapper_filters_footer">
+        <a href="{{ collection.url }}?sort_by={{ sort_by }}" class="collection_wrapper_filters_footer_clear">
+          {{- 'collection.clear_all' | t -}}
+        </a>
+        <button type="button" class="collection_wrapper_filters_footer_apply" data-filters-close>
+          {{- 'collection.apply' | t -}}
+        </button>
       </div>
     </aside>
 
@@ -93,6 +114,17 @@
             </button>
 
             <div class="collection_wrapper_main_toolbar_sort_menu" data-sort-menu hidden>
+              <div class="collection_wrapper_main_toolbar_sort_menu_head">
+                {{- 'collection.sort_by_heading' | t -}}
+                <button
+                  type="button"
+                  class="collection_wrapper_main_toolbar_sort_menu_head_close"
+                  data-sort-close
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </button>
+              </div>
               {%- for option in collection.sort_options -%}
                 <button
                   type="button"
@@ -162,6 +194,8 @@
       {%- endpaginate -%}
     </div>
   </form>
+
+  {%- render 'plp-mobile-bar', filters: collection.filters -%}
 </collection-page>
 
 {%- render 'variant-drawer' -%}

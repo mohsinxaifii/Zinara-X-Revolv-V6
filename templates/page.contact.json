@@ -56,7 +56,8 @@
       "settings": {
         "heading": "Let’s talk jewellery.",
         "lead": "",
-        "intro": "Whether you’re choosing a piece, or need help with an order, we’re happy to help."
+        "intro": "Whether you’re choosing a piece, or need help with an order, we’re happy to help.",
+        "mobile_image": "shopify://shop_images/zinara-contact-mobile.png"
       }
     },
     "usp-grid": {
@@ -97,7 +98,11 @@
         "cell-3",
         "cell-4"
       ],
-      "settings": {}
+      "settings": {
+        "heading": "The Zinara experience",
+        "padding_top": 24,
+        "padding_bottom": 48
+      }
     },
     "instagram": {
       "type": "instagram-feed",
@@ -105,28 +110,28 @@
         "post-1": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-1.png",
+            "image": "shopify://shop_images/zinara-insta-post-1.png",
             "link": ""
           }
         },
         "post-2": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-1.png",
+            "image": "shopify://shop_images/zinara-insta-post-2.png",
             "link": ""
           }
         },
         "post-3": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-1.png",
+            "image": "shopify://shop_images/zinara-insta-post-3.png",
             "link": ""
           }
         },
         "post-4": {
           "type": "post",
           "settings": {
-            "image": "shopify://shop_images/zinara-instagram-2.png",
+            "image": "shopify://shop_images/zinara-insta-post-4.png",
             "link": ""
           }
         }
@@ -140,8 +145,9 @@
       "settings": {
         "heading": "Join our Instagram community",
         "background_color": "#fef4e2",
-        "instagram_url": "https://instagram.com/zinara",
-        "handle": "@zinara"
+        "instagram_url": "https://www.instagram.com/heyzinara/",
+        "handle": "@zinara",
+        "layout": "fill"
       }
     }
   },

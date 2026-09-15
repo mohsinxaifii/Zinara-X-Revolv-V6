@@ -99,12 +99,6 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 749px) {
-  .about-contact_wrapper_body_channels {
-    flex-direction: column;
-  }
-}
-
 /* The contact page's cards carry a label line above the value; the About page's
    do not, so the value keeps its place either way. Figma: Contact us
    7930:94717 > Frame 1116601772. */
@@ -114,6 +108,12 @@
   font-size: 16px;
   line-height: 1.25;
   color: #808080;
+}
+
+/* Under a label the value turns brand-coloured; the About cards have no label
+   and keep the grey value. Figma: Contact us 7930:94739 / 94743 / 94747. */
+.about-contact_wrapper_body_channels_card_label + .about-contact_wrapper_body_channels_card_value {
+  color: var(--color-brand, #712242);
 }
 
 /* Reserves no space until there is something to say, so the card does not
@@ -128,6 +128,108 @@
 
 .about-contact_wrapper_body_channels_card.is-copied {
   border-color: var(--color-accent, #f0166e);
+}
+
+.about-contact_wrapper_body_image {
+  display: none;
+}
+
+/* Figma Mobile About us 7930:120125: 20px heading, 14px intro, and the three
+   cards kept in one row - 8px apart with 20px icons and 12px values. */
+@media screen and (max-width: 749px) {
+  .about-contact_wrapper {
+    padding-block: 24px;
+  }
+
+  .about-contact_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
+  }
+
+  .about-contact_wrapper_body_intro {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-contact_wrapper_body_intro_lead {
+    font-weight: 600;
+  }
+
+  .about-contact_wrapper_body_channels {
+    gap: 8px;
+  }
+
+  .about-contact_wrapper_body_channels_card {
+    padding: 8px 8px 4px;
+  }
+
+  .about-contact_wrapper_body_channels_card_icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .about-contact_wrapper_body_channels_card_value {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .about-contact_wrapper_body_image {
+    display: block;
+    height: 184px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .about-contact_wrapper_body_image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  /* Figma Mobile Contact us 7930:118940: cards that carry a label stack full
+     width - 28px icons, 16px label and value lines - under a black heading. */
+  .about-contact:has(.about-contact_wrapper_body_channels_card_label) .about-contact_wrapper {
+    padding-top: 12px;
+  }
+
+  .about-contact:has(.about-contact_wrapper_body_channels_card_label)
+    .about-contact_wrapper_heading {
+    color: #000;
+  }
+
+  .about-contact_wrapper_body_channels:has(.about-contact_wrapper_body_channels_card_label) {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* flex: none - the desktop 1 1 0 basis collapses these overflow-hidden cards
+     to their padding once the row turns into a column. */
+  .about-contact_wrapper_body_channels:has(.about-contact_wrapper_body_channels_card_label)
+    .about-contact_wrapper_body_channels_card {
+    flex: none;
+    gap: 6px;
+    padding: 12px;
+  }
+
+  .about-contact_wrapper_body_channels:has(.about-contact_wrapper_body_channels_card_label)
+    .about-contact_wrapper_body_channels_card_icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .about-contact_wrapper_body_channels_card_label {
+    line-height: 24px;
+    color: #666;
+  }
+
+  .about-contact_wrapper_body_channels_card_label
+    + .about-contact_wrapper_body_channels_card_value {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 /* ---------------------------------------------------------------- skeleton --

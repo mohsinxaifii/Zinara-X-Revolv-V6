@@ -68,18 +68,35 @@
   flex: 0 0 auto;
 }
 
+/* Figma Mobile 7930:106721: the pill keeps both claims side by side at full
+   width - two 64px halves with 24px marks and 12px labels wrapping to two lines. */
 @media screen and (max-width: 749px) {
-  .usp-strip_wrapper_pill {
-    flex-direction: column;
+  .usp-strip_wrapper {
+    padding-block: 16px;
   }
 
-  .usp-strip_wrapper_pill_divider {
-    width: 60%;
-    height: 1px;
+  .usp-strip_wrapper_pill {
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .usp-strip_wrapper_pill_item {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 64px;
+    gap: 10px;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .usp-strip_wrapper_pill_item_icon,
+  .usp-strip_wrapper_pill_item_icon img {
+    max-height: 24px;
   }
 
   .usp-strip_wrapper_pill_item_text {
+    font-size: 12px;
+    line-height: 20px;
     white-space: normal;
-    font-size: 16px;
   }
 }

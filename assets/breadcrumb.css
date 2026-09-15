@@ -49,6 +49,27 @@
   color: #4d4d4d;
 }
 
+/* Figma Mobile breadcrumb 7930:119998: 12/16 padding and 12px type on a 20px
+   line - a 44px strip. */
+@media screen and (max-width: 749px) {
+  .breadcrumb_list {
+    padding-block: 12px;
+  }
+
+  .breadcrumb_list_item {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .breadcrumb_list_item_link {
+    color: #666;
+  }
+
+  .breadcrumb_list_item_current {
+    color: #494949;
+  }
+}
+
 /* The product trail is three rungs deep and the last one is a full product
    title, which stacks into a column on a phone. Scrolling the trail sideways
    keeps it on one line, the way it reads on every wider screen. */
