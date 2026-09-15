@@ -18,6 +18,20 @@
         </p>
       {%- endif -%}
 
+      {%- comment -%}
+        Figma Mobile Contact us 7930:118945 adds a photo between the intro and
+        the cards; desktop has none, so it only shows on phones.
+      {%- endcomment -%}
+      {%- if section.settings.mobile_image -%}
+        <span class="about-contact_wrapper_body_image">
+          {{
+            section.settings.mobile_image
+            | image_url: width: 800
+            | image_tag: loading: 'lazy', widths: '400,600,800', sizes: '100vw', alt: ''
+          }}
+        </span>
+      {%- endif -%}
+
       {%- if section.blocks.size > 0 -%}
         <div class="about-contact_wrapper_body_channels">
           {%- for block in section.blocks -%}
@@ -75,6 +89,12 @@
       "id": "intro",
       "label": "Intro",
       "default": "Whether you’re choosing a piece, or need help with an order, we’re happy to help."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "Optional. Shown between the intro and the cards on phones only."
     }
   ],
   "blocks": [
