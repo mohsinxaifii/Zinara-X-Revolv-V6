@@ -22,7 +22,18 @@
   </div>
 
   <div class="split-promo_right" data-animate>
-    <div class="split-promo_right_card">
+    <div
+      class="split-promo_right_card{% if section.settings.right_image_mobile %} split-promo_right_card--mobile-image{% endif %}"
+    >
+      {%- comment -%}
+        Figma Mobile 7930:106898 swaps the tilted pair for one landscape photo
+        beside the heading; without a mobile image the pair is kept, just smaller.
+      {%- endcomment -%}
+      {%- if section.settings.right_image_mobile -%}
+        <span class="split-promo_right_card_mobile-image">
+          {{ section.settings.right_image_mobile | image_url: width: 648 | image_tag: loading: 'lazy', alt: '' }}
+        </span>
+      {%- endif -%}
       <div class="split-promo_right_card_images">
         {%- if section.settings.right_image_1 -%}
           <span class="split-promo_right_card_images_img split-promo_right_card_images_img--back">
@@ -65,6 +76,12 @@
     { "type": "header", "content": "Right panel" },
     { "type": "image_picker", "id": "right_image_1", "label": "Image 1" },
     { "type": "image_picker", "id": "right_image_2", "label": "Image 2" },
+    {
+      "type": "image_picker",
+      "id": "right_image_mobile",
+      "label": "Mobile image",
+      "info": "Shown beside the heading on phones in place of the two tilted photos."
+    },
     {
       "type": "textarea",
       "id": "right_heading",
