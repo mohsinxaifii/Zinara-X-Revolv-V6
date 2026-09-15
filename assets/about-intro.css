@@ -159,9 +159,12 @@
     aspect-ratio: 1;
   }
 
-  .about-intro_wrapper_row_mosaic_column--1 .about-intro_wrapper_row_mosaic_column_tile:nth-child(2),
-  .about-intro_wrapper_row_mosaic_column--2 .about-intro_wrapper_row_mosaic_column_tile:nth-child(1),
-  .about-intro_wrapper_row_mosaic_column--3 .about-intro_wrapper_row_mosaic_column_tile:nth-child(2) {
+  .about-intro_wrapper_row_mosaic_column--1
+    .about-intro_wrapper_row_mosaic_column_tile:nth-child(2),
+  .about-intro_wrapper_row_mosaic_column--2
+    .about-intro_wrapper_row_mosaic_column_tile:nth-child(1),
+  .about-intro_wrapper_row_mosaic_column--3
+    .about-intro_wrapper_row_mosaic_column_tile:nth-child(2) {
     display: none;
   }
 

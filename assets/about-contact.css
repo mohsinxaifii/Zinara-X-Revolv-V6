@@ -195,7 +195,8 @@
     padding-top: 12px;
   }
 
-  .about-contact:has(.about-contact_wrapper_body_channels_card_label) .about-contact_wrapper_heading {
+  .about-contact:has(.about-contact_wrapper_body_channels_card_label)
+    .about-contact_wrapper_heading {
     color: #000;
   }
 
@@ -224,7 +225,8 @@
     color: #666;
   }
 
-  .about-contact_wrapper_body_channels_card_label + .about-contact_wrapper_body_channels_card_value {
+  .about-contact_wrapper_body_channels_card_label
+    + .about-contact_wrapper_body_channels_card_value {
     font-size: 16px;
     line-height: 24px;
   }
