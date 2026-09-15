@@ -99,12 +99,6 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 749px) {
-  .about-contact_wrapper_body_channels {
-    flex-direction: column;
-  }
-}
-
 /* The contact page's cards carry a label line above the value; the About page's
    do not, so the value keeps its place either way. Figma: Contact us
    7930:94717 > Frame 1116601772. */
