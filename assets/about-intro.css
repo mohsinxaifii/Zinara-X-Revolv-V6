@@ -117,8 +117,59 @@
   }
 }
 
+/* Figma Mobile 7930:120033: the copy stacks over one row of three square tiles on
+   an 8px gap - each column's full tile, with no stagger. The columns dissolve so
+   the tiles can share that row; the third column's tile leads, as drawn. */
 @media screen and (max-width: 749px) {
-  .about-intro_wrapper_row_mosaic_column--3 {
+  .about-intro_wrapper {
+    padding-block: 24px;
+  }
+
+  .about-intro_wrapper_row {
+    gap: 16px;
+  }
+
+  .about-intro_wrapper_row_text_heading {
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
+  }
+
+  .about-intro_wrapper_row_text_body {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-intro_wrapper_row_mosaic {
+    align-self: stretch;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .about-intro_wrapper_row_mosaic_column {
+    display: contents;
+  }
+
+  .about-intro_wrapper_row_mosaic_column_tile {
+    flex: 1 1 0;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    aspect-ratio: 1;
+  }
+
+  .about-intro_wrapper_row_mosaic_column--1 .about-intro_wrapper_row_mosaic_column_tile:nth-child(2),
+  .about-intro_wrapper_row_mosaic_column--2 .about-intro_wrapper_row_mosaic_column_tile:nth-child(1),
+  .about-intro_wrapper_row_mosaic_column--3 .about-intro_wrapper_row_mosaic_column_tile:nth-child(2) {
     display: none;
+  }
+
+  .about-intro_wrapper_row_mosaic_column--3 .about-intro_wrapper_row_mosaic_column_tile {
+    order: -1;
+  }
+
+  .about-intro_wrapper_row_mosaic_column--1 .about-intro_wrapper_row_mosaic_column_tile {
+    order: 1;
   }
 }
