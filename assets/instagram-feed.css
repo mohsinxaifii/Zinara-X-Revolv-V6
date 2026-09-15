@@ -114,13 +114,50 @@
   color: var(--color-brand, #712242);
 }
 
+/* Figma Mobile 7930:106935 (and Contact 7930:118974): one row of four 114x153
+   tiles on a 4px gap that runs off the right edge, under a 20px heading. */
 @media screen and (max-width: 749px) {
-  .instagram-feed_wrapper_grid {
-    flex-wrap: wrap;
+  .instagram-feed_wrapper,
+  .instagram-feed--fill .instagram-feed_wrapper {
+    gap: 16px;
+    padding-block: 24px;
   }
 
-  .instagram-feed_wrapper_grid_item {
-    flex: 0 1 calc(50% - 12px);
+  .instagram-feed_wrapper_heading {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .instagram-feed_wrapper_grid {
+    align-self: stretch;
+    justify-content: flex-start;
+    gap: 4px;
+    width: auto;
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .instagram-feed_wrapper_grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .instagram-feed_wrapper_grid_item,
+  .instagram-feed--fill .instagram-feed_wrapper_grid_item {
+    flex: 0 0 114px;
     max-width: none;
+    aspect-ratio: 114 / 153;
+    border-radius: 8px;
+  }
+
+  .instagram-feed_wrapper_follow {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .instagram-feed_wrapper_follow_handle {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
