@@ -65,6 +65,36 @@
   }
 }
 
+.logo-marquee_wrapper_track--second {
+  display: none;
+}
+
+/* Figma Mobile 7930:106967: 24px band padding with the rows running edge to edge,
+   a 20px heading, and a second row 20px under the first scrolling the other way. */
+@media screen and (max-width: 749px) {
+  .logo-marquee_wrapper {
+    padding: 24px 0;
+  }
+
+  .logo-marquee_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .logo-marquee_wrapper_track {
+    mask-image: none;
+  }
+
+  .logo-marquee_wrapper_track--second {
+    display: flex;
+    margin-top: -12px;
+  }
+
+  .logo-marquee_wrapper_track--second .logo-marquee_wrapper_track_set {
+    animation-direction: reverse;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .logo-marquee_wrapper_track_set {
     animation: none;
