@@ -31,6 +31,25 @@
 
   <div class="search_head">
     <h1 class="search_head_title">{{ section.settings.heading }}</h1>
+
+    {%- comment -%}
+      Figma Mobile Search page 7930:111746 swaps the heading for a search field
+      holding the current query; desktop keeps the heading.
+    {%- endcomment -%}
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search_head_form">
+      <input type="hidden" name="type" value="product">
+      <span class="search_head_form_icon" aria-hidden="true">{{ 'icon-search.svg' | inline_asset_content }}</span>
+      <label class="visually-hidden" for="SearchHeadInput">{{ 'search.placeholder' | t }}</label>
+      <input
+        type="search"
+        id="SearchHeadInput"
+        name="q"
+        class="search_head_form_input"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'search.placeholder' | t }}"
+        autocomplete="off"
+      >
+    </form>
   </div>
 
   {%- if search.performed == false -%}
