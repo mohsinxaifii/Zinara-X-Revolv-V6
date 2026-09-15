@@ -98,3 +98,11 @@
     display: none;
   }
 }
+
+/* Figma Mobile / Home page 7930:106661 has no category strip under the navbar;
+   the same links live in the side menu instead. */
+@media screen and (max-width: 749px) {
+  .category-nav {
+    display: none;
+  }
+}
