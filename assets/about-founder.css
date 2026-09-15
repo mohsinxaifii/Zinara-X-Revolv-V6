@@ -113,3 +113,50 @@
     font-size: 24px;
   }
 }
+
+/* Figma Mobile 7930:120118: heading and quote above the portrait, the words
+   below it. The text column dissolves so the photo can sit between them. */
+@media screen and (max-width: 749px) {
+  .about-founder_wrapper {
+    padding-block: 24px;
+  }
+
+  .about-founder_wrapper_row {
+    gap: 16px;
+  }
+
+  .about-founder_wrapper_row_text {
+    display: contents;
+  }
+
+  .about-founder_wrapper_row_text_heading {
+    order: 1;
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
+  }
+
+  .about-founder_wrapper_row_text_quote {
+    order: 2;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .about-founder_wrapper_row_image {
+    order: 3;
+    width: 100%;
+  }
+
+  .about-founder_wrapper_row_text_block {
+    order: 4;
+  }
+
+  .about-founder_wrapper_row_text_block_body {
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .about-founder_wrapper_row_text_block_attribution {
+    line-height: 22px;
+  }
+}
