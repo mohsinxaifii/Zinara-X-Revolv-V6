@@ -184,6 +184,18 @@
           {%- endif -%}
         </div>
 
+        {%- comment -%}
+          Figma Mobile PDP 7930:112281 swaps the thumbnail rail for dots under a
+          swipeable image; desktop keeps the thumbnails.
+        {%- endcomment -%}
+        {%- if product.media.size > 1 -%}
+          <div class="pdp_gallery_dots" aria-hidden="true">
+            {%- for media in product.media -%}
+              <span class="pdp_gallery_dots_dot{% if forloop.first %} is-active{% endif %}" data-gallery-dot></span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
         <scroll-carousel class="pdp_gallery_thumbs">
           <button
             type="button"
