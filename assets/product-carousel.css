@@ -203,10 +203,72 @@
   text-decoration: underline;
 }
 
+/* Figma Mobile 7930:106731: 24/16 padding, a 20px heading, one swipeable row of
+   12px chips, and 168px cards that run off both screen edges. The arrows and the
+   underlined "View all" are desktop-only. */
 @media screen and (max-width: 749px) {
-  .product-carousel_wrapper_stage_prev,
-  .product-carousel_wrapper_stage_next {
+  .product-carousel_wrapper {
+    padding-block: 24px;
+  }
+
+  .product-carousel_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .product-carousel_wrapper_controls {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    overflow-x: auto;
+    scrollbar-width: none;
+    box-sizing: content-box;
+  }
+
+  .product-carousel_wrapper_controls::-webkit-scrollbar {
     display: none;
+  }
+
+  .product-carousel_wrapper_controls_tabs {
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .product-carousel_wrapper_controls_tabs_tab,
+  .product-carousel_wrapper_controls_view-all {
+    flex: 0 0 auto;
+    padding: 11px 12px;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+
+  .product-carousel_wrapper_controls_tabs_tab.is-active {
+    background-color: #f7f3f5;
+    font-weight: 600;
+  }
+
+  .product-carousel_wrapper_stage {
+    --product-card-width: 168px;
+    --product-card-gap: 12px;
+  }
+
+  .product-carousel_wrapper_stage_panel_track {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .product-carousel_wrapper_stage_prev,
+  .product-carousel_wrapper_stage_next,
+  .product-carousel_wrapper_bottom-link {
+    display: none;
+  }
+
+  .product-carousel_wrapper_dots {
+    margin-top: -8px;
   }
 }
 
