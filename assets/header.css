@@ -268,15 +268,48 @@
   }
 }
 
+.header_wrapper_actions_search-toggle {
+  display: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* Figma Mobile navbar 7930:106697: a 57px bar - 16px padding, menu + logo on the
+   left (12px apart), search / account / wishlist / cart on the right (12px apart).
+   The search field drops below the bar only while the search icon is toggled on. */
 @media screen and (max-width: 749px) {
   .header_wrapper {
     flex-wrap: wrap;
-    row-gap: 10px;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px var(--page-margin);
+  }
+
+  .header_wrapper_brand,
+  .header_wrapper_actions {
+    gap: 12px;
+    height: 24px;
+    padding-block: 0;
+  }
+
+  .header_wrapper_actions_search-toggle {
+    display: flex;
+  }
+
+  .header_wrapper > .search-suggest {
+    display: none;
+    order: 3;
+    flex: 0 0 100%;
+  }
+
+  .header[data-search-open='true'] .header_wrapper > .search-suggest {
+    display: block;
   }
 
   .header_wrapper_search {
-    order: 3;
-    flex-basis: 100%;
     max-width: none;
+    height: 44px;
   }
 }

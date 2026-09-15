@@ -105,3 +105,17 @@
   line-height: 1.571;
   color: var(--color-icon, #666);
 }
+
+/* Figma Mobile 7930:106957: a centred 20px #494949 heading on a 16px stack. */
+@media screen and (max-width: 749px) {
+  .faq_wrapper {
+    gap: 16px;
+  }
+
+  .faq_wrapper_heading {
+    text-align: center;
+    font-size: 20px;
+    line-height: normal;
+    color: var(--color-text-secondary, #494949);
+  }
+}
