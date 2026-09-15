@@ -19,6 +19,7 @@
     "about-hero": {
       "type": "about-hero",
       "settings": {
+        "image": "shopify://shop_images/zinara-about-hero.png",
         "eyebrow": "Our moto:",
         "quote": "“Jewellery you'll never take off.”",
         "image": "shopify://shop_images/zinara-about-hero.png",
@@ -225,6 +226,7 @@
     "about-founder": {
       "type": "about-founder",
       "settings": {
+        "image": "shopify://shop_images/zinara-about-founder.png",
         "heading": "Founder",
         "quote": "“We wanted diamonds to feel less like an occasion, and more like a part of life.”",
         "body": "“Zinara started with a simple question: why should beautiful jewellery spend most of its life in a box? We wanted to create pieces that women could genuinely live in—pieces that feel special, but never too precious to wear.\n\nLab-grown diamonds gave us the opportunity to bring that vision to life in a way that felt modern, considered, and accessible.”",
