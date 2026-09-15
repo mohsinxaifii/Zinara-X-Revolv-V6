@@ -163,7 +163,42 @@
   text-decoration: underline;
 }
 
+/* Figma Mobile 7930:106829: 24/16 padding, a 20px heading, 168x237 cards on a
+   16px gap running off both screen edges, 16px serif labels on a 24px line. */
 @media screen and (max-width: 749px) {
+  .zinara-collections_wrapper {
+    padding-block: 24px;
+  }
+
+  .zinara-collections_wrapper_heading {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .zinara-collections_wrapper_stage {
+    --zinara-collections-card: 168px;
+    --zinara-collections-gap: 16px;
+  }
+
+  .zinara-collections_wrapper_track {
+    margin-inline: calc(var(--page-margin) * -1);
+    padding-inline: var(--page-margin);
+    scroll-padding-inline-start: var(--page-margin);
+  }
+
+  .zinara-collections_wrapper_track_item_image {
+    aspect-ratio: 168 / 237;
+  }
+
+  .zinara-collections_wrapper_track_item_label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .zinara-collections_wrapper_link {
+    font-size: 16px;
+  }
+
   .zinara-collections_wrapper_stage_prev,
   .zinara-collections_wrapper_stage_next {
     display: none;
