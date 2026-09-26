@@ -26,19 +26,97 @@ class CardStack extends HTMLElement {
     });
 
     this.querySelectorAll('[data-prev]').forEach((button) =>
-      button.addEventListener('click', () => this.goTo(this.activeIndex - 1)),
+      button.addEventListener('click', () => this.goTo(this.activeIndex - 1, -1)),
     );
     this.querySelectorAll('[data-next]').forEach((button) =>
-      button.addEventListener('click', () => this.goTo(this.activeIndex + 1)),
+      button.addEventListener('click', () => this.goTo(this.activeIndex + 1, 1)),
     );
 
+    this.bindSwipe(this.querySelector('.know-your-jewellery_wrapper_grid_diamonds_stack'));
     this.buildDots();
     this.updateDepths();
   }
 
-  goTo(index) {
+  /* A horizontal drag (touch or mouse) steps the deck: left for next, right for
+     previous. The click that follows a swipe is swallowed so it doesn't also
+     flip the card or jump to a card behind it. */
+  bindSwipe(surface) {
+    if (!surface) return;
+
+    const threshold = 40;
+    let start = null;
+    let swiped = false;
+
+    surface.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      start = { x: event.clientX, y: event.clientY, id: event.pointerId };
+      swiped = false;
+    });
+
+    // Capture only once the pointer is clearly dragging, so a plain tap still
+    // lands on the card under it and flips it.
+    surface.addEventListener('pointermove', (event) => {
+      if (!start || event.pointerId !== start.id) return;
+      if (Math.abs(event.clientX - start.x) > 10 && !surface.hasPointerCapture(event.pointerId)) {
+        surface.setPointerCapture(event.pointerId);
+      }
+    });
+
+    surface.addEventListener('pointerup', (event) => {
+      if (!start || event.pointerId !== start.id) return;
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      start = null;
+      if (Math.abs(dx) < threshold || Math.abs(dx) < Math.abs(dy)) return;
+      swiped = true;
+      // The card swings out on the side the finger is moving towards.
+      this.goTo(this.activeIndex + (dx < 0 ? 1 : -1), dx < 0 ? -1 : 1);
+    });
+
+    surface.addEventListener('pointercancel', () => {
+      start = null;
+    });
+
+    surface.addEventListener(
+      'click',
+      (event) => {
+        if (!swiped) return;
+        swiped = false;
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      true,
+    );
+  }
+
+  /* Stepping forward sends the front card out to the side, behind the deck and
+     down to the back; stepping back plays that in reverse on the back card.
+     `swing` is the side the card swings out on: 1 right, -1 left. */
+  goTo(index, swing) {
     const total = this.items.length;
     const next = (index + total) % total;
+    if (next === this.activeIndex || this.animating) return;
+
+    const step = (next - this.activeIndex + total) % total;
+    let moving = null;
+    let animation = '';
+    if (step === 1) {
+      moving = this.items[this.activeIndex];
+      animation = 'is-sending-back';
+    } else if (step === total - 1) {
+      moving = this.items[next];
+      animation = 'is-bringing-front';
+    }
+
+    if (moving) {
+      this.animating = true;
+      moving.style.setProperty('--card-stack-swing', String(swing || (animation === 'is-sending-back' ? 1 : -1)));
+      moving.classList.add(animation);
+      window.setTimeout(() => {
+        moving.classList.remove(animation);
+        this.animating = false;
+      }, CardStack.duration);
+    }
 
     this.items.forEach((item) => item.classList.remove('is-flipped'));
     this.activeIndex = next;
@@ -73,5 +151,8 @@ class CardStack extends HTMLElement {
     });
   }
 }
+
+/* Matches the length of the kyj-card-send-back / kyj-card-bring-front keyframes. */
+CardStack.duration = 600;
 
 customElements.define('card-stack', CardStack);

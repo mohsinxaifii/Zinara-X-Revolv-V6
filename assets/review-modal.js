@@ -1,5 +1,7 @@
 /* Opens the full review in a native <dialog>, so Esc, focus trapping and the
-   theme's scroll-lock rule all come for free. */
+   theme's scroll-lock rule all come for free. The dialog carries
+   data-bottom-sheet, so animations.js slides it up as a sheet on phones and
+   plays the exit on every close. */
 class ReviewModal extends HTMLElement {
   connectedCallback() {
     this.dialog = this.querySelector('dialog');

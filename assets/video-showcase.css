@@ -212,6 +212,187 @@
   z-index: 4;
 }
 
+/* Sound toggle, top right under the timeline. Only the playing card shows
+   it; the icon follows the carousel-wide muted state. */
+.video-showcase_wrapper_track_item_sound {
+  position: absolute;
+  top: 24px;
+  right: 10px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    background-color 0.2s ease;
+}
+
+.video-showcase_wrapper_track_item.is-active .video-showcase_wrapper_track_item_sound {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-showcase_wrapper_track_item_sound:hover {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.video-showcase_wrapper_track_item_sound svg {
+  width: 18px;
+  height: 18px;
+}
+
+.video-showcase_wrapper_track_item_sound_icon--unmuted,
+.video-showcase.is-unmuted .video-showcase_wrapper_track_item_sound_icon--muted {
+  display: none;
+}
+
+.video-showcase.is-unmuted .video-showcase_wrapper_track_item_sound_icon--unmuted {
+  display: block;
+}
+
+/* Horizontal drags belong to the carousel; vertical ones still scroll the page. */
+.video-showcase_wrapper_viewport {
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.video-showcase_wrapper_track.is-dragging {
+  cursor: grabbing;
+}
+
+.video-showcase_wrapper_track img,
+.video-showcase_wrapper_track a {
+  -webkit-user-drag: none;
+}
+
+/* Product card floating over the bottom of the video: inset from the card
+   edges, rounded, on a lightly frosted panel. Sits above the optional
+   whole-card link so its title and button stay clickable. */
+.video-showcase_wrapper_track_item_product {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  cursor: default;
+}
+
+.video-showcase_wrapper_track_item_product_info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.video-showcase_wrapper_track_item_product_info_image {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #f5f0f2;
+}
+
+.video-showcase_wrapper_track_item_product_info_image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-showcase_wrapper_track_item_product_info_text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.video-showcase_wrapper_track_item_product_info_title {
+  overflow: hidden;
+  font-family: var(--font-secondary--family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-text-secondary, #494949);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.video-showcase_wrapper_track_item_product_info_price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 6px;
+  white-space: nowrap;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-brand, #712242);
+}
+
+.video-showcase_wrapper_track_item_product_info_price_compare {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--color-icon, #666);
+}
+
+.video-showcase_wrapper_track_item_product_add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--color-brand, #712242);
+  border-radius: 8px;
+  background-color: var(--color-brand, #712242);
+  color: #fff;
+  font-family: var(--font-secondary--family);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.video-showcase_wrapper_track_item_product_add:hover {
+  background-color: #5c1b36;
+}
+
+.video-showcase_wrapper_track_item_product_add.is-loading {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.video-showcase_wrapper_track_item_product_add--disabled {
+  border-color: #e0e0e0;
+  background-color: #e0e0e0;
+  color: var(--color-icon, #666);
+  cursor: not-allowed;
+}
+
 .video-showcase_wrapper_stage_prev,
 .video-showcase_wrapper_stage_next {
   position: absolute;
@@ -289,6 +470,35 @@
 
   .video-showcase_wrapper_track_item {
     aspect-ratio: 169 / 320;
+  }
+
+  .video-showcase_wrapper_track_item_product {
+    right: 6px;
+    bottom: 6px;
+    left: 6px;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 8px;
+  }
+
+  .video-showcase_wrapper_track_item_product_info {
+    gap: 6px;
+  }
+
+  .video-showcase_wrapper_track_item_product_info_image {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .video-showcase_wrapper_track_item_product_info_title,
+  .video-showcase_wrapper_track_item_product_info_price {
+    font-size: 12px;
+  }
+
+  .video-showcase_wrapper_track_item_product_add {
+    height: 32px;
+    font-size: 12px;
   }
 
   .video-showcase_wrapper_stage_prev,

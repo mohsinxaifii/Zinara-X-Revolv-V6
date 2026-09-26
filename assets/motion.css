@@ -322,6 +322,27 @@ dialog.is-closing::backdrop {
   }
 }
 
+/**
+ * Popup on desktop, bottom sheet on phones - initBottomSheets() in
+ * animations.js slides the panel and toggles `.is-open` for the backdrop. The
+ * sheet only ever slides; the dimmed backdrop is the one thing that fades.
+ * Each dialog still owns its mobile layout (full width, docked to the bottom,
+ * rounded top corners).
+ */
+dialog[data-bottom-sheet]::backdrop {
+  opacity: 0;
+  animation: none;
+  transition: opacity 0.35s ease;
+}
+
+dialog[data-bottom-sheet].is-open::backdrop {
+  opacity: 1;
+}
+
+dialog[data-bottom-sheet] > :first-child {
+  outline: none;
+}
+
 @keyframes motion-scale-in {
   from {
     opacity: 0;
@@ -341,7 +362,6 @@ html:not(.motion-dialogs) .variant-drawer[open] .variant-drawer_panel {
   animation: motion-slide-in var(--motion-slow) var(--motion-ease);
 }
 
-html:not(.motion-dialogs) .pdp-modal[open] .pdp-modal_panel,
 html:not(.motion-dialogs) .pdp-lightbox[open] .pdp-lightbox_body,
 html:not(.motion-dialogs) .pdp-ugc-box[open] .pdp-ugc-box_reel {
   animation: motion-scale-in var(--motion-base) var(--motion-ease);
